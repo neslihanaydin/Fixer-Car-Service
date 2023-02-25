@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.douglas.thecarserviceapp.R;
+import com.douglas.thecarserviceapp.app.AppManager;
 import com.douglas.thecarserviceapp.model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Testing user type: " + providerUser.getFirstName());
         System.out.println("Is provider " + providerUser.isProvider());
         System.out.println("Is customer " + providerUser.isCustomer());
+
+        AppManager.instance.setUser(providerUser); //Singleton class to hold logged user for whole app life cycle
 
     }
 }
