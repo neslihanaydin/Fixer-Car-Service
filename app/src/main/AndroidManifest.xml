@@ -13,7 +13,28 @@
         android:theme="@style/Theme.TheCarServiceApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".Profile"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ServiceHistory"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".SearchServiceProvider"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".BookAnAppointment"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
