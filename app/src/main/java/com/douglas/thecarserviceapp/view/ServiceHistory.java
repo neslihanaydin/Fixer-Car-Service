@@ -1,4 +1,4 @@
-package com.douglas.thecarserviceapp;
+package com.douglas.thecarserviceapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.douglas.thecarserviceapp.R;
+import com.douglas.thecarserviceapp.adapter.MainAdapter;
 
 public class ServiceHistory extends AppCompatActivity {
     DrawerLayout drawerLayout;

@@ -2,6 +2,7 @@ package com.douglas.thecarserviceapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.douglas.thecarserviceapp.R;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Is customer " + providerUser.isCustomer());
 
         AppManager.instance.setUser(providerUser); //Singleton class to hold logged user for whole app life cycle
+        startActivity(new Intent(MainActivity.this, BookAnAppointment.class));
 
     }
 }

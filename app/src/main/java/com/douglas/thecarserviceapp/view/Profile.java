@@ -1,4 +1,4 @@
-package com.douglas.thecarserviceapp;
+package com.douglas.thecarserviceapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -10,43 +10,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
+import com.douglas.thecarserviceapp.R;
+import com.douglas.thecarserviceapp.adapter.MainAdapter;
 
-public class BookAnAppointment extends AppCompatActivity {
-    //variable
+public class Profile extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView btMenu;
     RecyclerView recyclerView;
-    static ArrayList<String> arrayList = new ArrayList<>();
-    MainAdapter adapter;
-
-    public static void closeDrawer(DrawerLayout drawerLayout) {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookanappointment);
+        setContentView(R.layout.activity_profile);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         btMenu = findViewById(R.id.bt_menu);
         recyclerView = findViewById(R.id.recycler_view);
 
-        arrayList.clear();
-
-        arrayList.add("Book an Appointment");
-        arrayList.add("Search Service Provider");
-        arrayList.add("View Appointments");
-        arrayList.add("Service History");
-        arrayList.add("Profile");
-        arrayList.add("Logout");
-
-        adapter = new MainAdapter(this, arrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.arrayList));
 
         btMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +41,7 @@ public class BookAnAppointment extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        closeDrawer(drawerLayout);
+        //close drawer
+        BookAnAppointment.closeDrawer(drawerLayout);
     }
 }

@@ -1,4 +1,4 @@
-package com.douglas.thecarserviceapp;
+package com.douglas.thecarserviceapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -10,7 +10,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class Profile extends AppCompatActivity {
+import com.douglas.thecarserviceapp.R;
+import com.douglas.thecarserviceapp.adapter.MainAdapter;
+
+public class ViewAppointments extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView btMenu;
     RecyclerView recyclerView;
@@ -18,7 +21,7 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_view_appointments);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         btMenu = findViewById(R.id.bt_menu);
