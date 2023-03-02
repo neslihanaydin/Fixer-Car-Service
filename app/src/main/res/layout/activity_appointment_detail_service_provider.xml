@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f_blue"
+    android:orientation="vertical"
+    tools:context=".view.AppointmentDetailServiceProvider">
+
+    <Button
+        android:id="@+id/btnCancelAppointment"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/rounded_background_aqua_button"
+        android:fontFamily="@font/inter"
+        android:text="@string/btnCancelAppointment"
+        android:textAllCaps="false"
+        android:textColor="@color/f_blue"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSave" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/constraint_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="296dp"
+        android:layout_height="293dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/rounded_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/textViewValue"
+        android:textColor="@color/f_blue"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/textViewCusName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/textViewValue"
+        android:textColor="@color/f_blue"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+
+    <TextView
+        android:id="@+id/titleDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/strDate"
+        android:textColor="@color/f_gray"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/titleCustomer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/strCustomer"
+        android:textColor="@color/f_gray"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleDate" />
+
+    <TextView
+        android:id="@+id/textViewCusAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/textViewValue"
+        android:textColor="@color/f_gray"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/titleService"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCusName"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewServices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:layout_marginBottom="14dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/textViewValue"
+        android:textColor="@color/f_gray"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewType"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCusAdd"
+        app:layout_constraintVertical_bias="0.935" />
+
+    <TextView
+        android:id="@+id/textViewType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:layout_marginBottom="14dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/textViewValue"
+        android:textColor="@color/f_gray"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewComment"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/textViewValue"
+        android:textColor="@color/f_gray"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/titleService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/strServices"
+        android:textColor="@color/f_gray"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleCustomer" />
+
+    <TextView
+        android:id="@+id/titleType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/strType"
+        android:textColor="@color/f_gray"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleService" />
+
+    <TextView
+        android:id="@+id/titleComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/strComment"
+        android:textColor="@color/f_gray"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleType" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="32dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="80dp"
+        android:contentDescription="@string/editImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        app:tint="@color/f_blue" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/rounded_background_gray_button"
+        android:fontFamily="@font/inter"
+        android:text="@string/btnSave"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

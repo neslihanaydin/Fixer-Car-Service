@@ -8,24 +8,29 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="80dp"
+        android:background="#09032F"
         android:padding="8dp">
+
         <ImageView
+            android:id="@+id/bt_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bt_menu"
-            android:padding="8dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_menu"/>
+            android:padding="8dp"
+            android:src="@drawable/ic_menu"
+            app:srcCompat="@drawable/ic_menu"
+            app:tint="#5AF5FF" />
 
         <TextView
+            android:id="@+id/toolBarTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="Navigation Drawer "
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_centerInParent="true"/>
+            android:textColor="#5AF5FF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

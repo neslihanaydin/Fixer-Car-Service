@@ -1,10 +1,11 @@
 package com.douglas.thecarserviceapp.model;
 
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Appointment {
+public class Appointment implements Serializable {
 
     private int appointmentId;
     private int userId;
