@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">TheCarServiceApp</string>
+    <string name="imgDesc">Img Description</string>
+    <string name="editEmailPlaceholder">Email</string>
+    <string name="editPasswordPlaceholder">Password</string>
+    <string name="editConfirmPassPlaceholder">Confirm Password</string>
+    <string name="editFirstNamePlaceholder">First Name</string>
+    <string name="editLastNamePlaceholder">Last Name</string>
+    <string name="editAddressPlaceholder">Address</string>
+    <string name="editPhonePlaceholder">Phone Number</string>
+    <string name="btnRegister">Register</string>
+    <string name="btnLogin">Login</string>
+    <string name="txtNoAccount">Don\'t have an account?</string>
+    <string name="txtPrivacyPolicy">By registering, you accept all our terms and conditions.</string>
+    <string name="txtRegisterLink">Register here.</string>
 </resources>
