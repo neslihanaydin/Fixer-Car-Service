@@ -1,0 +1,142 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/f_blue"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="240dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_background"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutTitle"
+            android:layout_width="92dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="40dp"
+            android:layout_weight="0"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/strDate"
+                android:textColor="@color/f_blue"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="31dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/strProvider"
+                android:textColor="@color/f_blue"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/strServices"
+                android:textColor="@color/f_blue"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/strType"
+                android:textColor="@color/f_blue"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/textViewValue"
+                android:textColor="@color/f_blue"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:text="@string/textViewValue"
+                android:textColor="@color/f_blue"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/textViewValue"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/textViewValue"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/textViewValue"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_background_aqua_button"
+        android:fontFamily="@font/inter"
+        android:text="@string/btnCancelAppointment"
+        android:textAllCaps="false"
+        android:textColor="@color/f_blue"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+</LinearLayout>

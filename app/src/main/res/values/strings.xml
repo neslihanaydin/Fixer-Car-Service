@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">TheCarServiceApp</string>
+    <string name="upComingTxt">Upcoming\nappointments</string>
+    <string name="backButton">back</string>
+    <string name="activity_name">Activity Name</string>
+    <string name="strDate">Date</string>
+    <string name="strCustomer">Customer</string>
+    <string name="strServices">Services</string>
+    <string name="strType">Type</string>
+    <string name="strComment">Comment</string>
+    <string name="editImage">edit</string>
+    <string name="textViewValue">TextView</string>
+    <string name="btnCancelAppointment">Cancel Appointment</string>
+    <string name="btnSave">Save</string>
+    <string name="strProvider">Provider</string>
 </resources>

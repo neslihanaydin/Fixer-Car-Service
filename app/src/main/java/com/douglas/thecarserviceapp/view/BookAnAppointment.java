@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.adapter.MainAdapter;
 import com.douglas.thecarserviceapp.app.AppManager;
+import com.douglas.thecarserviceapp.model.User;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class BookAnAppointment extends AppCompatActivity {
     RecyclerView recyclerView;
     static ArrayList<String> arrayList = new ArrayList<>();
     MainAdapter adapter;
+    private User user;
 
     public static void closeDrawer(DrawerLayout drawerLayout) {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
@@ -39,20 +41,29 @@ public class BookAnAppointment extends AppCompatActivity {
         btMenu = findViewById(R.id.bt_menu);
         recyclerView = findViewById(R.id.recycler_view);
 
+        user = AppManager.instance.user;
         arrayList.clear();
-        if(AppManager.instance.user.isCustomer()){
-            arrayList.add("Book an Appointment");
-            arrayList.add("Search Service Provider");
-            arrayList.add("View Appointments");
-            arrayList.add("Service History");
-            arrayList.add("Profile");
-            arrayList.add("Logout");
-        }else if (AppManager.instance.user.isProvider()){
-            arrayList.add("View Appointments");
-            arrayList.add("Create Customer");
-            arrayList.add("Search Customers");
-            arrayList.add("Service History");
-            arrayList.add("Logout");
+        try{
+            if(user != null) {
+                if(user.isCustomer()){
+                    arrayList.add("Book an Appointment");
+                    arrayList.add("Search Service Provider");
+                    arrayList.add("View Appointments");
+                    arrayList.add("Service History");
+                    arrayList.add("Profile");
+                    arrayList.add("Logout");
+                } else if (user.isProvider()) {
+                    arrayList.add("View Appointments");
+                    arrayList.add("Create Customer");
+                    arrayList.add("Search Customers");
+                    arrayList.add("Service History");
+                    arrayList.add("Logout");
+                } else{
+                   throw new Exception(new NullPointerException());
+                }
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
         adapter = new MainAdapter(this, arrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -64,6 +75,7 @@ public class BookAnAppointment extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+
     }
 
     @Override
