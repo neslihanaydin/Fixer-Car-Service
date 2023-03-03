@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/f_blue"
+    android:background="@color/fixer_dark_blue"
     android:orientation="vertical"
     tools:context=".view.AppointmentDetailServiceProvider">
 
@@ -13,11 +13,11 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="14dp"
-        android:background="@drawable/rounded_background_aqua_button"
-        android:fontFamily="@font/inter"
+        android:background="@drawable/button_enabled"
+
         android:text="@string/btnCancelAppointment"
         android:textAllCaps="false"
-        android:textColor="@color/f_blue"
+        android:textColor="@color/fixer_dark_blue"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,9 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="172dp"
         android:layout_marginTop="52dp"
-        android:fontFamily="@font/inter"
+
         android:text="@string/textViewValue"
-        android:textColor="@color/f_blue"
+        android:textColor="@color/fixer_dark_blue"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,9 +66,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
         android:layout_marginTop="14dp"
-        android:fontFamily="@font/inter"
+
         android:text="@string/textViewValue"
-        android:textColor="@color/f_blue"
+        android:textColor="@color/fixer_dark_blue"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,9 +80,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="52dp"
-        android:fontFamily="@font/inter"
+
         android:text="@string/strDate"
-        android:textColor="@color/f_gray"
+        android:textColor="@color/fixer_gray"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,9 +94,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="14dp"
-        android:fontFamily="@font/inter"
+
         android:text="@string/strCustomer"
-        android:textColor="@color/f_gray"
+        android:textColor="@color/fixer_gray"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,9 +107,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
-        android:fontFamily="@font/inter"
+
         android:text="@string/textViewValue"
-        android:textColor="@color/f_gray"
+        android:textColor="@color/fixer_gray"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/titleService"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,9 +122,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
         android:layout_marginBottom="14dp"
-        android:fontFamily="@font/inter"
+
         android:text="@string/textViewValue"
-        android:textColor="@color/f_gray"
+        android:textColor="@color/fixer_gray"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewType"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,9 +137,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
         android:layout_marginBottom="14dp"
-        android:fontFamily="@font/inter"
+
         android:text="@string/textViewValue"
-        android:textColor="@color/f_gray"
+        android:textColor="@color/fixer_gray"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewComment"
         app:layout_constraintStart_toStartOf="parent" />
@@ -150,9 +150,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
         android:layout_marginBottom="40dp"
-        android:fontFamily="@font/inter"
+
         android:text="@string/textViewValue"
-        android:textColor="@color/f_gray"
+        android:textColor="@color/fixer_gray"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent" />
@@ -163,9 +163,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="50dp"
-        android:fontFamily="@font/inter"
+
         android:text="@string/strServices"
-        android:textColor="@color/f_gray"
+        android:textColor="@color/fixer_gray"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -177,9 +177,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="14dp"
-        android:fontFamily="@font/inter"
+
         android:text="@string/strType"
-        android:textColor="@color/f_gray"
+        android:textColor="@color/fixer_gray"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -191,9 +191,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="14dp"
-        android:fontFamily="@font/inter"
+
         android:text="@string/strComment"
-        android:textColor="@color/f_gray"
+        android:textColor="@color/fixer_gray"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -209,7 +209,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view"
         app:srcCompat="@android:drawable/ic_menu_edit"
-        app:tint="@color/f_blue" />
+        app:tint="@color/fixer_dark_blue" />
 
     <Button
         android:id="@+id/btnSave"
@@ -217,7 +217,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="14dp"
         android:background="@drawable/rounded_background_gray_button"
-        android:fontFamily="@font/inter"
+
         android:text="@string/btnSave"
         android:textAllCaps="false"
         android:textColor="@color/white"

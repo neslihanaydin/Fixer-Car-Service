@@ -1,9 +1,11 @@
-package com.douglas.thecarserviceapp;
+package com.douglas.thecarserviceapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import com.douglas.thecarserviceapp.R;
 
 public class RegistrationActivity extends AppCompatActivity {
     @Override

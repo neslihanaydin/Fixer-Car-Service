@@ -22,7 +22,7 @@
             android:id="@+id/txtUpcomingApp"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:fontFamily="@font/inter"
+
             android:gravity="center"
             android:maxLines="2"
             android:ellipsize="end"

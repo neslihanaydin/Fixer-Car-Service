@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/f_blue"
+    android:background="@color/fixer_dark_blue"
     android:orientation="vertical">
 
 
@@ -32,9 +32,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="@font/inter"
+
                 android:text="@string/strDate"
-                android:textColor="@color/f_blue"
+                android:textColor="@color/fixer_dark_blue"
                 android:textSize="15sp" />
 
             <TextView
@@ -42,9 +42,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="31dp"
-                android:fontFamily="@font/inter"
+
                 android:text="@string/strProvider"
-                android:textColor="@color/f_blue"
+                android:textColor="@color/fixer_dark_blue"
                 android:textSize="15sp" />
 
             <TextView
@@ -52,9 +52,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="@font/inter"
+
                 android:text="@string/strServices"
-                android:textColor="@color/f_blue"
+                android:textColor="@color/fixer_dark_blue"
                 android:textSize="15sp" />
 
             <TextView
@@ -62,9 +62,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
-                android:fontFamily="@font/inter"
+
                 android:text="@string/strType"
-                android:textColor="@color/f_blue"
+                android:textColor="@color/fixer_dark_blue"
                 android:textSize="15sp" />
         </LinearLayout>
 
@@ -79,9 +79,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="@font/inter"
+
                 android:text="@string/textViewValue"
-                android:textColor="@color/f_blue"
+                android:textColor="@color/fixer_dark_blue"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -89,9 +89,9 @@
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter"
+
                 android:text="@string/textViewValue"
-                android:textColor="@color/f_blue"
+                android:textColor="@color/fixer_dark_blue"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -100,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="@font/inter"
+
                 android:text="@string/textViewValue"
                 android:textSize="15sp" />
 
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="@font/inter"
+
                 android:text="@string/textViewValue"
                 android:textSize="15sp" />
 
@@ -118,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
-                android:fontFamily="@font/inter"
+
                 android:text="@string/textViewValue"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -132,11 +132,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/rounded_background_aqua_button"
-        android:fontFamily="@font/inter"
+        android:background="@drawable/button_enabled"
+
         android:text="@string/btnCancelAppointment"
         android:textAllCaps="false"
-        android:textColor="@color/f_blue"
+        android:textColor="@color/fixer_dark_blue"
         android:textSize="20sp"
         android:textStyle="bold" />
 </LinearLayout>
