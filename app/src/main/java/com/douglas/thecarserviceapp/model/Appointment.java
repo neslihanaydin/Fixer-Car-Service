@@ -13,20 +13,44 @@ public class Appointment implements Serializable {
     private int serviceId;
     Date date;
     Time time;
+    private String type;
+    private String comments;
 
     public Appointment(){
 
     }
 
-    public Appointment(int appointmentId, int userId, int providerId, int serviceId, Date date, Time time) {
+    public Appointment(int appointmentId, int userId, int providerId, int serviceId, Date date, Time time, String comments, String type) {
         this.appointmentId = appointmentId;
         this.userId = userId;
         this.providerId = providerId;
         this.serviceId = serviceId;
         this.date = date;
         this.time = time;
+        this.comments = comments;
+        this.type = type;
+
     }
 
+    public String getComments(){
+        return comments;
+    }
+
+    public void setComments(String comments){
+        this.comments = comments;
+    }
+
+    public String getDateTime(){
+        String result = date.toString() + " " + time.toString();
+        return result;
+    }
+
+    public void setType(String type){
+        this.type = type;
+    }
+    public String getType(){
+        return type;
+    }
     public int getAppointmentId() {
         return appointmentId;
     }

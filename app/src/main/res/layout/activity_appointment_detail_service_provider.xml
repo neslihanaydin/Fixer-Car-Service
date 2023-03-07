@@ -118,10 +118,10 @@
 
     <TextView
         android:id="@+id/textViewServices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
-        android:layout_marginBottom="14dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginBottom="4dp"
         android:fontFamily="@font/inter"
         android:text="@string/textViewValue"
         android:textColor="@color/f_gray"
@@ -129,7 +129,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textViewType"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCusAdd"
-        app:layout_constraintVertical_bias="0.935" />
+        app:layout_constraintVertical_bias="0.791" />
 
     <TextView
         android:id="@+id/textViewType"
@@ -146,10 +146,10 @@
 
     <TextView
         android:id="@+id/textViewComment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/inter"
         android:text="@string/textViewValue"
         android:textColor="@color/f_gray"
@@ -162,7 +162,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/inter"
         android:text="@string/strServices"
         android:textColor="@color/f_gray"
@@ -176,7 +176,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/inter"
         android:text="@string/strType"
         android:textColor="@color/f_gray"

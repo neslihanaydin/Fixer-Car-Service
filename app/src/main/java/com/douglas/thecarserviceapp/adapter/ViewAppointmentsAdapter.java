@@ -11,21 +11,28 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.douglas.thecarserviceapp.R;
-import com.douglas.thecarserviceapp.model.AppointmentWidget;
+import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
+import com.douglas.thecarserviceapp.model.Appointment;
+
+import java.util.List;
 
 public class ViewAppointmentsAdapter extends RecyclerView.Adapter {
     ItemClickListener itemClickListener;
-    AppointmentWidget[] wData;
+    //AppointmentWidget[] wData;
     LayoutInflater inflater;
+    List<Appointment> wData;
+    DatabaseHelper dbHelper;
 
-    public ViewAppointmentsAdapter(Context context, AppointmentWidget[] data, ItemClickListener itemClickListener){
+
+    public ViewAppointmentsAdapter(Context context, List<Appointment> data, ItemClickListener itemClickListener){
         wData = data;
         this.itemClickListener = itemClickListener;
         inflater = LayoutInflater.from(context);
+        dbHelper =  new DatabaseHelper(context);
     }
 
-    AppointmentWidget getItem(int id){
-        return wData[id];
+    Appointment getItem(int id){
+        return wData.get(id);
     }
 
     @NonNull
@@ -40,17 +47,17 @@ public class ViewAppointmentsAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        ((ViewHolder)holder).imLeft.setImageResource(wData[position].getwImg());
-        ((ViewHolder)holder).txDate.setText(wData[position].getTime());
-        ((ViewHolder)holder).txCustomer.setText(wData[position].getCustomerName());
-        ((ViewHolder)holder).txOpt.setText(wData[position].getDropOrPick());
-        ((ViewHolder)holder).imRight.setImageResource(wData[position].getBtnDetail());
+        int userId = wData.get(position).getUserId();
+
+        ((ViewHolder)holder).txDate.setText(wData.get(position).getDateTime());
+        ((ViewHolder)holder).txCustomer.setText(dbHelper.getUserName(userId));
+        ((ViewHolder)holder).txOpt.setText(wData.get(position).getType());
 
     }
 
     @Override
     public int getItemCount() {
-        return wData.length;
+        return wData.size();
     }
 
     public interface ItemClickListener{
