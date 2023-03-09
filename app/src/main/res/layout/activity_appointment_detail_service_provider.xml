@@ -14,7 +14,6 @@
         android:layout_height="50dp"
         android:layout_marginTop="14dp"
         android:background="@drawable/button_enabled"
-
         android:text="@string/btnCancelAppointment"
         android:textAllCaps="false"
         android:textColor="@color/fixer_dark_blue"
@@ -52,7 +51,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="172dp"
         android:layout_marginTop="52dp"
-
         android:text="@string/textViewValue"
         android:textColor="@color/fixer_dark_blue"
         android:textSize="15sp"
@@ -66,7 +64,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
         android:layout_marginTop="14dp"
-
         android:text="@string/textViewValue"
         android:textColor="@color/fixer_dark_blue"
         android:textSize="15sp"
@@ -80,7 +77,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="52dp"
-
         android:text="@string/strDate"
         android:textColor="@color/fixer_gray"
         android:textSize="15sp"
@@ -94,7 +90,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="14dp"
-
         android:text="@string/strCustomer"
         android:textColor="@color/fixer_gray"
         android:textSize="15sp"
@@ -107,7 +102,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
-
         android:text="@string/textViewValue"
         android:textColor="@color/fixer_gray"
         android:textSize="15sp"
@@ -118,18 +112,17 @@
 
     <TextView
         android:id="@+id/textViewServices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
-        android:layout_marginBottom="14dp"
-
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginBottom="4dp"
         android:text="@string/textViewValue"
         android:textColor="@color/fixer_gray"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewType"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCusAdd"
-        app:layout_constraintVertical_bias="0.935" />
+        app:layout_constraintVertical_bias="0.791" />
 
     <TextView
         android:id="@+id/textViewType"
@@ -137,7 +130,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
         android:layout_marginBottom="14dp"
-
         android:text="@string/textViewValue"
         android:textColor="@color/fixer_gray"
         android:textSize="15sp"
@@ -146,11 +138,10 @@
 
     <TextView
         android:id="@+id/textViewComment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
-        android:layout_marginBottom="40dp"
-
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/textViewValue"
         android:textColor="@color/fixer_gray"
         android:textSize="15sp"
@@ -162,8 +153,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="50dp"
-
+        android:layout_marginTop="40dp"
         android:text="@string/strServices"
         android:textColor="@color/fixer_gray"
         android:textSize="15sp"
@@ -176,8 +166,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="14dp"
-
+        android:layout_marginTop="28dp"
         android:text="@string/strType"
         android:textColor="@color/fixer_gray"
         android:textSize="15sp"
@@ -191,7 +180,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="14dp"
-
         android:text="@string/strComment"
         android:textColor="@color/fixer_gray"
         android:textSize="15sp"
@@ -217,7 +205,6 @@
         android:layout_height="50dp"
         android:layout_marginTop="14dp"
         android:background="@drawable/rounded_background_gray_button"
-
         android:text="@string/btnSave"
         android:textAllCaps="false"
         android:textColor="@color/white"

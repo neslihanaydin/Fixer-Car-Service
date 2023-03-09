@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.app.AppManager;
+import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 import com.douglas.thecarserviceapp.model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,21 +16,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
 
-        User providerUser = new User(1,"Neslihan","Turpcu",
-                "New Westminster 2021","1123334321",
-                "neslihanturpcu@mail.com","84hfy!shr3", User.UserType.PROVIDER);
+        User testProvider = dbHelper.getUserByEmail("bob.smith@example.com");
 
-        User customerUser = new User(2,"Jane","Smith",
-                "New Westminster 2021","1333234421",
-                "janesmith@mail.com","8t53ga!shr3", User.UserType.CUSTOMER);
-
-        System.out.println("Testing user type: " + providerUser.getFirstName());
-        System.out.println("Is provider " + providerUser.isProvider());
-        System.out.println("Is customer " + providerUser.isCustomer());
-
-        AppManager.instance.setUser(providerUser); //Singleton class to hold logged user for whole app life cycle
+        AppManager.instance.setUser(testProvider); //Singleton class to hold logged user for whole app life cycle
+       // dbHelper.addUser(providerUser);
+      //  providerUser.setLastName("TURPCU");
+      //  dbHelper.updateUser(providerUser);
         startActivity(new Intent(MainActivity.this, BookAnAppointment.class));
+        finish();
 
     }
 }

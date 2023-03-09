@@ -10,10 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.douglas.thecarserviceapp.R;
-import com.douglas.thecarserviceapp.app.AppManager;
-import com.douglas.thecarserviceapp.model.Appointment;
-import com.douglas.thecarserviceapp.model.AppointmentWidget;
-import com.douglas.thecarserviceapp.model.User;
 
 public class AppointmentDetailServiceProvider extends AppCompatActivity {
 
