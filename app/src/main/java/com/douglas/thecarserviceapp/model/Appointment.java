@@ -4,6 +4,7 @@ package com.douglas.thecarserviceapp.model;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 
 public class Appointment implements Serializable {
 
@@ -15,6 +16,7 @@ public class Appointment implements Serializable {
     Time time;
     private String type;
     private String comments;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
     public Appointment(){
 
@@ -41,7 +43,7 @@ public class Appointment implements Serializable {
     }
 
     public String getDateTime(){
-        String result = date.toString() + " " + time.toString();
+        String result = date.toString() + " " + dateFormat.format(time);
         return result;
     }
 

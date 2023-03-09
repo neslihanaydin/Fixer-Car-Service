@@ -11,8 +11,10 @@ import androidx.annotation.Nullable;
 
 import com.douglas.thecarserviceapp.model.Appointment;
 import com.douglas.thecarserviceapp.model.User;
+import com.douglas.thecarserviceapp.util.Util;
 
 import java.sql.Time;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
@@ -51,6 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String AP_COLUMN_ATIME = "a_time";
     private static final String AP_COLUMN_COMMENTS = "comments";
     private static final String AP_COLUMN_TYPE = "type";
+    private static final String AP_COLUMN_STATUS = "status";
 
     private static final String TABLE_REPORTS = "REPORTS";
     private static final String R_COLUMN_ID = "report_id";
@@ -61,7 +64,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
-
     }
 
     @Override
@@ -97,10 +99,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 AP_COLUMN_UID + " INTEGER NOT NULL, " +
                 AP_COLUMN_PROVIDER_ID + " INTEGER NOT NULL, " +
                 AP_COLUMN_SERVICE_ID + " INTEGER NOT NULL, " +
-                AP_COLUMN_ADATE + " DATE NOT NULL, " +
-                AP_COLUMN_ATIME + " TIME NOT NULL, " +
+                AP_COLUMN_ADATE + " TEXT NOT NULL, " +
+                AP_COLUMN_ATIME + " TEXT NOT NULL, " +
                 AP_COLUMN_COMMENTS + " TEXT, " +
                 AP_COLUMN_TYPE + " TEXT NOT NULL, " +
+                AP_COLUMN_STATUS + " TEXT, " +
                 "FOREIGN KEY (" + AP_COLUMN_UID + ") REFERENCES " + TABLE_USERS + " (" + U_COLUMN_ID + "), " +
                 "FOREIGN KEY (" + AP_COLUMN_PROVIDER_ID + ") REFERENCES " + TABLE_USERS + " (" + U_COLUMN_ID + "), " +
                 "FOREIGN KEY (" + AP_COLUMN_SERVICE_ID + ") REFERENCES " + TABLE_SERVICE + " (" + S_COLUMN_ID + "));";
@@ -114,7 +117,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (" + R_COLUMN_AID + ") REFERENCES " + TABLE_APPOINTMENT + " (" + AP_COLUMN_ID + "));";
         db.execSQL(CREATE_REPORTS_TABLE);
         initDatas(db);
-
     }
 
     @Override
@@ -124,7 +126,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SERVICE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_APPOINTMENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_REPORTS);
-
         onCreate(db);
     }
 
@@ -136,7 +137,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         addTestAppointment(db,cv);
         addTestReports(db,cv);
         cv.clear();
-
     }
 
     private void addTestUsers(SQLiteDatabase db, ContentValues cv){
@@ -275,7 +275,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(AP_COLUMN_PROVIDER_ID,3);
         cv.put(AP_COLUMN_SERVICE_ID,1);
         cv.put(AP_COLUMN_ADATE,"2023-03-04");
-        cv.put(AP_COLUMN_ATIME,"15:00:00");
+        cv.put(AP_COLUMN_ATIME,"15:00");
         cv.put(AP_COLUMN_TYPE,"Pick up");
         db.insert(TABLE_APPOINTMENT, null, cv);
 
@@ -286,7 +286,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(AP_COLUMN_PROVIDER_ID,4);
         cv.put(AP_COLUMN_SERVICE_ID,4);
         cv.put(AP_COLUMN_ADATE,"2023-03-05");
-        cv.put(AP_COLUMN_ATIME,"10:00:00");
+        cv.put(AP_COLUMN_ATIME,"10:00");
         cv.put(AP_COLUMN_TYPE,"Drop off");
         cv.put(AP_COLUMN_COMMENTS,"Use only Shell Plus oil for the engine");
         db.insert(TABLE_APPOINTMENT, null, cv);
@@ -298,7 +298,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(AP_COLUMN_PROVIDER_ID,3);
         cv.put(AP_COLUMN_SERVICE_ID,2);
         cv.put(AP_COLUMN_ADATE,"2023-03-08");
-        cv.put(AP_COLUMN_ATIME,"11:00:00");
+        cv.put(AP_COLUMN_ATIME,"11:00");
         cv.put(AP_COLUMN_TYPE,"Pick up");
         db.insert(TABLE_APPOINTMENT, null, cv);
 
@@ -309,11 +309,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(AP_COLUMN_PROVIDER_ID,3);
         cv.put(AP_COLUMN_SERVICE_ID,3);
         cv.put(AP_COLUMN_ADATE,"2023-03-04");
-        cv.put(AP_COLUMN_ATIME,"15:00:00");
+        cv.put(AP_COLUMN_ATIME,"15:00");
         cv.put(AP_COLUMN_TYPE,"Drop off");
         cv.put(AP_COLUMN_COMMENTS,"The brake discs need to be replaced");
         db.insert(TABLE_APPOINTMENT, null, cv);
-
     }
 
     private void addTestReports(SQLiteDatabase db, ContentValues cv){
@@ -419,7 +418,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return userAddress;
     }
 
-    public List<Appointment> getAllAppointmentsForProvider(int userId) {
+    public List<Appointment> getAllAppointmentsForProvider(int userId) throws ParseException {
         List<Appointment> appointments = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = { "appointment_id", "user_id", "provider_id", "service_id", "a_date", "a_time", "comments", "type" };
@@ -431,8 +430,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int appointmentUserId = cursor.getInt(1);
             int appointmentProviderId = cursor.getInt(2);
             int serviceId = cursor.getInt(3);
-            Date date = new Date(cursor.getLong(4));
-            Time time = new Time(cursor.getLong(5));
+            Date date = Util.convertDate(cursor.getString(4));
+            Time time = Util.convertTime(cursor.getString(5));
             String comments = cursor.getString(6);
             String type = cursor.getString(7);
             Appointment appointment = new Appointment(appointmentId, appointmentUserId, appointmentProviderId, serviceId, date, time, comments, type);

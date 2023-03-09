@@ -24,6 +24,7 @@ import com.douglas.thecarserviceapp.model.User;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.text.ParseException;
 import java.util.List;
 
 public class ViewAppointments extends AppCompatActivity implements  ViewAppointmentsAdapter.ItemClickListener{
@@ -65,7 +66,11 @@ public class ViewAppointments extends AppCompatActivity implements  ViewAppointm
         if(user!= null && user.isProvider()){
             dbHelper =  new DatabaseHelper(getApplicationContext());
             //Get provider's appointments // TO DO: Check date later, and edit that only list upcoming appointments
-            appointments = dbHelper.getAllAppointmentsForProvider(user.getUserId());
+            try {
+                appointments = dbHelper.getAllAppointmentsForProvider(user.getUserId());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             RecyclerView recyclerViewApp = findViewById(R.id.recyclerViewAppointments);
             recyclerViewApp.setLayoutManager(new GridLayoutManager(this,1));
             viewAppointmentsAdapter = new ViewAppointmentsAdapter(this, appointments, this);
