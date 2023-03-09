@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.RegistrationActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/fixer_toolbar"/>
+
+    <LinearLayout
+        android:id="@+id/formRegLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+
+        <EditText
+            android:id="@+id/editFirstName"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_field"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/editFirstNamePlaceholder"
+            android:inputType="text"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/fixer_dark_blue"
+            android:textColorHint="@color/fixer_gray"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editLastName"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_field"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/editLastNamePlaceholder"
+            android:inputType="text"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/fixer_dark_blue"
+            android:textColorHint="@color/fixer_gray"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editAddress"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_field"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/editAddressPlaceholder"
+            android:inputType="text"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/fixer_dark_blue"
+            android:textColorHint="@color/fixer_gray"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editPhone"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_field"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/editPhonePlaceholder"
+            android:inputType="phone"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/fixer_dark_blue"
+            android:textColorHint="@color/fixer_gray"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editRegEmail"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_field"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/editEmailPlaceholder"
+            android:inputType="text|textEmailAddress"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/fixer_dark_blue"
+            android:textColorHint="@color/fixer_gray"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editRegPass"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_field"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/editPasswordPlaceholder"
+            android:inputType="textPassword"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/fixer_dark_blue"
+            android:textColorHint="@color/fixer_gray"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editRegPassConfirm"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_field"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/editConfirmPassPlaceholder"
+            android:inputType="textPassword"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/fixer_dark_blue"
+            android:textColorHint="@color/fixer_gray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txtLine"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/txtPrivacyPolicy"
+            android:textColor="@color/fixer_cyan"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnRegister"
+            style="@style/ButtonTextNoCaps"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/button_enabled"
+            android:text="@string/btnRegister"
+            android:textColor="@color/fixer_dark_blue"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
