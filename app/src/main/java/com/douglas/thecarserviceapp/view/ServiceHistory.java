@@ -24,7 +24,7 @@ public class ServiceHistory extends AppCompatActivity {
         setContentView(R.layout.activity_service_history);
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        btMenu = findViewById(R.id.bt_menu);
+        btMenu = findViewById(R.id.menu_icon);
         recyclerView = findViewById(R.id.recycler_view);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
