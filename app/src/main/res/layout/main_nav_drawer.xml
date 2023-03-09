@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="120dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/logo_small_size"/>
+            android:layout_width="134dp"
+            android:layout_height="97dp"
+            android:layout_marginTop="70dp"
+            android:src="@drawable/logo_small_size" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_marginTop="16dp" />
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recycler_view"
+            android:layout_marginTop="8dp"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:layout_marginTop="8dp"
-            tools:listitem="@layout/item_drawer_main"/>
+            tools:listitem="@layout/item_drawer_main" />
 
 
     </LinearLayout>
-
 
 
 </androidx.core.widget.NestedScrollView>

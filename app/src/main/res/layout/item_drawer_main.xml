@@ -8,6 +8,6 @@
     android:background="?selectableItemBackground"
     android:textSize="16dp"
     android:textStyle="bold"
-    >
+    android:textColor="@color/fixer_dark_blue">
 
 </TextView>

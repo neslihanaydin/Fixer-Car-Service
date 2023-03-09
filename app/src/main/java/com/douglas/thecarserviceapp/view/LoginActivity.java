@@ -25,9 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // remove action bar
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
         // remove status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

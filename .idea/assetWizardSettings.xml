@@ -37,7 +37,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$USER_HOME$/Downloads/Iconsax/Linear/arrowcircleleft.svg" />
+                                                <entry key="imagePath" value="$USER_HOME$/Downloads/Iconsax/Linear/car.svg" />
                                                 <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
@@ -71,8 +71,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/Iconsax/Linear/arrowcircleleft.svg" />
-                                      <entry key="outputName" value="arrow_circle_left" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/Iconsax/Linear/car.svg" />
+                                      <entry key="outputName" value="icon_car" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -112,7 +112,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$USER_HOME$/Downloads/Iconsax/Linear/arrowcircleleft.svg" />
+                                                <entry key="imagePath" value="$USER_HOME$/Downloads/Iconsax/Linear" />
                                               </map>
                                             </option>
                                           </PersistentState>

@@ -26,4 +26,6 @@
     <string name="txtNoAccount">Don\'t have an account?</string>
     <string name="txtPrivacyPolicy">By registering, you accept all our terms and conditions.</string>
     <string name="txtRegisterLink">Register here.</string>
+    <string name="txtBack">Go Back</string>
+    <string name="txtMenu">Menu</string>
 </resources>

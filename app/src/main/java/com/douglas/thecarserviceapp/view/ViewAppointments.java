@@ -35,7 +35,7 @@ public class ViewAppointments extends AppCompatActivity implements  ViewAppointm
 
     //Test THEY SHOULD BE DONE WITH DB LATER
     Appointment app1 = new Appointment(1,2,1,1000, Date.valueOf("2023-03-20"), Time.valueOf("10:30:00"));
-    AppointmentWidget apw= new AppointmentWidget(R.drawable.directions_car,app1.getDate().toString() + " " + app1.getTime().toString(),"Jane Smith","Pick up",R.drawable.rounded_navigate_next);
+    AppointmentWidget apw= new AppointmentWidget(R.drawable.directions_car,app1.getDate().toString() + " " + app1.getTime().toString(),"Jane Smith","Pick up",R.drawable.icon_arrow_circle_right);
     AppointmentWidget[] appointmentWidgets = {apw,apw,apw};
 
     @Override
@@ -44,12 +44,11 @@ public class ViewAppointments extends AppCompatActivity implements  ViewAppointm
         setContentView(R.layout.activity_view_appointments);
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        btMenu = findViewById(R.id.bt_menu);
+        btMenu = findViewById(R.id.menu_icon);
         recyclerView = findViewById(R.id.recycler_view);
         user = AppManager.instance.user;
         //Change the page header
-        TextView headerTextView = findViewById(R.id.toolBarTextView);
-        headerTextView.setText("View Appointments");
+        FixerToolbar.setToolbar(this, "View Appointments", true, true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.arrayList));
