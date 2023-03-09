@@ -46,12 +46,11 @@ public class ViewAppointments extends AppCompatActivity implements  ViewAppointm
         setContentView(R.layout.activity_view_appointments);
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        btMenu = findViewById(R.id.bt_menu);
+        btMenu = findViewById(R.id.menu_icon);
         recyclerView = findViewById(R.id.recycler_view);
         user = AppManager.instance.user;
         //Change the page header
-        TextView headerTextView = findViewById(R.id.toolBarTextView);
-        headerTextView.setText("View Appointments");
+        FixerToolbar.setToolbar(this, "View Appointments", true, true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.arrayList));
