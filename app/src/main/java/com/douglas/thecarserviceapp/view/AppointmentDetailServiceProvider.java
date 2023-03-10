@@ -15,8 +15,6 @@ public class AppointmentDetailServiceProvider extends AppCompatActivity {
 
     TextView textViewDate, textViewCusName, textViewCusAdd, textViewServices, textViewType,
             textViewComment;
-    TextView titleTextView;
-    ImageView titleBarImage;
 
     Button buttonSave, buttonCancelAp;
     @Override
@@ -24,15 +22,8 @@ public class AppointmentDetailServiceProvider extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment_detail_service_provider);
 
-        titleBarImage = findViewById(R.id.title_bar_image);
-        titleTextView= findViewById(R.id.title_bar_text);
-        titleTextView.setText("View Appointments");
-        titleBarImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        //Change the page header
+        FixerToolbar.setToolbar(this, "View Appointments", true, false);
 
         buttonSave = findViewById(R.id.btnSave);
         buttonCancelAp = findViewById(R.id.btnCancelAppointment);

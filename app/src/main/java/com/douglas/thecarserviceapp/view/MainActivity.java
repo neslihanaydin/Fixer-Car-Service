@@ -19,8 +19,9 @@ public class MainActivity extends AppCompatActivity {
         DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
 
         User testProvider = dbHelper.getUserByEmail("bob.smith@example.com");
+        User testCustomer = dbHelper.getUserByEmail("john.doe@example.com");
 
-        AppManager.instance.setUser(testProvider); //Singleton class to hold logged user for whole app life cycle
+        AppManager.instance.setUser(testCustomer); //Singleton class to hold logged user for whole app life cycle
        // dbHelper.addUser(providerUser);
       //  providerUser.setLastName("TURPCU");
       //  dbHelper.updateUser(providerUser);

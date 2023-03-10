@@ -16,7 +16,7 @@ import com.douglas.thecarserviceapp.model.Appointment;
 
 import java.util.List;
 
-public class ViewAppointmentsAdapter extends RecyclerView.Adapter {
+public class ViewAppointmentsProviderAdapter extends RecyclerView.Adapter {
     ItemClickListener itemClickListener;
     //AppointmentWidget[] wData;
     LayoutInflater inflater;
@@ -24,7 +24,7 @@ public class ViewAppointmentsAdapter extends RecyclerView.Adapter {
     DatabaseHelper dbHelper;
 
 
-    public ViewAppointmentsAdapter(Context context, List<Appointment> data, ItemClickListener itemClickListener){
+    public ViewAppointmentsProviderAdapter(Context context, List<Appointment> data, ItemClickListener itemClickListener){
         wData = data;
         this.itemClickListener = itemClickListener;
         inflater = LayoutInflater.from(context);

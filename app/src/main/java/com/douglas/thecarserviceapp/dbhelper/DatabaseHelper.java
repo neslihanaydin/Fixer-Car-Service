@@ -442,6 +442,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return appointments;
     }
 
+    public List<Appointment> getAllAppointmentsForCustomer(int userId) throws ParseException {
+        List<Appointment> appointments = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = { "appointment_id", "user_id", "provider_id", "service_id", "a_date", "a_time", "comments", "type" };
+        String selection = "user_id = ?";
+        String[] selectionArgs = { String.valueOf(userId) };
+        Cursor cursor = db.query("APPOINTMENT", columns, selection, selectionArgs, null, null, null);
+        while (cursor.moveToNext()) {
+            int appointmentId = cursor.getInt(0);
+            int appointmentUserId = cursor.getInt(1);
+            int appointmentProviderId = cursor.getInt(2);
+            int serviceId = cursor.getInt(3);
+            Date date = Util.convertDate(cursor.getString(4));
+            Time time = Util.convertTime(cursor.getString(5));
+            String comments = cursor.getString(6);
+            String type = cursor.getString(7);
+            Appointment appointment = new Appointment(appointmentId, appointmentUserId, appointmentProviderId, serviceId, date, time, comments, type);
+            appointments.add(appointment);
+        }
+        cursor.close();
+        db.close();
+        return appointments;
+    }
+
     // :TO DO
     public List<Appointment> getUpcomingAppointmentsForProvider(int userId) {
         return null;
