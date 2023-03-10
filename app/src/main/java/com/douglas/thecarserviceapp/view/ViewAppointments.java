@@ -37,10 +37,6 @@ public class ViewAppointments extends AppCompatActivity implements  ViewAppointm
     ViewAppointmentsCustomerAdapter viewAppointmentsCustomerAdapter;
     User user;
     DatabaseHelper dbHelper;
-
-
-    //Test THEY SHOULD BE DONE WITH DB LATER
-    Appointment app1 = new Appointment(1,1,4,4, Date.valueOf("2023-03-20"), Time.valueOf("10:30:00"),"Drop off","Use only Shell Plus oil for the engine");
     List<Appointment> appointments;
 
     @Override
@@ -89,6 +85,12 @@ public class ViewAppointments extends AppCompatActivity implements  ViewAppointm
                 recyclerViewApp.setLayoutManager(new GridLayoutManager(this, 1));
                 viewAppointmentsCustomerAdapter = new ViewAppointmentsCustomerAdapter(this, appointments, this);
                 recyclerViewApp.setAdapter(viewAppointmentsCustomerAdapter);
+                //TEST FAVOURITE PROVIDERS FOR LOGGED USER, USE THIS PART IN BOOK AN APPOINTMENT SCREEN LATER
+                List<User> favouriteProviders = dbHelper.getFavouriteProviders(user.getUserId());
+                System.out.println("Favourite Providers:");
+                for (int i = 0; i < favouriteProviders.size(); i++){
+                    System.out.println("\t" + favouriteProviders.get(i).getFirstName() + " " + favouriteProviders.get(i).getLastName());
+                }
             }
         }
     }
