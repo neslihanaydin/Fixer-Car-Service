@@ -431,6 +431,55 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return userAddress;
     }
 
+    public List<User> getFavouriteProviders(int userId) {
+        List<User> providers = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT a.provider_id, COUNT(*) AS appointment_count, u.first_name, u.last_name, u.phone_number, u.address " +
+                "FROM APPOINTMENT a, USERS u " +
+                "WHERE a.user_id = ? AND u.user_id = a.provider_id " +
+                "GROUP BY provider_id " +
+                "ORDER BY appointment_count DESC " +
+                "LIMIT 2;";
+        String[] selectionArgs = { String.valueOf(userId) };
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        while (cursor.moveToNext()) {
+            int providerId = cursor.getInt(0);
+            String firstName = cursor.getString(2);
+            String lastName = cursor.getString(3);
+            String phoneNumber = cursor.getString(4);
+            String address = cursor.getString(5);
+            User provider = new User(providerId, firstName, lastName, address, phoneNumber);
+            providers.add(provider);
+        }
+        cursor.close();
+        db.close();
+        return providers;
+    }
+
+    public List<User> getUsersByFirstAndLastName(String name){
+        List<User> users = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT u.user_id, u.first_name, u.last_name, u.phone_number, u.address " +
+                "FROM USERS u " +
+                "WHERE (u.first_name like ? OR u.last_name like ?) AND u.user_type = 'CUSTOMER'";
+        String[] selectionArgs = {name + "%", name + "%"};
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        while (cursor.moveToNext()) {
+            int userId = cursor.getInt(0);
+            String firstName = cursor.getString(1);
+            String lastName = cursor.getString(2);
+            String phoneNumber = cursor.getString(3);
+            String address = cursor.getString(4);
+            User provider = new User(userId, firstName, lastName, address, phoneNumber);
+            users.add(provider);
+        }
+        cursor.close();
+        db.close();
+        return users;
+    }
+
+    /* APPOINTMENT DB PROCESS */
+
     public List<Appointment> getAllAppointmentsForProvider(int userId) throws ParseException {
         List<Appointment> appointments = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -514,30 +563,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Successfully cancelled!", Toast.LENGTH_SHORT).show();
         }
 
-    }
-    public List<User> getFavouriteProviders(int userId) {
-        List<User> providers = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT a.provider_id, COUNT(*) AS appointment_count, u.first_name, u.last_name, u.phone_number, u.address " +
-                "FROM APPOINTMENT a, USERS u " +
-                "WHERE a.user_id = ? AND u.user_id = a.provider_id " +
-                "GROUP BY provider_id " +
-                "ORDER BY appointment_count DESC " +
-                "LIMIT 2;";
-        String[] selectionArgs = { String.valueOf(userId) };
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-        while (cursor.moveToNext()) {
-            int providerId = cursor.getInt(0);
-            String firstName = cursor.getString(2);
-            String lastName = cursor.getString(3);
-            String phoneNumber = cursor.getString(4);
-            String address = cursor.getString(5);
-            User provider = new User(providerId, firstName, lastName, address, phoneNumber);
-            providers.add(provider);
-        }
-        cursor.close();
-        db.close();
-        return providers;
     }
 
     /** SERVICE DB METHODS **/

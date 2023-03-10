@@ -85,12 +85,6 @@ public class ViewAppointments extends AppCompatActivity implements  ViewAppointm
                 recyclerViewApp.setLayoutManager(new GridLayoutManager(this, 1));
                 viewAppointmentsCustomerAdapter = new ViewAppointmentsCustomerAdapter(this, appointments, this);
                 recyclerViewApp.setAdapter(viewAppointmentsCustomerAdapter);
-                //TEST FAVOURITE PROVIDERS FOR LOGGED USER, USE THIS PART IN BOOK AN APPOINTMENT SCREEN LATER
-                List<User> favouriteProviders = dbHelper.getFavouriteProviders(user.getUserId());
-                System.out.println("Favourite Providers:");
-                for (int i = 0; i < favouriteProviders.size(); i++){
-                    System.out.println("\t" + favouriteProviders.get(i).getFirstName() + " " + favouriteProviders.get(i).getLastName());
-                }
             }
         }
     }
