@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -103,7 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 AP_COLUMN_ATIME + " TEXT NOT NULL, " +
                 AP_COLUMN_COMMENTS + " TEXT, " +
                 AP_COLUMN_TYPE + " TEXT NOT NULL, " +
-                AP_COLUMN_STATUS + " TEXT, " +
+                AP_COLUMN_STATUS + " TEXT NOT NULL DEFAULT 'PENDING', " +
                 "FOREIGN KEY (" + AP_COLUMN_UID + ") REFERENCES " + TABLE_USERS + " (" + U_COLUMN_ID + "), " +
                 "FOREIGN KEY (" + AP_COLUMN_PROVIDER_ID + ") REFERENCES " + TABLE_USERS + " (" + U_COLUMN_ID + "), " +
                 "FOREIGN KEY (" + AP_COLUMN_SERVICE_ID + ") REFERENCES " + TABLE_SERVICE + " (" + S_COLUMN_ID + "));";
@@ -422,7 +423,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Appointment> appointments = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = { "appointment_id", "user_id", "provider_id", "service_id", "a_date", "a_time", "comments", "type" };
-        String selection = "provider_id = ?";
+        String selection = "provider_id = ?  AND status != 'CANCELLED'";
         String[] selectionArgs = { String.valueOf(userId) };
         Cursor cursor = db.query("APPOINTMENT", columns, selection, selectionArgs, null, null, null);
         while (cursor.moveToNext()) {
@@ -445,8 +446,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Appointment> getAllAppointmentsForCustomer(int userId) throws ParseException {
         List<Appointment> appointments = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = { "appointment_id", "user_id", "provider_id", "service_id", "a_date", "a_time", "comments", "type" };
-        String selection = "user_id = ?";
+        String[] columns = { "appointment_id", "user_id", "provider_id", "service_id", "a_date", "a_time", "comments", "type", "status"};
+        String selection = "user_id = ? AND status != 'CANCELLED'";
         String[] selectionArgs = { String.valueOf(userId) };
         Cursor cursor = db.query("APPOINTMENT", columns, selection, selectionArgs, null, null, null);
         while (cursor.moveToNext()) {
@@ -463,6 +464,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
+
         return appointments;
     }
 
@@ -487,6 +489,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public void cancelAppointment(Appointment appointment){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(AP_COLUMN_STATUS, "CANCELLED");
+        String selection = AP_COLUMN_ID + " = ?";
+        String[] selectionArgs = { String.valueOf(appointment.getAppointmentId())};
+        long result = db.update(TABLE_APPOINTMENT, cv, selection, selectionArgs);
+        if(result == -1){
+            Toast.makeText(context, "Failed to cancel Appointment", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully cancelled!", Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
     /** SERVICE DB METHODS **/
 

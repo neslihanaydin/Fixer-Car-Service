@@ -126,8 +126,9 @@ public class ViewAppointments extends AppCompatActivity implements  ViewAppointm
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Update Appointment status as cancelled
-                // refresh the page
+                dbHelper = new DatabaseHelper(getApplicationContext());
+                dbHelper.cancelAppointment(appointments.get(position)); //cancel appointment
+                recreate(); //Start activity again
                 dialog.dismiss();
             }
         });
