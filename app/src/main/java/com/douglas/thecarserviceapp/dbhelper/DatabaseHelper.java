@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -103,7 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 AP_COLUMN_ATIME + " TEXT NOT NULL, " +
                 AP_COLUMN_COMMENTS + " TEXT, " +
                 AP_COLUMN_TYPE + " TEXT NOT NULL, " +
-                AP_COLUMN_STATUS + " TEXT, " +
+                AP_COLUMN_STATUS + " TEXT NOT NULL DEFAULT 'PENDING', " +
                 "FOREIGN KEY (" + AP_COLUMN_UID + ") REFERENCES " + TABLE_USERS + " (" + U_COLUMN_ID + "), " +
                 "FOREIGN KEY (" + AP_COLUMN_PROVIDER_ID + ") REFERENCES " + TABLE_USERS + " (" + U_COLUMN_ID + "), " +
                 "FOREIGN KEY (" + AP_COLUMN_SERVICE_ID + ") REFERENCES " + TABLE_SERVICE + " (" + S_COLUMN_ID + "));";
@@ -274,10 +275,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(AP_COLUMN_UID,1);
         cv.put(AP_COLUMN_PROVIDER_ID,3);
         cv.put(AP_COLUMN_SERVICE_ID,1);
-        cv.put(AP_COLUMN_ADATE,"2023-03-04");
+        cv.put(AP_COLUMN_ADATE,"2023-05-04");
         cv.put(AP_COLUMN_ATIME,"15:00");
         cv.put(AP_COLUMN_TYPE,"Pick up");
         db.insert(TABLE_APPOINTMENT, null, cv);
+
+        //INSERT INTO Appointment (appointmentId, userId, providerId, serviceId, aDate, aTime, type)
+        //VALUES (1, 1, 3, 2, '2023-03-04', '15:00:00', 'Pick up');
+        cv.clear();
+        cv.put(AP_COLUMN_UID,1);
+        cv.put(AP_COLUMN_PROVIDER_ID,3);
+        cv.put(AP_COLUMN_SERVICE_ID,2);
+        cv.put(AP_COLUMN_ADATE,"2023-04-04");
+        cv.put(AP_COLUMN_ATIME,"15:00");
+        cv.put(AP_COLUMN_TYPE,"Pick up");
+        db.insert(TABLE_APPOINTMENT, null, cv);
+
 
         //INSERT INTO Appointment (appointmentId, userId, providerId, serviceId, aDate, aTime, type, comments)
         //VALUES (2, 1, 4, 4, '2023-03-05', '10:00:00', 'Drop off', 'Use only Shell Plus oil for the engine.');
@@ -418,13 +431,62 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return userAddress;
     }
 
+    public List<User> getFavouriteProviders(int userId) {
+        List<User> providers = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT a.provider_id, COUNT(*) AS appointment_count, u.first_name, u.last_name, u.phone_number, u.address " +
+                "FROM APPOINTMENT a, USERS u " +
+                "WHERE a.user_id = ? AND u.user_id = a.provider_id " +
+                "GROUP BY provider_id " +
+                "ORDER BY appointment_count DESC " +
+                "LIMIT 2;";
+        String[] selectionArgs = { String.valueOf(userId) };
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        while (cursor.moveToNext()) {
+            int providerId = cursor.getInt(0);
+            String firstName = cursor.getString(2);
+            String lastName = cursor.getString(3);
+            String phoneNumber = cursor.getString(4);
+            String address = cursor.getString(5);
+            User provider = new User(providerId, firstName, lastName, address, phoneNumber);
+            providers.add(provider);
+        }
+        cursor.close();
+        db.close();
+        return providers;
+    }
+
+    public List<User> getUsersByFirstAndLastName(String name){
+        List<User> users = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT u.user_id, u.first_name, u.last_name, u.phone_number, u.address " +
+                "FROM USERS u " +
+                "WHERE (u.first_name like ? OR u.last_name like ?) AND u.user_type = 'CUSTOMER'";
+        String[] selectionArgs = {name + "%", name + "%"};
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        while (cursor.moveToNext()) {
+            int userId = cursor.getInt(0);
+            String firstName = cursor.getString(1);
+            String lastName = cursor.getString(2);
+            String phoneNumber = cursor.getString(3);
+            String address = cursor.getString(4);
+            User provider = new User(userId, firstName, lastName, address, phoneNumber);
+            users.add(provider);
+        }
+        cursor.close();
+        db.close();
+        return users;
+    }
+
+    /* APPOINTMENT DB PROCESS */
+
     public List<Appointment> getAllAppointmentsForProvider(int userId) throws ParseException {
         List<Appointment> appointments = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = { "appointment_id", "user_id", "provider_id", "service_id", "a_date", "a_time", "comments", "type" };
-        String selection = "provider_id = ?";
+        String selection = "provider_id = ?  AND status != 'CANCELLED'";
         String[] selectionArgs = { String.valueOf(userId) };
-        Cursor cursor = db.query("APPOINTMENT", columns, selection, selectionArgs, null, null, null);
+        Cursor cursor = db.query("APPOINTMENT", columns, selection, selectionArgs, null, null, "a_date asc");
         while (cursor.moveToNext()) {
             int appointmentId = cursor.getInt(0);
             int appointmentUserId = cursor.getInt(1);
@@ -439,6 +501,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
+        return appointments;
+    }
+
+    public List<Appointment> getAllAppointmentsForCustomer(int userId) throws ParseException {
+        List<Appointment> appointments = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = { "appointment_id", "user_id", "provider_id", "service_id", "a_date", "a_time", "comments", "type", "status"};
+        String selection = "user_id = ? AND status != 'CANCELLED'";
+        String[] selectionArgs = { String.valueOf(userId) };
+        Cursor cursor = db.query("APPOINTMENT", columns, selection, selectionArgs, null, null, "a_date asc");
+        while (cursor.moveToNext()) {
+            int appointmentId = cursor.getInt(0);
+            int appointmentUserId = cursor.getInt(1);
+            int appointmentProviderId = cursor.getInt(2);
+            int serviceId = cursor.getInt(3);
+            Date date = Util.convertDate(cursor.getString(4));
+            Time time = Util.convertTime(cursor.getString(5));
+            String comments = cursor.getString(6);
+            String type = cursor.getString(7);
+            Appointment appointment = new Appointment(appointmentId, appointmentUserId, appointmentProviderId, serviceId, date, time, comments, type);
+            appointments.add(appointment);
+        }
+        cursor.close();
+        db.close();
+
         return appointments;
     }
 
@@ -463,6 +550,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public void cancelAppointment(Appointment appointment){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(AP_COLUMN_STATUS, "CANCELLED");
+        String selection = AP_COLUMN_ID + " = ?";
+        String[] selectionArgs = { String.valueOf(appointment.getAppointmentId())};
+        long result = db.update(TABLE_APPOINTMENT, cv, selection, selectionArgs);
+        if(result == -1){
+            Toast.makeText(context, "Failed to cancel Appointment", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully cancelled!", Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
     /** SERVICE DB METHODS **/
 

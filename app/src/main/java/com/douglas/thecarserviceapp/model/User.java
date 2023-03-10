@@ -2,22 +2,10 @@ package com.douglas.thecarserviceapp.model;
 
 public class User {
 
-    public User(int userId, String firstName, String lastName, String address, String phoneNumber, String email, String password, String userType) {
-       this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.password = password;
-        this.userType = UserType.valueOf(userType);
-    }
-
     public enum UserType{
         CUSTOMER,
         PROVIDER
     }
-
     private int userId;
     private String firstName;
     private String lastName;
@@ -26,6 +14,7 @@ public class User {
     private String email;
     private String password;
     private UserType userType;
+
     public User(){
 
     }
@@ -38,6 +27,25 @@ public class User {
         this.email = email;
         this.password = password;
         this.userType = userType;
+    }
+
+    public User(int userId, String firstName, String lastName, String address, String phoneNumber, String email, String password, String userType) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.userType = UserType.valueOf(userType);
+    }
+
+    public User(int providerId, String firstName, String lastName, String address, String phoneNumber) {
+        this.userId = providerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
     public int getUserId() {
