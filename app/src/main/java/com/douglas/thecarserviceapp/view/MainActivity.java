@@ -41,5 +41,13 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("\t" + usersList.get(i).getFirstName() + " " + usersList.get(i).getLastName());
         }
 
+        //TEST USER LOG IN
+        if(dbHelper.checkUserCredentials(testCustomer.getEmail(),"123456") == false){
+            System.out.println("Test Customer password is incorrect");
+        }
+        if(dbHelper.checkUserCredentials(testCustomer.getEmail(),"mypassword") == true){
+            System.out.println("Test Customer password is correct");
+        }
+
     }
 }

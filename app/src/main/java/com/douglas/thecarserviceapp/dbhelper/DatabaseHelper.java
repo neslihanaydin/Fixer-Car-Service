@@ -593,6 +593,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return serviceType;
     }
 
+    public boolean checkUserCredentials (String email, String password){
+        String userPassword = "";
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String[] column = {U_COLUMN_PASSWORD};
+        String selection = "email = ? ";
+        String[] selectionArgs = { email };
+        Cursor cursor = sqLiteDatabase.query(TABLE_USERS, column, selection, selectionArgs, null,
+                null, null);
+        while (cursor.moveToNext()){
+            userPassword = cursor.getString(0);
+        }
+        //System.out.println(userPassword);
+        cursor.close();
+        if(userPassword.equals(password)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
 
 
