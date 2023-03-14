@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="50dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/edit_field"
+    android:gravity="center_vertical">
+
+    <EditText
+        android:id="@+id/editField"
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:ems="10"
+        android:gravity="center"
+        android:hint=""
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:paddingStart="30dp"
+        android:textColor="@color/fixer_dark_blue"
+        android:textColorHint="@color/fixer_gray"/>
+
+    <ImageButton
+        android:id="@+id/editButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:background="@drawable/edit_field"
+        android:contentDescription="@string/imgDesc"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+</LinearLayout>

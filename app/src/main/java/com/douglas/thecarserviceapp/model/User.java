@@ -40,12 +40,20 @@ public class User {
         this.userType = UserType.valueOf(userType);
     }
 
-    public User(int providerId, String firstName, String lastName, String address, String phoneNumber) {
-        this.userId = providerId;
+    public User(int userId, String firstName, String lastName, String address, String phoneNumber) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phoneNumber = phoneNumber;
+    }
+
+    public User(String firstName, String lastName, String address, String phoneNumber, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
     public int getUserId() {
