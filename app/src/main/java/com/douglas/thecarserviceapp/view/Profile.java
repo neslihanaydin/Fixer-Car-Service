@@ -146,7 +146,7 @@ public class Profile extends AppCompatActivity implements ProfileAdapter.ItemCli
             System.out.println(user.getEmail());
             User updatedUser = new User(firstName,lastName, address, phone, user.getEmail());
             long result = dbHelper.updateUserInfo(updatedUser);
-            if(edtCurrPass.getText().toString() == "" && result > 0){
+            if(edtCurrPass.getText().toString().equals("") && result > 0){
                 Toast.makeText(this, "User profile updated successfully", Toast.LENGTH_SHORT).show();
             }
 
@@ -175,13 +175,7 @@ public class Profile extends AppCompatActivity implements ProfileAdapter.ItemCli
                 }
             }
         }
-        buttonSave.setEnabled(false);
-        Profile.buttonSave.setBackgroundResource(R.drawable.rounded_background_gray_button);
-        int buttonTextColor = ContextCompat.getColor(getApplicationContext(), R.color.fixer_white);
-        Profile.buttonSave.setTextColor(buttonTextColor);
-        edtConfPass.setText(null);
-        edtCurrPass.setText(null);
-        edtNewPass.setText(null);
+        recreate();
     }
     @Override
     protected void onPause() {
