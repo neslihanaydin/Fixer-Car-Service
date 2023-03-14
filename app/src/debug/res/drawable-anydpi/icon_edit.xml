@@ -3,7 +3,8 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24"
-    android:tint="@color/fixer_dark_blue">
+    android:tint="@color/fixer_dark_blue"
+    >
   <group>
     <clip-path
         android:pathData="M0,0h24v24h-24z"/>
