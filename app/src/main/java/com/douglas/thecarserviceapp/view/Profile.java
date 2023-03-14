@@ -175,7 +175,13 @@ public class Profile extends AppCompatActivity implements ProfileAdapter.ItemCli
                 }
             }
         }
-        recreate();
+        buttonSave.setEnabled(false);
+        Profile.buttonSave.setBackgroundResource(R.drawable.rounded_background_gray_button);
+        int buttonTextColor = ContextCompat.getColor(getApplicationContext(), R.color.fixer_white);
+        Profile.buttonSave.setTextColor(buttonTextColor);
+        edtConfPass.setText(null);
+        edtCurrPass.setText(null);
+        edtNewPass.setText(null);
     }
     @Override
     protected void onPause() {
