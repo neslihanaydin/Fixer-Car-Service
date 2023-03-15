@@ -37,7 +37,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$USER_HOME$/Downloads/Iconsax/Linear/car.svg" />
+                                                <entry key="imagePath" value="$USER_HOME$/Downloads/Iconsax/Linear/edit.svg" />
                                                 <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
@@ -71,8 +71,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/Iconsax/Linear/car.svg" />
-                                      <entry key="outputName" value="icon_car" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/Iconsax/Linear/edit.svg" />
+                                      <entry key="outputName" value="icon_edit" />
                                     </map>
                                   </option>
                                 </PersistentState>

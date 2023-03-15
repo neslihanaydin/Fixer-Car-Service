@@ -58,10 +58,9 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <RelativeLayout
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/white">
+        android:layout_gravity="start">
 
         <include
             layout="@layout/main_nav_drawer"/>

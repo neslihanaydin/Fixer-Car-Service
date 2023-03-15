@@ -117,7 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 R_COLUMN_COMMENTS + " TEXT, " +
                 "FOREIGN KEY (" + R_COLUMN_AID + ") REFERENCES " + TABLE_APPOINTMENT + " (" + AP_COLUMN_ID + "));";
         db.execSQL(CREATE_REPORTS_TABLE);
-        initDatas(db);
+        initData(db);
     }
 
     @Override
@@ -130,7 +130,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    private void initDatas(SQLiteDatabase db) {
+    private void initData(SQLiteDatabase db) {
         ContentValues cv = new ContentValues();
         addTestUsers(db,cv);
         addTestServiceType(db,cv);
@@ -569,7 +569,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public String getServiceType(int serviceId) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = { S_COLUMN_STYPE_ID};
+        String[] columns = { S_COLUMN_STYPE_ID };
         String selection = S_COLUMN_ID + " = ?";
         String[] selectionArgs = { String.valueOf(serviceId) };
         Cursor cursor = db.query(TABLE_SERVICE, columns, selection, selectionArgs, null, null, null);
@@ -590,8 +590,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return serviceType;
     }
 
-
-
-
-
+    public double getServiceCost(int serviceId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = { S_COLUMN_COST };
+        String selection = S_COLUMN_ID + " = ?";
+        String[] selectionArgs =  { String.valueOf(serviceId) };
+        Cursor cursor = db.query(TABLE_SERVICE, columns, selection, selectionArgs, null, null, null);
+        double cost = 0;
+        if (cursor.moveToFirst()) {
+            cost = cursor.getDouble(0);
+        }
+        cursor.close();
+        return cost;
+    }
 }

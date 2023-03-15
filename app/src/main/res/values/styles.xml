@@ -6,6 +6,8 @@
         <item name="colorOnPrimary">@color/fixer_cyan</item>
         <item name="colorAccent">@color/fixer_dark_blue</item>
         <item name="android:windowBackground">@color/fixer_dark_blue</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
 
     <style name="ButtonTextNoCaps" parent="Widget.AppCompat.Button">
