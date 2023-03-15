@@ -29,4 +29,9 @@
     <string name="txtBack">Go Back</string>
     <string name="txtMenu">Menu</string>
     <string name="strTotal">Total</string>
+    <string name="change_password">Change Password</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="save">Save</string>
 </resources>

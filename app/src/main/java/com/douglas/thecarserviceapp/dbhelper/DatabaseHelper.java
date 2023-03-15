@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -379,25 +378,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void updateUser(User user){
+    public long updateUserInfo(User user){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(U_COLUMN_FNAME, user.getFirstName());
         cv.put(U_COLUMN_LNAME, user.getLastName());
         cv.put(U_COLUMN_ADDRESS, user.getAddress());
         cv.put(U_COLUMN_PHONE, user.getPhoneNumber());
-       // cv.put(U_COLUMN_EMAIL, user.getEmail()); USER can't change their email later.
-        cv.put(U_COLUMN_PASSWORD, user.getPassword());
-        cv.put(U_COLUMN_TYPE, user.getUserType().toString());
         String selection = U_COLUMN_EMAIL + " = ?";
         String[] selectionArgs = { String.valueOf(user.getEmail()) };
         long result = db.update(TABLE_USERS, cv, selection, selectionArgs);
-        if(result == -1){
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(context, "Updated Successfully!", Toast.LENGTH_SHORT).show();
-        }
 
+        return result;
+    }
+
+    public long updateUserPassword(User user){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(U_COLUMN_PASSWORD, user.getPassword());
+        String selection = U_COLUMN_EMAIL + " = ?";
+        String[] selectionArgs = { String.valueOf(user.getEmail()) };
+        long result = db.update(TABLE_USERS, cv, selection, selectionArgs);
+
+        return result;
     }
 
     public String getUserName(int userId) {
@@ -589,7 +592,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return serviceType;
     }
-
+    
     public double getServiceCost(int serviceId) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = { S_COLUMN_COST };
@@ -602,5 +605,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return cost;
+    }
+
+    public boolean checkUserCredentials (String email, String password){
+        String userPassword = "";
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String[] column = {U_COLUMN_PASSWORD};
+        String selection = "email = ? ";
+        String[] selectionArgs = { email };
+        Cursor cursor = sqLiteDatabase.query(TABLE_USERS, column, selection, selectionArgs, null,
+                null, null);
+        while (cursor.moveToNext()){
+            userPassword = cursor.getString(0);
+        }
+        //System.out.println(userPassword);
+        cursor.close();
+        if(userPassword.equals(password)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
