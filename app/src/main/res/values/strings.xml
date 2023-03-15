@@ -7,7 +7,7 @@
     <string name="strCustomer">Customer</string>
     <string name="strServices">Services</string>
     <string name="strType">Type</string>
-    <string name="strComment">Comment</string>
+    <string name="strComment">Comments</string>
     <string name="editImage">edit</string>
     <string name="textViewValue">TextView</string>
     <string name="btnCancelAppointment">Cancel Appointment</string>
@@ -28,6 +28,7 @@
     <string name="txtRegisterLink">Register here.</string>
     <string name="txtBack">Go Back</string>
     <string name="txtMenu">Menu</string>
+    <string name="strTotal">Total</string>
     <string name="change_password">Change Password</string>
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>

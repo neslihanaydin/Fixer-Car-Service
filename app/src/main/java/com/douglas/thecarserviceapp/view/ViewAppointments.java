@@ -29,7 +29,7 @@ import java.sql.Time;
 import java.text.ParseException;
 import java.util.List;
 
-public class ViewAppointments extends AppCompatActivity implements  ViewAppointmentsProviderAdapter.ItemClickListener, ViewAppointmentsCustomerAdapter.ItemClickListener{
+public class ViewAppointments extends AppCompatActivity implements ViewAppointmentsProviderAdapter.ItemClickListener, ViewAppointmentsCustomerAdapter.ItemClickListener{
     DrawerLayout drawerLayout;
     ImageView btMenu;
     RecyclerView recyclerView;

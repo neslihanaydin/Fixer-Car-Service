@@ -3,7 +3,7 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24"
-    android:tint="#09032F">
+    android:tint="@color/fixer_dark_blue">
   <group>
     <clip-path
         android:pathData="M0,0h24v24h-24z"/>
@@ -12,14 +12,14 @@
         android:strokeLineJoin="round"
         android:strokeWidth="3"
         android:fillColor="#00000000"
-        android:strokeColor="#09032F"
+        android:strokeColor="@color/fixer_dark_blue"
         android:strokeLineCap="round"/>
     <path
         android:pathData="M10.74,15.53L14.26,12L10.74,8.47"
         android:strokeLineJoin="round"
         android:strokeWidth="3"
         android:fillColor="#00000000"
-        android:strokeColor="#09032F"
+        android:strokeColor="@color/fixer_dark_blue"
         android:strokeLineCap="round"/>
   </group>
 </vector>

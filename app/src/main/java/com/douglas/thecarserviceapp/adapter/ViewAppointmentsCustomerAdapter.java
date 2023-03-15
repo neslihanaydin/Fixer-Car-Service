@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -81,7 +80,7 @@ public class ViewAppointmentsCustomerAdapter extends RecyclerView.Adapter {
             txProviderAp = itemView.findViewById(R.id.txtProviderAp);
             txProviderDtlAp = itemView.findViewById(R.id.txtProviderDtlAp);
             txServicesAp = itemView.findViewById(R.id.txtServicesAp);
-            txTypeAp = itemView.findViewById(R.id.txtTypeAp);
+            txTypeAp = itemView.findViewById(R.id.txtType);
             btnCancel = itemView.findViewById(R.id.btnCancelAp);
             btnCancel.setOnClickListener(new View.OnClickListener() {
                 @Override

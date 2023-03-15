@@ -8,14 +8,14 @@
 
     <LinearLayout
         android:layout_width="300dp"
-        android:layout_height="220dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center|top"
         android:layout_marginTop="15dp"
         android:background="@drawable/rounded_background"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:id="@+id/linearLayoutTitle"
@@ -40,9 +40,9 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="31dp"
+                android:layout_marginBottom="30dp"
 
-                android:text="@string/strProvider"
+                android:text="@string/strCustomer"
                 android:textColor="@color/fixer_dark_blue"
                 android:textSize="15sp" />
 
@@ -57,12 +57,32 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+
+                android:text="@string/strType"
+                android:textColor="@color/fixer_dark_blue"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+
+                android:text="@string/strComment"
+                android:textColor="@color/fixer_dark_blue"
+                android:textSize="15sp" />
+
+            <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
 
-                android:text="@string/strType"
+                android:text="@string/strTotal"
                 android:textColor="@color/fixer_dark_blue"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -74,7 +94,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtDateAp"
+                android:id="@+id/txtDateService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -85,7 +105,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtProviderAp"
+                android:id="@+id/txtCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -95,7 +115,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtProviderDtlAp"
+                android:id="@+id/txtCustomerAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -105,7 +125,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/txtServicesAp"
+                android:id="@+id/txtServices"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -118,6 +138,26 @@
                 android:id="@+id/txtType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+
+                android:text="@string/textViewValue"
+                android:textColor="@color/fixer_gray"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+
+                android:text="@string/textViewValue"
+                android:textColor="@color/fixer_gray"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
 
                 android:text="@string/textViewValue"
@@ -127,18 +167,4 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnCancelAp"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/button_enabled"
-
-        android:text="@string/btnCancelAppointment"
-        android:textAllCaps="false"
-        android:textColor="@color/fixer_dark_blue"
-        android:textSize="20sp"
-        android:textStyle="bold" />
 </LinearLayout>

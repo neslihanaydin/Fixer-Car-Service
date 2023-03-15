@@ -27,8 +27,7 @@
     <RelativeLayout
         android:layout_width="277dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@drawable/nav_drawer_background">
+        android:layout_gravity="start">
 
         <include layout="@layout/main_nav_drawer" />
 
