@@ -24,7 +24,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="/private/var/folders/cl/90ftsx5d7z55yvs92x48ywc80000gn/T/ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="/private/var/folders/r1/ykg549h54bs8j40q4bb3prp80000gn/T/ic_android_black_24dp.xml" />
                                                 <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
@@ -37,7 +37,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$USER_HOME$/Downloads/Iconsax/Linear/car.svg" />
+                                                <entry key="imagePath" value="$USER_HOME$/Downloads/Iconsax/Linear/edit.svg" />
                                                 <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
@@ -71,8 +71,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/Iconsax/Linear/car.svg" />
-                                      <entry key="outputName" value="icon_car" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/Iconsax/Linear/edit.svg" />
+                                      <entry key="outputName" value="icon_editable" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -89,7 +89,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="5af5ff" />
-                                                <entry key="imagePath" value="/private/var/folders/cl/90ftsx5d7z55yvs92x48ywc80000gn/T/outline_chevron_left_24.xml" />
+                                                <entry key="imagePath" value="/private/var/folders/r1/ykg549h54bs8j40q4bb3prp80000gn/T/outline_chevron_left_24.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -142,11 +142,6 @@
                                       </entry>
                                     </map>
                                   </option>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="previewDensity" value="MEDIUM" />
-                                    </map>
-                                  </option>
                                 </PersistentState>
                               </value>
                             </entry>
@@ -161,7 +156,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="/private/var/folders/cl/90ftsx5d7z55yvs92x48ywc80000gn/T/ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="/private/var/folders/r1/ykg549h54bs8j40q4bb3prp80000gn/T/ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -205,7 +200,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="/private/var/folders/cl/90ftsx5d7z55yvs92x48ywc80000gn/T/ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="/private/var/folders/r1/ykg549h54bs8j40q4bb3prp80000gn/T/ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -269,7 +264,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="imagePath" value="/private/var/folders/cl/90ftsx5d7z55yvs92x48ywc80000gn/T/ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="/private/var/folders/r1/ykg549h54bs8j40q4bb3prp80000gn/T/ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -308,11 +303,6 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
-                                    </map>
-                                  </option>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="previewDensity" value="MEDIUM" />
                                     </map>
                                   </option>
                                 </PersistentState>
