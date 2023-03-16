@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 import com.douglas.thecarserviceapp.model.User;
+import com.douglas.thecarserviceapp.view.CustomerDetail;
 import com.douglas.thecarserviceapp.view.Profile;
 
 import java.util.List;
@@ -88,10 +89,18 @@ public class ProfileAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     editField.setEnabled(true);
                     itemClickListener.onItemClick(v, getAdapterPosition());
-                    Profile.buttonSave.setEnabled(true);
-                    Profile.buttonSave.setBackgroundResource(R.drawable.button_enabled);
                     int buttonTextColor = ContextCompat.getColor(itemView.getContext(), R.color.fixer_black);
-                    Profile.buttonSave.setTextColor(buttonTextColor);
+                    if(Profile.buttonSave != null){
+                        Profile.buttonSave.setEnabled(true);
+                        Profile.buttonSave.setBackgroundResource(R.drawable.button_enabled);
+                        Profile.buttonSave.setTextColor(buttonTextColor);
+                    }
+                    if(CustomerDetail.buttonSaveCus != null){
+                        CustomerDetail.buttonSaveCus.setEnabled(true);
+                        CustomerDetail.buttonSaveCus.setBackgroundResource(R.drawable.button_enabled);
+                        CustomerDetail.buttonSaveCus.setTextColor(buttonTextColor);
+                    }
+
                 }
             });
         }

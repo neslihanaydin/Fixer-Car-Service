@@ -80,6 +80,12 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".view.CustomerDetail"
+            android:exported="false" />
+        <activity
+            android:name=".view.SearchCustomer"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
