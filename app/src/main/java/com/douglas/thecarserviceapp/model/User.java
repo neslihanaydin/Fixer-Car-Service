@@ -120,6 +120,9 @@ public class User {
         this.userType = userType;
     }
 
+    public String getUserFirstandLastName(){
+        return firstName + " " + lastName;
+    }
     public boolean isCustomer(){
         if(userType.equals(UserType.CUSTOMER))
             return true;

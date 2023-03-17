@@ -17,6 +17,7 @@ import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.app.AppManager;
 import com.douglas.thecarserviceapp.view.BookAppointment;
 import com.douglas.thecarserviceapp.view.Profile;
+import com.douglas.thecarserviceapp.view.SearchCustomer;
 import com.douglas.thecarserviceapp.view.SearchServiceProvider;
 import com.douglas.thecarserviceapp.view.ServiceHistory;
 import com.douglas.thecarserviceapp.view.ViewAppointments;
@@ -104,9 +105,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                            //         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                             break;
                         case 2:
-                            Toast.makeText(activity.getApplicationContext(), "Create Customer clicked",Toast.LENGTH_LONG).show();
-                            //activity.startActivity(new Intent(activity, SearchCustomers.class)
-                            //        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                            activity.startActivity(new Intent(activity, SearchCustomer.class)
+                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                             break;
                         case 3:
                             activity.startActivity(new Intent(activity, ServiceHistory.class)

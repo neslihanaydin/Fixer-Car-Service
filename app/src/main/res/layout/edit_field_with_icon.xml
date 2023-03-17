@@ -29,5 +29,5 @@
         android:layout_weight="1"
         android:background="@drawable/edit_field"
         android:contentDescription="@string/imgDesc"
-        app:srcCompat="@drawable/icon_editable" />
+        app:srcCompat="@android:drawable/ic_menu_edit" />
 </LinearLayout>
