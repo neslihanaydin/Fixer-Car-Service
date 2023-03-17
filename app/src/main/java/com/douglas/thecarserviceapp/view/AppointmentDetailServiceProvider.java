@@ -23,7 +23,7 @@ public class AppointmentDetailServiceProvider extends AppCompatActivity {
         setContentView(R.layout.activity_appointment_detail_service_provider);
 
         //Change the page header
-        FixerToolbar.setToolbar(this, "View Appointments", true, false);
+        FixerToolbar.setToolbar(this, "Appointment Details", true, false);
 
         buttonSave = findViewById(R.id.btnSave);
         buttonCancelAp = findViewById(R.id.btnCancelAppointment);

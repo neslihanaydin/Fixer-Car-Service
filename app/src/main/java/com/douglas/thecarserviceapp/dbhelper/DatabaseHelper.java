@@ -4,7 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -360,6 +362,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user;
     }
 
+    public User getUserById(int user_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = { U_COLUMN_ID, U_COLUMN_FNAME, U_COLUMN_LNAME, U_COLUMN_ADDRESS, U_COLUMN_PHONE, U_COLUMN_EMAIL, U_COLUMN_PASSWORD};
+        String selection = U_COLUMN_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(user_id)};
+        Cursor cursor = db.query(TABLE_USERS, columns, selection, selectionArgs, null, null, null);
+        User user = null;
+        if (cursor.moveToFirst()) {
+            int userId = cursor.getInt(0);
+            String firstName = cursor.getString(1);
+            String lastName = cursor.getString(2);
+            String address = cursor.getString(3);
+            String phoneNumber = cursor.getString(4);
+            String email = cursor.getString(5);
+            String password = cursor.getString(6);
+            user = new User(userId, firstName, lastName, address, phoneNumber);
+            user.setPassword(password);
+            user.setEmail(email);
+        }
+        cursor.close();
+        db.close();
+        return user;
+    }
+
     public void addUser(User user){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -376,6 +402,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             Toast.makeText(context, "User has been added successfully.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void deleteUser(User user){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_USERS, U_COLUMN_ID + " = ?", new String[]{String.valueOf(user.getUserId())});
+        db.close();
     }
 
     public long updateUserInfo(User user){
@@ -478,6 +510,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
+        return users;
+    }
+
+    public List<User> getAllCustomers(){
+        List<User> users = new ArrayList<>();
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT u.user_id, u.first_name, u.last_name, u.phone_number, u.address " +
+                    "FROM USERS u " +
+                    "WHERE u.user_type = 'CUSTOMER'";
+            String[] selectionArgs = {};
+            Cursor cursor = db.rawQuery(query, selectionArgs);
+            while (cursor.moveToNext()) {
+                int userId = cursor.getInt(0);
+                String firstName = cursor.getString(1);
+                String lastName = cursor.getString(2);
+                String phoneNumber = cursor.getString(3);
+                String address = cursor.getString(4);
+                User customer = new User(userId, firstName, lastName, address, phoneNumber);
+                users.add(customer);
+            }
+            cursor.close();
+            db.close();
+        } catch (SQLiteException e) {
+            Log.e("DatabaseError", "Error on database: " + e.getMessage());
+        }
         return users;
     }
 
