@@ -398,7 +398,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(U_COLUMN_TYPE, user.getUserType().toString());
         long result = db.insert(TABLE_USERS, null, cv);
         if(result == -1){
-            Toast.makeText(context, "Unexpected error in adding user.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Unexpected an error in adding user.", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(context, "User has been added successfully.", Toast.LENGTH_SHORT).show();
         }
@@ -707,4 +707,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+
 }
