@@ -16,7 +16,14 @@
             android:layout_width="134dp"
             android:layout_height="97dp"
             android:layout_marginTop="70dp"
+            android:layout_marginBottom="20dp"
             android:src="@drawable/logo_small_size" />
+
+        <TextView
+            android:id="@+id/txtCurrentUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" />
 
         <View
             android:layout_width="match_parent"

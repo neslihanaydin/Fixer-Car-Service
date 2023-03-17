@@ -38,7 +38,6 @@ public class BookAnAppointment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookanappointment);
-
         FixerToolbar.setToolbar(this, "Book an Appointment", false, true);
 
         drawerLayout = findViewById(R.id.drawer_layout);

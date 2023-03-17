@@ -38,7 +38,7 @@
             android:layout_height="50dp"
             android:background="@drawable/edit_field"
             android:contentDescription="@string/imgDesc"
-            app:srcCompat="@drawable/icon_search" />
+            android:src="@drawable/icon_search" />
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView

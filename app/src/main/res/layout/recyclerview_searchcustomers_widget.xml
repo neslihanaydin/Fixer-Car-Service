@@ -17,7 +17,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
         android:layout_weight="0"
-        android:src="@android:drawable/ic_menu_my_calendar" />
+        android:src="@drawable/icon_user_card" />
 
     <LinearLayout
         android:layout_width="0dp"

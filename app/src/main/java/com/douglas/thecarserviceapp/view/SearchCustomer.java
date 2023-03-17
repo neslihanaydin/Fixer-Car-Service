@@ -50,7 +50,7 @@ public class SearchCustomer extends AppCompatActivity implements SearchUserAdapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_customer);
-
+        FixerToolbar.setToolbar(this, "Search Customers", true,true);
         //Drawer menu
         drawerLayout = findViewById(R.id.drawer_layout);
         btMenu = findViewById(R.id.menu_icon);
@@ -63,7 +63,7 @@ public class SearchCustomer extends AppCompatActivity implements SearchUserAdapt
 
         // Change the page header
         // TO DO:when the buttonMenu is true, clicking is not working
-        FixerToolbar.setToolbar(this, "Search Customers", true,false);
+
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

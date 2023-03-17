@@ -193,7 +193,7 @@
         android:contentDescription="@string/editImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view"
-        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:src="@drawable/icon_editable"
         app:tint="@color/fixer_dark_blue" />
 
     <Button
