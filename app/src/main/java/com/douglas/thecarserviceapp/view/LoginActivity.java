@@ -12,6 +12,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.douglas.thecarserviceapp.R;
+import com.douglas.thecarserviceapp.app.AppManager;
+import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
+import com.douglas.thecarserviceapp.model.User;
 
 import java.util.Objects;
 
@@ -19,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     EditText email, password;
     TextView txtRegLink;
+    DatabaseHelper dbHelper;
 
     String[] user = {"test@fixer.com", "123"};
 
@@ -47,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(v -> {
             String email = this.email.getText().toString().trim();
             String password = this.password.getText().toString().trim();
+            dbHelper = new DatabaseHelper(getApplicationContext());
 
             if (email.isEmpty()) {
                 this.email.setError("Email is required!");
@@ -68,9 +73,15 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             // Check if the email and password match the registered ones
-            if (!email.equals(user[0]) || !password.equals(user[1])) {
+            if(dbHelper.checkUserCredentials(email, password)){
+                User user = dbHelper.getUserByEmail(email);
+                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                AppManager.instance.setUser(user); //Singleton class to hold logged user for whole app life cycle
+                startActivity(new Intent(LoginActivity.this, BookAnAppointment.class));
+                finish();
+            }else{
                 Toast.makeText(getApplicationContext(), "Invalid email or password!", Toast.LENGTH_LONG).show();
-                return;
+
             }
         });
 

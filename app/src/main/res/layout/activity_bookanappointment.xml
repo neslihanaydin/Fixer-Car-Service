@@ -15,13 +15,13 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/fixer_toolbar"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:textSize="50sp"
-            android:text="Book an Appointment"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
     <RelativeLayout

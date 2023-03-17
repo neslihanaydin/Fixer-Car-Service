@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.app.AppManager;
 import com.douglas.thecarserviceapp.view.BookAnAppointment;
+import com.douglas.thecarserviceapp.view.LoginActivity;
 import com.douglas.thecarserviceapp.view.Profile;
 import com.douglas.thecarserviceapp.view.SearchCustomer;
 import com.douglas.thecarserviceapp.view.SearchProvider;
@@ -80,7 +81,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     activity.finishAffinity();
-                                    System.exit(0);
+                                    AppManager.instance.setUser(null);
+                                    activity.startActivity(new Intent(activity, LoginActivity.class));
+                                    //System.exit(0);
                                 }
                             });
                             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -121,7 +124,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     activity.finishAffinity();
-                                    System.exit(0);
+                                    AppManager.instance.setUser(null);
+                                    activity.startActivity(new Intent(activity, LoginActivity.class));
+                                    // System.exit(0);
                                 }
                             });
                             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
