@@ -1,170 +1,184 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_gravity="center|top"
+    android:layout_marginTop="15dp"
+    android:background="@drawable/rounded_background"
+    android:orientation="horizontal"
+    android:paddingLeft="40dp"
+    android:paddingTop="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp">
 
-
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|top"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/rounded_background"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp">
 
         <LinearLayout
             android:id="@+id/linearLayoutTitle"
-            android:layout_width="92dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="40dp"
-            android:layout_weight="0"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-
-                android:text="@string/strDate"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-
-                android:text="@string/strCustomer"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-
-                android:text="@string/strServices"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-
-                android:text="@string/strType"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-
-                android:text="@string/strComment"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-
-                android:text="@string/strTotal"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:layout_weight="0"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtDateService"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
 
-                android:text="@string/textViewValue"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/txtCustomer"
+                    android:text="@string/strDate"
+                    android:textColor="@color/fixer_dark_blue"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtDateService"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/textViewValue"
+                    android:textColor="@color/fixer_dark_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="wrap_content">
 
-                android:text="@string/textViewValue"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/txtCustomerAddress"
+                    android:text="@string/strCustomer"
+                    android:textColor="@color/fixer_dark_blue"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtCustomer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="@string/textViewValue"
+                        android:textColor="@color/fixer_dark_blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtCustomerAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="@string/textViewValue"
+                        android:textColor="@color/fixer_gray"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
 
-                android:text="@string/textViewValue"
-                android:textColor="@color/fixer_gray"
-                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/txtServices"
+                    android:text="@string/strServices"
+                    android:textColor="@color/fixer_dark_blue"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtServices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/textViewValue"
+                    android:textColor="@color/fixer_gray"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
 
-                android:text="@string/textViewValue"
-                android:textColor="@color/fixer_gray"
-                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/txtType"
+                    android:text="@string/strType"
+                    android:textColor="@color/fixer_dark_blue"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/textViewValue"
+                    android:textColor="@color/fixer_gray"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
+                android:layout_height="wrap_content">
 
-                android:text="@string/textViewValue"
-                android:textColor="@color/fixer_gray"
-                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/txtComments"
+                    android:text="@string/strComment"
+                    android:textColor="@color/fixer_dark_blue"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtComments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/textViewValue"
+                    android:textColor="@color/fixer_gray"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
+                android:layout_height="wrap_content">
 
-                android:text="@string/textViewValue"
-                android:textColor="@color/fixer_gray"
-                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/txtTotal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
+                    android:text="@string/strTotal"
+                    android:textColor="@color/fixer_dark_blue"
+                    android:textSize="15sp" />
 
-                android:text="@string/textViewValue"
-                android:textColor="@color/fixer_gray"
-                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/txtTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/textViewValue"
+                    android:textColor="@color/fixer_gray"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
