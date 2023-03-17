@@ -684,7 +684,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Appointment appointment = new Appointment(appointmentId, appointmentUserId,appointmentProviderId,
                     serviceId, date, time, comment, type);
             if (System.currentTimeMillis() <= date.getTime()){
-            //    System.out.println("hello provider");
+            //    System.out.println("hello providers");
                 aListAppointments.add(appointment);
             }
         }
