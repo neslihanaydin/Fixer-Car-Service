@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.CreateAppointment">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/fixer_toolbar" />
+
+    <LinearLayout
+        android:id="@+id/cardProvider"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_background"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="10dp">
+
+        <ImageView
+            android:id="@+id/imgLeft"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0"
+            android:src="@drawable/icon_car" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="5dp">
+
+            <TextView
+                android:id="@+id/txtProviderName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="#09032F"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtProviderPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/fixer_gray"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/txtProviderAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/fixer_gray"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0"
+            android:background="@drawable/icon_arrow_circle_right"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
