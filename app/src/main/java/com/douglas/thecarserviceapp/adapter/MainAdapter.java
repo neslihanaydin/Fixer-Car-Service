@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +18,7 @@ import com.douglas.thecarserviceapp.app.AppManager;
 import com.douglas.thecarserviceapp.view.BookAnAppointment;
 import com.douglas.thecarserviceapp.view.Profile;
 import com.douglas.thecarserviceapp.view.SearchCustomer;
-import com.douglas.thecarserviceapp.view.SearchServiceProvider;
+import com.douglas.thecarserviceapp.view.SearchProvider;
 import com.douglas.thecarserviceapp.view.ServiceHistory;
 import com.douglas.thecarserviceapp.view.ViewAppointments;
 
@@ -58,7 +57,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                             break;
                         case 1:
-                            activity.startActivity(new Intent(activity, SearchServiceProvider.class)
+                            activity.startActivity(new Intent(activity, SearchProvider.class)
                                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                             break;
                         case 2:

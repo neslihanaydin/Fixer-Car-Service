@@ -13,6 +13,9 @@
         android:theme="@style/FixerTheme"
         tools:targetApi="31">
         <activity
+            android:name=".view.CreateAppointment"
+            android:exported="false" />
+        <activity
             android:name=".view.SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -60,7 +63,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.SearchServiceProvider"
+            android:name=".view.SearchProvider"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

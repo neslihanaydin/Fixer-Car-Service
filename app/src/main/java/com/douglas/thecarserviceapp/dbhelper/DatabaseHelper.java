@@ -513,6 +513,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return users;
     }
 
+    public List<User> getProvidersByCity(String city) {
+        List<User> users = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT u.user_id, u.first_name, u.last_name, u.phone_number, u.address " +
+                "FROM USERS u " +
+                "WHERE (u.address like ?) AND u.user_type = 'PROVIDER'";
+        String[] selectionArgs = {city + "%"};
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String fName = cursor.getString(1);
+            String lName = cursor.getString(2);
+            String address = cursor.getString(3);
+            String phoneNumber = cursor.getString(4);
+            User provider = new User(id, fName, lName, address, phoneNumber);
+            users.add(provider);
+        }
+        cursor.close();
+        db.close();
+        return users;
+    }
+
     public List<User> getAllCustomers(){
         List<User> users = new ArrayList<>();
         try {
