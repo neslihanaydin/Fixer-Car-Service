@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.douglas.thecarserviceapp.R;
@@ -17,9 +16,8 @@ import com.douglas.thecarserviceapp.app.AppManager;
 import com.douglas.thecarserviceapp.model.User;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class BookAnAppointment extends AppCompatActivity {
+public class BookAppointment extends AppCompatActivity {
     //variable
     DrawerLayout drawerLayout;
     ImageView btMenu;
@@ -37,7 +35,7 @@ public class BookAnAppointment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookanappointment);
+        setContentView(R.layout.activity_book_appointment);
 
         FixerToolbar.setToolbar(this, "Book an Appointment", false, true);
 

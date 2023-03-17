@@ -34,4 +34,5 @@
     <string name="new_password">New Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="save">Save</string>
+    <string name="txtSearchByCity">Search by city</string>
 </resources>

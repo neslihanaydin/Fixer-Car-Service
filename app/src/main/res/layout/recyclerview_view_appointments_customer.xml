@@ -8,14 +8,14 @@
 
     <LinearLayout
         android:layout_width="300dp"
-        android:layout_height="220dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center|top"
         android:layout_marginTop="15dp"
         android:background="@drawable/rounded_background"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:id="@+id/linearLayoutTitle"
@@ -40,7 +40,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="31dp"
+                android:layout_marginBottom="30dp"
 
                 android:text="@string/strProvider"
                 android:textColor="@color/fixer_dark_blue"

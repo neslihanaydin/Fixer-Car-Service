@@ -8,13 +8,14 @@
     android:gravity="center_vertical">
 
     <EditText
-        android:id="@+id/editField"
+        android:id="@+id/edTxtSearchByCity"
         android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:ems="10"
         android:gravity="center"
         android:hint=""
+        android:background="@drawable/edit_field"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:paddingStart="30dp"
@@ -22,7 +23,7 @@
         android:textColorHint="@color/fixer_gray"/>
 
     <ImageButton
-        android:id="@+id/editButton"
+        android:id="@+id/btnSearchByCity"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_weight="1"

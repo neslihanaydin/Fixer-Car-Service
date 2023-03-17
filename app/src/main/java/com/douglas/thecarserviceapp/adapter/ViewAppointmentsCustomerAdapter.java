@@ -37,7 +37,7 @@ public class ViewAppointmentsCustomerAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.recyclerview_viewappointments_customer, parent,false);
+        View view = inflater.inflate(R.layout.recyclerview_view_appointments_customer, parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }

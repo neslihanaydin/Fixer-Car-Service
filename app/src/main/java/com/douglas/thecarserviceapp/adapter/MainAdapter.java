@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.app.AppManager;
-import com.douglas.thecarserviceapp.view.BookAnAppointment;
+import com.douglas.thecarserviceapp.view.BookAppointment;
 import com.douglas.thecarserviceapp.view.Profile;
 import com.douglas.thecarserviceapp.view.SearchServiceProvider;
 import com.douglas.thecarserviceapp.view.ServiceHistory;
@@ -53,7 +52,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 if(AppManager.instance.user.isCustomer()){
                     switch(position){
                         case 0:
-                            activity.startActivity(new Intent(activity, BookAnAppointment.class)
+                            activity.startActivity(new Intent(activity, BookAppointment.class)
                                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                             break;
                         case 1:

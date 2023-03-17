@@ -48,7 +48,7 @@ public class Profile extends AppCompatActivity implements ProfileAdapter.ItemCli
         FixerToolbar.setToolbar(this, "Profile", true, true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.arrayList));
+        recyclerView.setAdapter(new MainAdapter(this, BookAppointment.arrayList));
 
         btMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +126,7 @@ public class Profile extends AppCompatActivity implements ProfileAdapter.ItemCli
         for (int i = 0; i < ProfileAdapter.FIELD_COUNT; i++) {
             //findViewHolderForAdapterPosition() is a method of the RecyclerView class
             // that is used to find the ViewHolder for a given position in the adapter.
-            EditText editText = recyclerViewEditFields.findViewHolderForAdapterPosition(i).itemView.findViewById(R.id.editField);
+            EditText editText = recyclerViewEditFields.findViewHolderForAdapterPosition(i).itemView.findViewById(R.id.edTxtSearchByCity);
             if(TextUtils.isEmpty(editText.getText().toString())){
                 editText.setError("Invalid value");
                 isValid = false;
@@ -187,7 +187,7 @@ public class Profile extends AppCompatActivity implements ProfileAdapter.ItemCli
     protected void onPause() {
         super.onPause();
         //close drawer
-        BookAnAppointment.closeDrawer(drawerLayout);
+        BookAppointment.closeDrawer(drawerLayout);
     }
 
     @Override

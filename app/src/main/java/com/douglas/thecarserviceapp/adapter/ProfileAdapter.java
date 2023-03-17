@@ -16,8 +16,6 @@ import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 import com.douglas.thecarserviceapp.model.User;
 import com.douglas.thecarserviceapp.view.Profile;
 
-import java.util.List;
-
 public class ProfileAdapter extends RecyclerView.Adapter {
 
     ItemClickListener itemClickListener;
@@ -80,9 +78,9 @@ public class ProfileAdapter extends RecyclerView.Adapter {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            editField = itemView.findViewById(R.id.editField);
+            editField = itemView.findViewById(R.id.edTxtSearchByCity);
             editField.setEnabled(false);
-            editButton = itemView.findViewById(R.id.editButton);
+            editButton = itemView.findViewById(R.id.btnSearchByCity);
             editButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         User testCustomer = dbHelper.getUserByEmail("john.doe@example.com");
 
         AppManager.instance.setUser(testCustomer); //Singleton class to hold logged user for whole app life cycle
-        startActivity(new Intent(MainActivity.this, BookAnAppointment.class));
+        startActivity(new Intent(MainActivity.this, BookAppointment.class));
         finish();
 
         //TEST FAVOURITE PROVIDERS FOR LOGGED USER, USE THIS PART IN BOOK AN APPOINTMENT SCREEN LATER
