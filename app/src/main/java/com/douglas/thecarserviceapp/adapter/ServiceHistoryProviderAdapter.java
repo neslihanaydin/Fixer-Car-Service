@@ -53,6 +53,7 @@ public class ServiceHistoryProviderAdapter extends RecyclerView.Adapter {
         ((ServiceHistoryProviderAdapter.ViewHolder)holder).txtDateService.setText(wData.get(position).getDateTime());
         ((ServiceHistoryProviderAdapter.ViewHolder)holder).txtCustomer.setText(dbHelper.getUserName(userId));
         ((ServiceHistoryProviderAdapter.ViewHolder)holder).txtCustomerAddress.setText(dbHelper.getUserAddress(userId));
+        ((ViewHolder)holder).txtServices.setText(dbHelper.getServiceType(userId));
         ((ServiceHistoryProviderAdapter.ViewHolder)holder).txtComments.setText(wData.get(position).getComments());
         ((ServiceHistoryProviderAdapter.ViewHolder)holder).txtType.setText(wData.get(position).getType());
         ((ServiceHistoryProviderAdapter.ViewHolder)holder).txtTotal.setText("$" + decimalFormat.format(dbHelper.getServiceCost(serviceId)));
@@ -70,13 +71,14 @@ public class ServiceHistoryProviderAdapter extends RecyclerView.Adapter {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView txtDateService, txtCustomerAddress, txtCustomer, txtComments, txtType, txtTotal;
+        TextView txtDateService, txtCustomerAddress, txtServices, txtCustomer, txtComments, txtType, txtTotal;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtDateService = itemView.findViewById(R.id.txtDateService);
             txtCustomer = itemView.findViewById(R.id.txtCustomer);
             txtCustomerAddress = itemView.findViewById(R.id.txtCustomerAddress);
+            txtServices = itemView.findViewById(R.id.txtServices);
             txtComments = itemView.findViewById(R.id.txtComments);
             txtType = itemView.findViewById(R.id.txtType);
             txtTotal = itemView.findViewById(R.id.txtTotal);
