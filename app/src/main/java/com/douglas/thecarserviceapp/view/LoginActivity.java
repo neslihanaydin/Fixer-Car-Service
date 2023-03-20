@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 User user = dbHelper.getUserByEmail(email);
                 Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
                 AppManager.instance.setUser(user); //Singleton class to hold logged user for whole app life cycle
-                startActivity(new Intent(LoginActivity.this, BookAnAppointment.class));
+                startActivity(new Intent(LoginActivity.this, BookAppointmentFirstActivity.class));
                 finish();
             }else{
                 Toast.makeText(getApplicationContext(), "Invalid email or password!", Toast.LENGTH_LONG).show();
