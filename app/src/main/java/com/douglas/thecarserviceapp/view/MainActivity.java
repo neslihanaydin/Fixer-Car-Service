@@ -18,12 +18,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
-
+        //DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
+        /*
         User testProvider = dbHelper.getUserByEmail("bob.smith@example.com");
         User testCustomer = dbHelper.getUserByEmail("john.doe@example.com");
 
-       // AppManager.instance.setUser(testProvider); //Singleton class to hold logged user for whole app life cycle
+        AppManager.instance.setUser(testProvider); //Singleton class to hold logged user for whole app life cycle
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
         finish();
 
@@ -48,6 +48,6 @@ public class MainActivity extends AppCompatActivity {
         if(dbHelper.checkUserCredentials(testCustomer.getEmail(),"mypassword") == true){
             System.out.println("Test Customer password is correct");
         }
-
+        */
     }
 }

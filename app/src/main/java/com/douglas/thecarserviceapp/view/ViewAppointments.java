@@ -57,7 +57,7 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.arrayList));
+        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.items));
 
         btMenu.setOnClickListener(new View.OnClickListener() {
             @Override

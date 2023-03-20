@@ -58,7 +58,7 @@ public class CustomerDetail extends AppCompatActivity implements ProfileAdapter.
         FixerToolbar.setToolbar(this, "User Details", true, false);
 
         menuRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        menuRecyclerView.setAdapter(new MainAdapter(this,BookAnAppointment.arrayList));
+        menuRecyclerView.setAdapter(new MainAdapter(this,BookAnAppointment.items));
         btMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
