@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
+        //DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
         /*
         User testProvider = dbHelper.getUserByEmail("bob.smith@example.com");
         User testCustomer = dbHelper.getUserByEmail("john.doe@example.com");

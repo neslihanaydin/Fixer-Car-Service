@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         edTxtPassword = findViewById(R.id.editPassword);
         txtRegLink = findViewById(R.id.txtRegisterLink);
 
-        // AUTO LOGIN
+        // AUTO LOGIN USING SHARED PREFERENCES
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         email = preferences.getString("email", "");
         password = preferences.getString("password", "");
