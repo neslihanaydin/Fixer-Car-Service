@@ -77,7 +77,7 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
             } else if (user.isCustomer()) {
                 dbHelper = new DatabaseHelper(getApplicationContext());
                 try {
-                    appointments = dbHelper.getAllAppointmentsForCustomer(user.getUserId());
+                    appointments = dbHelper.getUpcomingAppointmentForCustomer(user.getUserId());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
