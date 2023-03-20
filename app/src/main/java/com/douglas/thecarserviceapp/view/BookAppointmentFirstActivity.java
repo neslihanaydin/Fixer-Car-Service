@@ -41,7 +41,7 @@ public class BookAppointmentFirstActivity extends AppCompatActivity implements B
         //When user login this will invoke favorite provider from database
         user = AppManager.instance.user;
         //Set toolbar name and visible menu
-        FixerToolbar.setToolbar(this, "Book an Appointment", true, true);
+        FixerToolbar.setToolbar(this, "Book an Appointment", false, true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.arrayList));
         btMenu.setOnClickListener(new View.OnClickListener() {

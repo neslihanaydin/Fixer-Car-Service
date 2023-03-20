@@ -6,6 +6,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -79,6 +80,11 @@ public class BookAnAppointment extends AppCompatActivity {
             }
         });
 
+        if(user.isCustomer()){
+            startActivity(new Intent(BookAnAppointment.this, BookAppointmentFirstActivity.class));
+        } else if(user.isProvider()){
+            startActivity(new Intent(BookAnAppointment.this, ViewAppointments.class));
+        }
     }
 
     @Override
