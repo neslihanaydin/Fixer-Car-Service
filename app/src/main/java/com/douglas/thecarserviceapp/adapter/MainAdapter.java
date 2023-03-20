@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.app.AppManager;
+import com.douglas.thecarserviceapp.util.ItemDrawer;
 import com.douglas.thecarserviceapp.view.BookAnAppointment;
 import com.douglas.thecarserviceapp.view.LoginActivity;
 import com.douglas.thecarserviceapp.view.Profile;
@@ -27,11 +30,11 @@ import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     Activity activity;
-    ArrayList<String> arrayList;
+    ArrayList<ItemDrawer> listItems;
 
-    public MainAdapter(Activity activity, ArrayList<String> arrayList1){
+    public MainAdapter(Activity activity, ArrayList<ItemDrawer> arrayList){
         this.activity = activity;
-        arrayList = arrayList1;
+        listItems = arrayList;
     }
     @NonNull
     @Override
@@ -45,7 +48,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //set text on textView
-        holder.textView.setText(arrayList.get(position));
+        holder.textView.setText(listItems.get(position).getTxt());
+        //set icon
+        holder.icon.setImageResource(listItems.get(position).getImgId());
 
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +87,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     activity.finishAffinity();
                                     AppManager.instance.setUser(null);
+                                    SharedPreferences preferences = activity.getSharedPreferences("MyPrefs", activity.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.clear();
+                                    editor.apply();
                                     activity.startActivity(new Intent(activity, LoginActivity.class));
                                     //System.exit(0);
                                 }
@@ -125,6 +134,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     activity.finishAffinity();
                                     AppManager.instance.setUser(null);
+                                    SharedPreferences preferences = activity.getSharedPreferences("MyPrefs", activity.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.clear();
+                                    editor.apply();
                                     activity.startActivity(new Intent(activity, LoginActivity.class));
                                     // System.exit(0);
                                 }
@@ -148,14 +161,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         //return arraylist size
-        return arrayList.size();
+        return listItems.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
+        ImageView icon;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.text_view);
+            textView = itemView.findViewById(R.id.txt_item_drawer);
+            icon = itemView.findViewById(R.id.icon_item_drawer);
         }
     }
 }

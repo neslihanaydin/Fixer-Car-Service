@@ -561,6 +561,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return users;
     }
 
+    public List<User> getAllProviders(){
+        List<User> users = new ArrayList<>();
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT u.user_id, u.first_name, u.last_name, u.phone_number, u.address " +
+                    "FROM USERS u " +
+                    "WHERE u.user_type = 'PROVIDER'";
+            String[] selectionArgs = {};
+            Cursor cursor = db.rawQuery(query, selectionArgs);
+            while (cursor.moveToNext()) {
+                int userId = cursor.getInt(0);
+                String firstName = cursor.getString(1);
+                String lastName = cursor.getString(2);
+                String phoneNumber = cursor.getString(3);
+                String address = cursor.getString(4);
+                User provider = new User(userId, firstName, lastName, address, phoneNumber);
+                users.add(provider);
+            }
+            cursor.close();
+            db.close();
+        } catch (SQLiteException e) {
+            Log.e("DatabaseError", "Error on database: " + e.getMessage());
+        }
+        return users;
+    }
+
     /* APPOINTMENT DB PROCESS */
 
     public List<Appointment> getAllAppointmentsForProvider(int userId) throws ParseException {

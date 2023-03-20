@@ -23,7 +23,9 @@
             android:id="@+id/txtCurrentUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:textColor="@color/fixer_gray"
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.douglas.thecarserviceapp.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.douglas.thecarserviceapp.R;
+import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 import com.douglas.thecarserviceapp.model.User;
 import com.douglas.thecarserviceapp.view.CreateAppointment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchProviderAdapter extends RecyclerView.Adapter<SearchProviderAdapter.ViewHolder> {
 
     private List<User> providers;
+    DatabaseHelper dbHelper;
 
-    public SearchProviderAdapter(List<User> serviceProviders) {
+    public SearchProviderAdapter(Context context, List<User> serviceProviders) {
+        dbHelper = new DatabaseHelper(context);
         this.providers = serviceProviders;
     }
 
@@ -46,6 +51,11 @@ public class SearchProviderAdapter extends RecyclerView.Adapter<SearchProviderAd
             intent.putExtra("PROVIDER_ADDRESS", selectedProvider.getAddress());
             v.getContext().startActivity(intent);
         });
+    }
+
+    public void setFilteredList(List<User> filteredProviders) {
+        providers = filteredProviders;
+        notifyDataSetChanged();
     }
 
     @Override

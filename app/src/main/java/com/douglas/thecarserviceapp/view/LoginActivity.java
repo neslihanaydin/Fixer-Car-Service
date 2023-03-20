@@ -1,6 +1,7 @@
 package com.douglas.thecarserviceapp.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.WindowManager;
@@ -16,15 +17,12 @@ import com.douglas.thecarserviceapp.app.AppManager;
 import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 import com.douglas.thecarserviceapp.model.User;
 
-import java.util.Objects;
-
 public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
-    EditText email, password;
+    EditText edTxtEmail, edTxtPassword;
     TextView txtRegLink;
     DatabaseHelper dbHelper;
-
-    String[] user = {"test@fixer.com", "123"};
+    String email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,47 +39,64 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loadUI() {
         btnLogin = findViewById(R.id.btnLogin);
-        email = findViewById(R.id.editEmail);
-        password = findViewById(R.id.editPassword);
+        edTxtEmail = findViewById(R.id.editEmail);
+        edTxtPassword = findViewById(R.id.editPassword);
         txtRegLink = findViewById(R.id.txtRegisterLink);
+
+        // AUTO LOGIN
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        email = preferences.getString("email", "");
+        password = preferences.getString("password", "");
+
+        if (!email.equals("") && !password.equals("")) {
+            dbHelper = new DatabaseHelper(getApplicationContext());
+            User user = dbHelper.getUserByEmail(email);
+            AppManager.instance.setUser(user);
+            startActivity(new Intent(LoginActivity.this, BookAnAppointment.class));
+            finish();
+        }
     }
 
     public void loadEvents() {
         // Login event
         btnLogin.setOnClickListener(v -> {
-            String email = this.email.getText().toString().trim();
-            String password = this.password.getText().toString().trim();
+            String email = this.edTxtEmail.getText().toString().trim();
+            String password = this.edTxtPassword.getText().toString().trim();
             dbHelper = new DatabaseHelper(getApplicationContext());
 
             if (email.isEmpty()) {
-                this.email.setError("Email is required!");
-                this.email.requestFocus();
+                this.edTxtEmail.setError("Email is required!");
+                this.edTxtEmail.requestFocus();
                 return;
             }
 
             if (password.isEmpty()) {
-                this.password.setError("Password is required!");
-                this.password.requestFocus();
+                this.edTxtPassword.setError("Password is required!");
+                this.edTxtPassword.requestFocus();
                 return;
             }
 
             // Check if the email field is a valid email format
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                this.email.setError("Please enter a valid email address!");
-                this.email.requestFocus();
+                this.edTxtEmail.setError("Please enter a valid email address!");
+                this.edTxtEmail.requestFocus();
                 return;
             }
 
             // Check if the email and password match the registered ones
-            if(dbHelper.checkUserCredentials(email, password)){
+            if(dbHelper.checkUserCredentials(email, password)) {
                 User user = dbHelper.getUserByEmail(email);
-                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("email", user.getEmail());
+                editor.putString("password", user.getPassword());
+                editor.apply();
                 AppManager.instance.setUser(user); //Singleton class to hold logged user for whole app life cycle
                 startActivity(new Intent(LoginActivity.this, BookAnAppointment.class));
+                Toast.makeText(getApplicationContext(), "Welcome " + user.getUserType(), Toast.LENGTH_LONG).show();
                 finish();
-            }else{
+            } else {
                 Toast.makeText(getApplicationContext(), "Invalid email or password!", Toast.LENGTH_LONG).show();
-
             }
         });
 

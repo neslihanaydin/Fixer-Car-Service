@@ -52,7 +52,7 @@ public class ServiceHistory extends AppCompatActivity implements ServiceHistoryC
         FixerToolbar.setToolbar(this, "Service History", true, true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.arrayList));
+        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.items));
 
         btMenu.setOnClickListener(new View.OnClickListener() {
             @Override

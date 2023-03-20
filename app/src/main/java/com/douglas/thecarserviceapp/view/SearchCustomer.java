@@ -67,7 +67,7 @@ public class SearchCustomer extends AppCompatActivity implements SearchUserAdapt
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.arrayList));
+        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.items));
 
         searchView = findViewById(R.id.searchView);
         searchView.clearFocus();

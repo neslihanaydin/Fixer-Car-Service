@@ -48,7 +48,7 @@ public class Profile extends AppCompatActivity implements ProfileAdapter.ItemCli
         FixerToolbar.setToolbar(this, "Profile", true, true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.arrayList));
+        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.items));
 
         btMenu.setOnClickListener(new View.OnClickListener() {
             @Override

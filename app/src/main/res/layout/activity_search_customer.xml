@@ -37,17 +37,17 @@ tools:context=".view.SearchCustomer">
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
                     android:layout_width="300dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_gravity="center|top"
                     android:layout_margin="14dp"
                     android:background="@drawable/rounded_background"
                     android:iconifiedByDefault="false"
                     android:queryHint="Search a User ...."
                     android:textColor="@color/fixer_dark_blue"
-                    app:closeIcon="@android:drawable/ic_menu_close_clear_cancel"
+                    app:closeIcon="@drawable/icon_close_circle"
                     app:iconifiedByDefault="false"
                     app:queryHint="Search a User ...."
-                    app:searchIcon="@android:drawable/ic_search_category_default" />
+                    app:searchIcon="@drawable/icon_search" />
 
 
                 <androidx.recyclerview.widget.RecyclerView
