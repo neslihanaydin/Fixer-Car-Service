@@ -43,7 +43,7 @@ public class BookAppointmentFirstActivity extends AppCompatActivity implements B
         //Set toolbar name and visible menu
         FixerToolbar.setToolbar(this, "Book an Appointment", false, true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.arrayList));
+        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.items));
         btMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
