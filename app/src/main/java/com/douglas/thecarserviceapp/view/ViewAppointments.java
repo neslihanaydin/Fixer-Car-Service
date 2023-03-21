@@ -24,8 +24,6 @@ import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 import com.douglas.thecarserviceapp.model.Appointment;
 import com.douglas.thecarserviceapp.model.User;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.text.ParseException;
 import java.util.List;
 
@@ -57,7 +55,7 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.items));
+        recyclerView.setAdapter(new MainAdapter(this, NavigationActivity.items));
 
         btMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +96,7 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
     protected void onPause() {
         super.onPause();
         //close drawer
-        BookAnAppointment.closeDrawer(drawerLayout);
+        NavigationActivity.closeDrawer(drawerLayout);
     }
 
     @Override

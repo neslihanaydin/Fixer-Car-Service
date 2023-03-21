@@ -1,6 +1,5 @@
 package com.douglas.thecarserviceapp.view;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -8,19 +7,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.adapter.MainAdapter;
 import com.douglas.thecarserviceapp.adapter.ServiceHistoryCustomerAdapter;
 import com.douglas.thecarserviceapp.adapter.ServiceHistoryProviderAdapter;
-import com.douglas.thecarserviceapp.adapter.ViewAppointmentsCustomerAdapter;
-import com.douglas.thecarserviceapp.adapter.ViewAppointmentsProviderAdapter;
 import com.douglas.thecarserviceapp.app.AppManager;
 import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 import com.douglas.thecarserviceapp.model.Appointment;
@@ -52,7 +46,7 @@ public class ServiceHistory extends AppCompatActivity implements ServiceHistoryC
         FixerToolbar.setToolbar(this, "Service History", true, true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.items));
+        recyclerView.setAdapter(new MainAdapter(this, NavigationActivity.items));
 
         btMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +87,7 @@ public class ServiceHistory extends AppCompatActivity implements ServiceHistoryC
     protected void onPause() {
         super.onPause();
         //close drawer
-        BookAnAppointment.closeDrawer(drawerLayout);
+        NavigationActivity.closeDrawer(drawerLayout);
     }
 
     @Override

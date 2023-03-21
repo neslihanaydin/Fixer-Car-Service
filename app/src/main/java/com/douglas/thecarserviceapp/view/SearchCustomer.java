@@ -67,7 +67,7 @@ public class SearchCustomer extends AppCompatActivity implements SearchUserAdapt
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.items));
+        recyclerView.setAdapter(new MainAdapter(this, NavigationActivity.items));
 
         searchView = findViewById(R.id.searchView);
         searchView.clearFocus();
@@ -116,7 +116,7 @@ public class SearchCustomer extends AppCompatActivity implements SearchUserAdapt
     protected void onPause() {
         super.onPause();
         //close drawer
-        BookAnAppointment.closeDrawer(drawerLayout);
+        NavigationActivity.closeDrawer(drawerLayout);
     }
     @Override
     public void onItemClick(View view, int position) {
