@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.app.AppManager;
 import com.douglas.thecarserviceapp.util.ItemDrawer;
-import com.douglas.thecarserviceapp.view.BookAnAppointment;
+import com.douglas.thecarserviceapp.view.NavigationActivity;
 import com.douglas.thecarserviceapp.view.LoginActivity;
 import com.douglas.thecarserviceapp.view.Profile;
 import com.douglas.thecarserviceapp.view.SearchCustomer;
@@ -59,7 +59,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 if(AppManager.instance.user.isCustomer()){
                     switch(position){
                         case 0:
-                            activity.startActivity(new Intent(activity, BookAnAppointment.class)
+                            activity.startActivity(new Intent(activity, NavigationActivity.class)
                                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                             break;
                         case 1:

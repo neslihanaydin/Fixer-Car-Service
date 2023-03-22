@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,12 +18,9 @@ import com.douglas.thecarserviceapp.app.AppManager;
 import com.douglas.thecarserviceapp.model.User;
 import com.douglas.thecarserviceapp.util.ItemDrawer;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class BookAnAppointment extends AppCompatActivity {
+public class NavigationActivity extends AppCompatActivity {
     //variable
     DrawerLayout drawerLayout;
     ImageView btMenu;
@@ -89,9 +85,9 @@ public class BookAnAppointment extends AppCompatActivity {
         });
 
         if(user.isCustomer()){
-            startActivity(new Intent(BookAnAppointment.this, BookAppointmentFirstActivity.class));
+            startActivity(new Intent(NavigationActivity.this, BookAppointmentFirstActivity.class));
         } else if(user.isProvider()){
-            startActivity(new Intent(BookAnAppointment.this, ViewAppointments.class));
+            startActivity(new Intent(NavigationActivity.this, ViewAppointments.class));
         }
     }
 

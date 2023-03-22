@@ -77,7 +77,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.BookAnAppointment"
+            android:name=".view.NavigationActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

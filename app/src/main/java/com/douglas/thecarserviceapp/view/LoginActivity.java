@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
             dbHelper = new DatabaseHelper(getApplicationContext());
             User user = dbHelper.getUserByEmail(email);
             AppManager.instance.setUser(user);
-            startActivity(new Intent(LoginActivity.this, BookAnAppointment.class));
+            startActivity(new Intent(LoginActivity.this, NavigationActivity.class));
             finish();
         }
     }
@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("password", user.getPassword());
                 editor.apply();
                 AppManager.instance.setUser(user); //Singleton class to hold logged user for whole app life cycle
-                startActivity(new Intent(LoginActivity.this, BookAnAppointment.class));
+                startActivity(new Intent(LoginActivity.this, NavigationActivity.class));
                 Toast.makeText(getApplicationContext(), "Welcome " + user.getUserType(), Toast.LENGTH_LONG).show();
                 finish();
             } else {

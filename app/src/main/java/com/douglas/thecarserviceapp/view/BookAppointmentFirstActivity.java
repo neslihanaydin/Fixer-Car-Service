@@ -43,7 +43,7 @@ public class BookAppointmentFirstActivity extends AppCompatActivity implements B
         //Set toolbar name and visible menu
         FixerToolbar.setToolbar(this, "Book an Appointment", false, true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MainAdapter(this, BookAnAppointment.items));
+        recyclerView.setAdapter(new MainAdapter(this, NavigationActivity.items));
         btMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +77,6 @@ public class BookAppointmentFirstActivity extends AppCompatActivity implements B
     protected void onPause() {
         super.onPause();
         //close drawer
-        BookAnAppointment.closeDrawer(drawerLayout);
+        NavigationActivity.closeDrawer(drawerLayout);
     }
 }
