@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -70,6 +71,9 @@ public class BookAppointmentFirstActivity extends AppCompatActivity implements B
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You choose a provider", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(BookAppointmentFirstActivity.this, BookAppointment.class);
+        intent.putExtra("PROVIDER_ID",provider.get(position).getUserId());
+        startActivity(intent);
     }
 
     //relate with navigation bar
