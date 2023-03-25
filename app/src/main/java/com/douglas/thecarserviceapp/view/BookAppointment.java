@@ -13,9 +13,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -24,9 +27,15 @@ import com.douglas.thecarserviceapp.adapter.MainAdapter;
 import com.douglas.thecarserviceapp.adapter.ProviderServicesAdapter;
 import com.douglas.thecarserviceapp.app.AppManager;
 import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
+import com.douglas.thecarserviceapp.model.Appointment;
 import com.douglas.thecarserviceapp.model.Service;
 import com.douglas.thecarserviceapp.model.User;
+import com.douglas.thecarserviceapp.util.Util;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -40,6 +49,10 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
     TextView txtDate;
     LinearLayout layoutDate;
     boolean timeSetStatus = false;
+
+    private List<Service> checkedServiceList = new ArrayList<>();
+
+    public List<Service> serviceList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +78,16 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
         int providerId = checkIntent();
         if(user!=null && providerId!=0){
             loadProviderInformation(providerId);
-            List<Service> serviceList = dbHelper.getServicesByProviderId(providerId);
+            serviceList = dbHelper.getServicesByProviderId(providerId);
             RecyclerView recyclerViewApp = findViewById(R.id.recyclerViewServicesCosts);
             recyclerViewApp.setLayoutManager(new GridLayoutManager(this, 1));
             providerServicesAdapter = new ProviderServicesAdapter(this, serviceList, this);
             recyclerViewApp.setAdapter(providerServicesAdapter);
-
             txtDate = findViewById(R.id.txtDateField);
+            RadioButton rPickUp = findViewById(R.id.radioPickup);
+            RadioButton rDropOff = findViewById(R.id.radioDropOff);
+            EditText editTextComments = findViewById(R.id.editTextComments);
+
             layoutDate = findViewById(R.id.layoutDatePicker);
             layoutDate.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,9 +112,72 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
                     datePickerDialog.show();
                 }
             });
+
+            Button btnBookAppointment = findViewById(R.id.btnBookAppointment);
+            btnBookAppointment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //check everything
+                    for(int i = 0; i < checkedServiceList.size(); i++){
+                        Appointment appointment = new Appointment();
+                        appointment.setUserId(user.getUserId());
+                        appointment.setProviderId(providerId);
+                        appointment.setServiceId(checkedServiceList.get(i).getServiceId());
+                        String dateHour =  txtDate.getText().toString();
+                        String[] subDateHour = dateHour.split("-",2);
+                        try {
+                            appointment.setDate(trimDate(subDateHour[0]));
+                            appointment.setTime(trimTime(subDateHour[1]));
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
+                        if(rPickUp.isChecked()){
+                            appointment.setType("Pick up");
+                        } else if(rDropOff.isChecked()){
+                            appointment.setType("Drop off");
+                        }
+                        appointment.setComments(editTextComments.getText().toString());
+                        dbHelper.addAppointment(appointment);
+                    }
+
+                }
+            });
         }else {
             finish();
         }
+    }
+
+    private java.sql.Date trimDate(String subDate) throws ParseException {
+        String day;
+        String month;
+        String year;
+
+        String[] dmy = subDate.split("/",3);
+        dmy[0] = dmy[0].trim();
+        dmy[1] = dmy[1].trim();
+        dmy[2] = dmy[2].trim();
+
+        day = dmy[0];
+        month = dmy[1];
+        year = dmy[2];
+
+        Date date = Util.convertDate(year + "-" + month + "-" + day);
+
+        return date;
+    }
+
+    private java.sql.Time trimTime(String subDate) throws ParseException {
+        String hour;
+        String minute;
+        String[] hm = subDate.split(":",2);
+        hm[0] = hm[0].trim();
+        hm[1] = hm[1].trim();
+        hour = hm[0];
+        minute = hm[1];
+
+        Time time = Util.convertTime(hour + ":" +minute);
+
+        return time;
     }
 
     private void loadProviderInformation(int providerId){
@@ -131,7 +210,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 String time = String.format("%02d:%02d", hourOfDay, minute);
                 String text = txtDate.getText().toString();
-                txtDate.setText(text + " " + time);
+                txtDate.setText(text + " - " + time);
                 timeSetStatus = true;
             }
         }, hour, minute, true);
@@ -142,7 +221,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
                 if(!timeSetStatus){
                     String time = "12:00";
                     String text = txtDate.getText().toString();
-                    txtDate.setText(text + " " + time);
+                    txtDate.setText(text + " - " + time);
                 }
             }
         });
@@ -156,7 +235,11 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
     }
 
     @Override
-    public void onItemClick(View view, int position) {
-
+    public void onItemClick(View view, int position, boolean isChecked) {
+        if(isChecked){
+            checkedServiceList.add(serviceList.get(position));
+        } else{
+            checkedServiceList.remove(serviceList.get(position));
+        }
     }
 }

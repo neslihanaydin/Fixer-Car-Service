@@ -660,6 +660,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public void addAppointment(Appointment appointment){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(AP_COLUMN_UID, appointment.getUserId());
+        cv.put(AP_COLUMN_PROVIDER_ID, appointment.getProviderId());
+        cv.put(AP_COLUMN_SERVICE_ID, appointment.getServiceId());
+        cv.put(AP_COLUMN_ADATE, appointment.getDate().toString());
+        cv.put(AP_COLUMN_ATIME, appointment.getTime().toString());
+        cv.put(AP_COLUMN_COMMENTS, appointment.getComments());
+        cv.put(AP_COLUMN_TYPE, appointment.getType());
+        cv.put(AP_COLUMN_STATUS, "PENDING");
+        long result = db.insert(TABLE_APPOINTMENT, null, cv);
+        if(result == -1){
+            Toast.makeText(context, "Unexpected error in adding appointment.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Appointment has been added successfully.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void cancelAppointment(Appointment appointment){
         SQLiteDatabase db = this.getReadableDatabase();

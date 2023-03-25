@@ -116,7 +116,7 @@ tools:context=".view.BookAppointment">
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radioButton2"
+                        android:id="@+id/radioPickup"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
                         android:buttonTint="@color/fixer_dark_blue"
@@ -125,7 +125,7 @@ tools:context=".view.BookAppointment">
                         android:textSize="16sp" />
 
                     <RadioButton
-                        android:id="@+id/radioButton"
+                        android:id="@+id/radioDropOff"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
                         android:buttonTint="@color/fixer_dark_blue"
@@ -239,7 +239,7 @@ tools:context=".view.BookAppointment">
             </LinearLayout>
 
             <EditText
-                android:id="@+id/editTextTextMultiLine"
+                android:id="@+id/editTextComments"
                 android:layout_width="300dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
@@ -256,7 +256,7 @@ tools:context=".view.BookAppointment">
                 android:textColor="@color/fixer_black" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnBookAppointment"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

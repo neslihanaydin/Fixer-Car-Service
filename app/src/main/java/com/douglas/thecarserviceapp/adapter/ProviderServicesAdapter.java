@@ -51,7 +51,7 @@ public class ProviderServicesAdapter extends RecyclerView.Adapter{
         return sData.size();
     }
     public interface ItemClickListener{
-        void onItemClick(View view, int position);
+        void onItemClick(View view, int position, boolean isChecked);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -64,10 +64,14 @@ public class ProviderServicesAdapter extends RecyclerView.Adapter{
             txtServiceRc = itemView.findViewById(R.id.txtServiceRc);
             txtCostRc = itemView.findViewById(R.id.txtPriceRc);
             checkBox = itemView.findViewById(R.id.checkRc);
-            itemView.setOnClickListener(new View.OnClickListener() {
+            checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemClickListener.onItemClick(v, getAdapterPosition());
+                    if(checkBox.isChecked()){
+                        itemClickListener.onItemClick(v, getAdapterPosition(), true);
+                    } else{
+                        itemClickListener.onItemClick(v, getAdapterPosition(), false);
+                    }
                 }
             });
         }
