@@ -120,7 +120,7 @@ public class SearchCustomer extends AppCompatActivity implements SearchUserAdapt
     }
     @Override
     public void onItemClick(View view, int position) {
-        if(filteredList.size() >= position){
+        if(filteredList.size() >= position && filteredList.size() != 0){
             Intent intent = new Intent(SearchCustomer.this, CustomerDetail.class);
             intent.putExtra("USER_ID",filteredList.get(position).getUserId());
             startActivity(intent);

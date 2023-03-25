@@ -47,12 +47,14 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
         recyclerView = findViewById(R.id.recycler_view);
         user = AppManager.instance.user;
         //Change the page header
-        if(user.isProvider()){
-            FixerToolbar.setToolbar(this, "View Appointments", false, true);
-        } else{
-            FixerToolbar.setToolbar(this, "View Appointments", true, true);
-
+        if(user!=null){
+            if(user.isProvider()){
+                FixerToolbar.setToolbar(this, "View Appointments", false, true);
+            } else{
+                FixerToolbar.setToolbar(this, "View Appointments", true, true);
+            }
         }
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MainAdapter(this, NavigationActivity.items));

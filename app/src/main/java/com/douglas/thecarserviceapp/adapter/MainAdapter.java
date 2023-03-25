@@ -21,6 +21,7 @@ import com.douglas.thecarserviceapp.util.ItemDrawer;
 import com.douglas.thecarserviceapp.view.NavigationActivity;
 import com.douglas.thecarserviceapp.view.LoginActivity;
 import com.douglas.thecarserviceapp.view.Profile;
+import com.douglas.thecarserviceapp.view.RegistrationActivity;
 import com.douglas.thecarserviceapp.view.SearchCustomer;
 import com.douglas.thecarserviceapp.view.SearchProvider;
 import com.douglas.thecarserviceapp.view.ServiceHistory;
@@ -112,9 +113,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                             break;
                         case 1:
-                            Toast.makeText(activity.getApplicationContext(), "Create Customer clicked",Toast.LENGTH_LONG).show();
-                           // activity.startActivity(new Intent(activity, CreateCustomer.class)
-                           //         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                            Intent intent = new Intent(activity, RegistrationActivity.class);
+                            intent.putExtra("WITH_PROVIDER", true);
+                            activity.startActivity(intent
+                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                             break;
                         case 2:
                             activity.startActivity(new Intent(activity, SearchCustomer.class)
