@@ -28,7 +28,6 @@ public class NavigationActivity extends AppCompatActivity {
     static ArrayList<ItemDrawer> items = new ArrayList<>();
     MainAdapter adapter;
     private User user;
-
     TextView currentUser;
 
     public static void closeDrawer(DrawerLayout drawerLayout) {
@@ -40,9 +39,7 @@ public class NavigationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookanappointment);
-        FixerToolbar.setToolbar(this, "Book an Appointment", false, true);
-
+        setContentView(R.layout.activity_navigation);
         drawerLayout = findViewById(R.id.drawer_layout);
         btMenu = findViewById(R.id.menu_icon);
         recyclerView = findViewById(R.id.recycler_view);
@@ -84,11 +81,14 @@ public class NavigationActivity extends AppCompatActivity {
             }
         });
 
-        if(user.isCustomer()){
-            startActivity(new Intent(NavigationActivity.this, BookAppointmentFirstActivity.class));
-        } else if(user.isProvider()){
-            startActivity(new Intent(NavigationActivity.this, ViewAppointments.class));
+        if(user != null){
+            if(user.isCustomer()){
+                startActivity(new Intent(NavigationActivity.this, BookAppointmentFirstActivity.class));
+            } else if(user.isProvider()){
+                startActivity(new Intent(NavigationActivity.this, ViewAppointments.class));
+            }
         }
+
     }
 
     @Override

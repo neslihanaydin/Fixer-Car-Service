@@ -24,6 +24,7 @@ import com.douglas.thecarserviceapp.util.ItemDrawer;
 import com.douglas.thecarserviceapp.view.NavigationActivity;
 import com.douglas.thecarserviceapp.view.LoginActivity;
 import com.douglas.thecarserviceapp.view.Profile;
+import com.douglas.thecarserviceapp.view.RegistrationActivity;
 import com.douglas.thecarserviceapp.view.SearchCustomer;
 import com.douglas.thecarserviceapp.view.SearchProvider;
 import com.douglas.thecarserviceapp.view.ServiceHistory;
@@ -46,7 +47,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 .inflate(R.layout.item_drawer_main, parent, false);
         return new ViewHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {

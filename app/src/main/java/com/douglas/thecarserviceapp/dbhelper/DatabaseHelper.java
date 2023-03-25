@@ -640,26 +640,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return appointments;
     }
 
-    // :TO DO
-    public List<Appointment> getUpcomingAppointmentsForProvider(int userId) {
-        return null;
-    }
-
-    // :TO DO
-    public List<Appointment> getServiceHistoryForProvider(int userId) {
-        return null;
-    }
-
-    // :TO DO
-    public List<Appointment> getUpcomingAppointmentsForCustomer(int userId) {
-        return null;
-    }
-
-    // :TO DO
-    public List<Appointment> getServiceHistoryForCustomer(int userId) {
-        return null;
-    }
-
     public void addAppointment(Appointment appointment){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -814,13 +794,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return aListAppointments;
     }
 
-    public List<Appointment> getUpcomingAppointmentForProvider (int userId) throws ParseException{
+    public List<Appointment> getUpcomingAppointmentForProvider (int providerId) throws ParseException{
         List<Appointment> aListAppointments = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        String[] column = { AP_COLUMN_ID, U_COLUMN_ID, AP_COLUMN_PROVIDER_ID, AP_COLUMN_SERVICE_ID,
+        String[] column = { AP_COLUMN_ID, AP_COLUMN_UID, AP_COLUMN_PROVIDER_ID, AP_COLUMN_SERVICE_ID,
                 AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE};
-        String selection = U_COLUMN_ID + " = ? AND status != 'CANCELLED'";
-        String[] selectionArgs = { String.valueOf(userId)};
+        String selection = AP_COLUMN_PROVIDER_ID + " = ? AND status != 'CANCELLED'";
+        String[] selectionArgs = { String.valueOf(providerId)};
         Cursor cursor = sqLiteDatabase.query(TABLE_APPOINTMENT, column,
                 selection, selectionArgs, null,
                 null, "a_date asc");
@@ -837,7 +817,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Appointment appointment = new Appointment(appointmentId, appointmentUserId,appointmentProviderId,
                     serviceId, date, time, comment, type);
             if (System.currentTimeMillis() <= date.getTime()){
-            //    System.out.println("hello providers");
+                aListAppointments.add(appointment);
+            }
+        }
+        return aListAppointments;
+    }
+
+    public List<Appointment> getServiceHistoryForUser (int userId) throws ParseException{
+        List<Appointment> aListAppointments = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String[] column = { AP_COLUMN_ID, AP_COLUMN_UID, AP_COLUMN_PROVIDER_ID, AP_COLUMN_SERVICE_ID,
+                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE};
+        String selection = AP_COLUMN_UID + " = ? AND status != 'CANCELLED'";
+        String[] selectionArgs = { String.valueOf(userId)};
+        Cursor cursor = sqLiteDatabase.query(TABLE_APPOINTMENT, column,
+                selection, selectionArgs, null,
+                null, "a_date asc");
+
+        while (cursor.moveToNext()){
+            int appointmentId = cursor.getInt(0);
+            int appointmentUserId = cursor.getInt(1);
+            int appointmentProviderId = cursor.getInt(2);
+            int serviceId = cursor.getInt(3);
+            Date date = Util.convertDate(cursor.getString(4));
+            Time time = Util.convertTime(cursor.getString(5));
+            String comment = cursor.getString(6);
+            String type = cursor.getString(7);
+            Appointment appointment = new Appointment(appointmentId, appointmentUserId,appointmentProviderId,
+                    serviceId, date, time, comment, type);
+            if (System.currentTimeMillis() > date.getTime()){
+                aListAppointments.add(appointment);
+            }
+        }
+        return aListAppointments;
+    }
+
+    public List<Appointment> getServiceHistoryForProvider (int providerId) throws ParseException{
+        List<Appointment> aListAppointments = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String[] column = { AP_COLUMN_ID, AP_COLUMN_UID, AP_COLUMN_PROVIDER_ID, AP_COLUMN_SERVICE_ID,
+                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE};
+        String selection = AP_COLUMN_PROVIDER_ID + " = ? AND status != 'CANCELLED'";
+        String[] selectionArgs = { String.valueOf(providerId)};
+        Cursor cursor = sqLiteDatabase.query(TABLE_APPOINTMENT, column,
+                selection, selectionArgs, null,
+                null, "a_date asc");
+
+        while (cursor.moveToNext()){
+            int appointmentId = cursor.getInt(0);
+            int appointmentUserId = cursor.getInt(1);
+            int appointmentProviderId = cursor.getInt(2);
+            int serviceId = cursor.getInt(3);
+            Date date = Util.convertDate(cursor.getString(4));
+            Time time = Util.convertTime(cursor.getString(5));
+            String comment = cursor.getString(6);
+            String type = cursor.getString(7);
+            Appointment appointment = new Appointment(appointmentId, appointmentUserId,appointmentProviderId,
+                    serviceId, date, time, comment, type);
+            if (System.currentTimeMillis() > date.getTime()){
                 aListAppointments.add(appointment);
             }
         }

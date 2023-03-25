@@ -58,9 +58,8 @@ public class ServiceHistory extends AppCompatActivity implements ServiceHistoryC
         if(user!= null) {
             if (user.isProvider()) {
                 dbHelper = new DatabaseHelper(getApplicationContext());
-                //Get provider's appointments // TO DO: Check date later, and edit that only list upcoming appointments
                 try {
-                    appointments = dbHelper.getAllAppointmentsForProvider(user.getUserId());
+                    appointments = dbHelper.getServiceHistoryForProvider(user.getUserId());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -71,7 +70,7 @@ public class ServiceHistory extends AppCompatActivity implements ServiceHistoryC
             } else if (user.isCustomer()) {
                 dbHelper = new DatabaseHelper(getApplicationContext());
                 try {
-                    appointments = dbHelper.getAllAppointmentsForCustomer(user.getUserId());
+                    appointments = dbHelper.getServiceHistoryForUser(user.getUserId());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
