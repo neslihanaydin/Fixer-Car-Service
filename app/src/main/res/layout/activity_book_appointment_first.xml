@@ -47,6 +47,7 @@ tools:context=".view.BookAppointmentFirstActivity">
 
             <Button
                 android:id="@+id/btnSearchProvider"
+                style="@style/ButtonTextNoCaps"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

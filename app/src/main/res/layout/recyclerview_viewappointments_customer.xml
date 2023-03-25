@@ -139,6 +139,6 @@
         android:text="@string/btnCancelAppointment"
         android:textAllCaps="false"
         android:textColor="@color/fixer_dark_blue"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 </LinearLayout>
