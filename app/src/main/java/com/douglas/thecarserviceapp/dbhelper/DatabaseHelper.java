@@ -794,13 +794,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return aListAppointments;
     }
 
-    public List<Appointment> getUpcomingAppointmentForProvider (int userId) throws ParseException{
+    public List<Appointment> getUpcomingAppointmentForProvider (int providerId) throws ParseException{
         List<Appointment> aListAppointments = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String[] column = { AP_COLUMN_ID, AP_COLUMN_UID, AP_COLUMN_PROVIDER_ID, AP_COLUMN_SERVICE_ID,
                 AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE};
-        String selection = AP_COLUMN_UID + " = ? AND status != 'CANCELLED'";
-        String[] selectionArgs = { String.valueOf(userId)};
+        String selection = AP_COLUMN_PROVIDER_ID + " = ? AND status != 'CANCELLED'";
+        String[] selectionArgs = { String.valueOf(providerId)};
         Cursor cursor = sqLiteDatabase.query(TABLE_APPOINTMENT, column,
                 selection, selectionArgs, null,
                 null, "a_date asc");

@@ -67,9 +67,8 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
         if(user!= null) {
             if (user.isProvider()) {
                 dbHelper = new DatabaseHelper(getApplicationContext());
-                //Get provider's appointments // TO DO: Check date later, and edit that only list upcoming appointments
                 try {
-                    appointments = dbHelper.getAllAppointmentsForProvider(user.getUserId());
+                    appointments = dbHelper.getUpcomingAppointmentForProvider(user.getUserId());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
