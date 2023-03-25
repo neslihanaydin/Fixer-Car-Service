@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.douglas.thecarserviceapp.model.Appointment;
+import com.douglas.thecarserviceapp.model.Service;
 import com.douglas.thecarserviceapp.model.User;
 import com.douglas.thecarserviceapp.util.Util;
 
@@ -168,7 +169,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.clear();
         cv.put(U_COLUMN_FNAME, "Bob");
         cv.put(U_COLUMN_LNAME, "Smith");
-        cv.put(U_COLUMN_ADDRESS, "789 Pine Rd");
+        cv.put(U_COLUMN_ADDRESS, "789 Pine Rd, Burnaby");
         cv.put(U_COLUMN_PHONE, "555-9012");
         cv.put(U_COLUMN_EMAIL, "bob.smith@example.com");
         cv.put(U_COLUMN_PASSWORD, "mypassword");
@@ -179,7 +180,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.clear();
         cv.put(U_COLUMN_FNAME, "Alice");
         cv.put(U_COLUMN_LNAME, "Johnson");
-        cv.put(U_COLUMN_ADDRESS, "321 Elm St");
+        cv.put(U_COLUMN_ADDRESS, "321 Elm St, Surrey");
         cv.put(U_COLUMN_PHONE, "555-3456");
         cv.put(U_COLUMN_EMAIL, "alice.johnson@example.com");
         cv.put(U_COLUMN_PASSWORD, "mypassword");
@@ -659,6 +660,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public void addAppointment(Appointment appointment){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(AP_COLUMN_UID, appointment.getUserId());
+        cv.put(AP_COLUMN_PROVIDER_ID, appointment.getProviderId());
+        cv.put(AP_COLUMN_SERVICE_ID, appointment.getServiceId());
+        cv.put(AP_COLUMN_ADATE, appointment.getDate().toString());
+        cv.put(AP_COLUMN_ATIME, appointment.getTime().toString());
+        cv.put(AP_COLUMN_COMMENTS, appointment.getComments());
+        cv.put(AP_COLUMN_TYPE, appointment.getType());
+        cv.put(AP_COLUMN_STATUS, "PENDING");
+        long result = db.insert(TABLE_APPOINTMENT, null, cv);
+        if(result == -1){
+            Toast.makeText(context, "Unexpected error in adding appointment.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Appointment has been added successfully.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void cancelAppointment(Appointment appointment){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -698,6 +717,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return serviceType;
+    }
+    public List<Service> getServicesByProviderId(int providerId){
+        List<Service> services = new ArrayList<>();
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT u.user_id, u.first_name, u.last_name, u.phone_number, u.address " +
+                    "FROM USERS u " +
+                    "WHERE u.user_type = 'PROVIDER'";
+            String query2 = "SELECT s.service_id, st.type, s.cost FROM SERVICE s INNER JOIN SERVICETYPE st ON s.service_type_id = ST.service_type_id WHERE s.provider_id = " +providerId;
+            String[] selectionArgs = {};
+            Cursor cursor = db.rawQuery(query2, selectionArgs);
+            while (cursor.moveToNext()) {
+                int serviceId = cursor.getInt(0);
+                String serviceType = cursor.getString(1);
+                String cost = cursor.getString(2);
+                Service service = new Service();
+                service.setServiceId(serviceId);
+                service.setType(serviceType);
+                service.setProviderId(providerId);
+                service.setCost(Double.parseDouble(cost));
+                services.add(service);
+            }
+            cursor.close();
+            db.close();
+        } catch (SQLiteException e) {
+            Log.e("DatabaseError", "Error on database: " + e.getMessage());
+        }
+        return services;
     }
     
     public double getServiceCost(int serviceId) {

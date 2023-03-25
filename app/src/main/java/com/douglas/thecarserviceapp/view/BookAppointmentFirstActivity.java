@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -63,13 +65,25 @@ public class BookAppointmentFirstActivity extends AppCompatActivity implements B
             recyclerviewFavProvider.setLayoutManager(new GridLayoutManager(this, 1));
             bookAppointmentFirstAdapter = new BookAppointmentFirstAdapter(this, provider, this);
             recyclerviewFavProvider.setAdapter(bookAppointmentFirstAdapter);
+
+            Button buttonSearch;
+            buttonSearch = findViewById(R.id.btnSearchProvider);
+            buttonSearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(BookAppointmentFirstActivity.this, SearchProvider.class));
+                }
+            });
         }
     }
 
     //Implememt when customer click FavItems.
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You choose a provider", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "You choose a provider", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(BookAppointmentFirstActivity.this, BookAppointment.class);
+        intent.putExtra("PROVIDER_ID",provider.get(position).getUserId());
+        startActivity(intent);
     }
 
     //relate with navigation bar

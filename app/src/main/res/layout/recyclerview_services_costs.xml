@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|top"
+    android:paddingRight="20dp">
+
+    <TextView
+        android:id="@+id/txtServiceRc"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="center|start"
+        android:paddingLeft="10dp"
+        android:text="TextView"
+        android:textColor="@color/fixer_gray"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txtPriceRc"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:gravity="center|start"
+        android:text="TextView"
+        android:textColor="@color/fixer_gray"
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/checkRc"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:buttonTint="@color/fixer_dark_blue"
+        android:gravity="center|start" />
+
+</LinearLayout>
