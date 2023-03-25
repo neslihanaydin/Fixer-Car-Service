@@ -47,12 +47,14 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
         recyclerView = findViewById(R.id.recycler_view);
         user = AppManager.instance.user;
         //Change the page header
-        if(user.isProvider()){
-            FixerToolbar.setToolbar(this, "View Appointments", false, true);
-        } else{
-            FixerToolbar.setToolbar(this, "View Appointments", true, true);
-
+        if(user!=null){
+            if(user.isProvider()){
+                FixerToolbar.setToolbar(this, "View Appointments", false, true);
+            } else{
+                FixerToolbar.setToolbar(this, "View Appointments", true, true);
+            }
         }
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MainAdapter(this, NavigationActivity.items));
@@ -67,9 +69,8 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
         if(user!= null) {
             if (user.isProvider()) {
                 dbHelper = new DatabaseHelper(getApplicationContext());
-                //Get provider's appointments // TO DO: Check date later, and edit that only list upcoming appointments
                 try {
-                    appointments = dbHelper.getAllAppointmentsForProvider(user.getUserId());
+                    appointments = dbHelper.getUpcomingAppointmentForProvider(user.getUserId());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
