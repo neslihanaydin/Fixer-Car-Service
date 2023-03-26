@@ -40,9 +40,12 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        FixerToolbar.setToolbar(this, "Service History", true, false);
+        if(checkIntent()){
+            FixerToolbar.setToolbar(this, "Create Customer", true, false);
+        } else {
+            FixerToolbar.setToolbar(this, "Register", true, false);
+        }
         setRegistrationLayout();
-
 
     }
 

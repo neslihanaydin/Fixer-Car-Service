@@ -49,6 +49,7 @@
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:minHeight="48dp"
+            android:textSize="16sp"
             android:textColor="@color/fixer_dark_blue"
             android:textColorHint="@color/fixer_gray" />
 
@@ -65,6 +66,7 @@
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:minHeight="48dp"
+            android:textSize="16sp"
             android:textColor="@color/fixer_dark_blue"
             android:textColorHint="@color/fixer_gray" />
 
@@ -80,7 +82,7 @@
             android:text="@string/save"
             android:textAllCaps="false"
             android:textColor="@color/fixer_white"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <Button
@@ -94,7 +96,7 @@
             android:text="@string/deleteCustomer"
             android:textAllCaps="false"
             android:textColor="@color/fixer_dark_blue"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
     <RelativeLayout

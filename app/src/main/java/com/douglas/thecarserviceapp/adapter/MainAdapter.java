@@ -2,12 +2,15 @@ package com.douglas.thecarserviceapp.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +48,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //set text on textView
@@ -53,110 +55,152 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         //set icon
         holder.icon.setImageResource(listItems.get(position).getImgId());
 
-        holder.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = holder.getAdapterPosition();
-                if(AppManager.instance.user.isCustomer()){
-                    switch(position){
-                        case 0:
-                            activity.startActivity(new Intent(activity, NavigationActivity.class)
-                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                            break;
-                        case 1:
-                            activity.startActivity(new Intent(activity, SearchProvider.class)
-                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                            break;
-                        case 2:
-                            activity.startActivity(new Intent(activity, ViewAppointments.class)
-                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                            break;
-                        case 3:
-                            activity.startActivity(new Intent(activity, ServiceHistory.class)
-                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                            break;
-                        case 4:
-                            activity.startActivity(new Intent(activity, Profile.class)
-                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                            break;
-                        case 5:
-                            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                            builder.setTitle("logout");
-                            builder.setMessage("Are you sure to logout?");
-                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    activity.finishAffinity();
-                                    AppManager.instance.setUser(null);
-                                    SharedPreferences preferences = activity.getSharedPreferences("MyPrefs", activity.MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = preferences.edit();
-                                    editor.clear();
-                                    editor.apply();
-                                    activity.startActivity(new Intent(activity, LoginActivity.class));
-                                    //System.exit(0);
-                                }
-                            });
-                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
-                                }
-                            });
-                            //show dialog
-                            builder.show();
-                            break;
-                    }
-                } else if(AppManager.instance.user.isProvider()){
-                    switch(position){
-                        case 0:
-                            activity.startActivity(new Intent(activity, ViewAppointments.class)
-                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                            break;
-                        case 1:
-                            Intent intent = new Intent(activity, RegistrationActivity.class);
-                            intent.putExtra("WITH_PROVIDER", true);
-                            activity.startActivity(intent
-                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                            break;
-                        case 2:
-                            activity.startActivity(new Intent(activity, SearchCustomer.class)
-                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                            break;
-                        case 3:
-                            activity.startActivity(new Intent(activity, ServiceHistory.class)
-                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                            break;
-                        case 4:
-                            //TO DO LOGOUT, End user session in the AppManager
-                            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                            builder.setTitle("logout");
-                            builder.setMessage("Are you sure to logout?");
-                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    activity.finishAffinity();
-                                    AppManager.instance.setUser(null);
-                                    SharedPreferences preferences = activity.getSharedPreferences("MyPrefs", activity.MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = preferences.edit();
-                                    editor.clear();
-                                    editor.apply();
-                                    activity.startActivity(new Intent(activity, LoginActivity.class));
-                                    // System.exit(0);
-                                }
-                            });
-                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
-                                }
-                            });
-                            //show dialog
-                            builder.show();
-                            break;
-                    }
-                }
+        // BEGIN FIXER CUSTOM LOGOUT DIALOG BOX
+        LayoutInflater inflater = LayoutInflater.from(activity);
+        View customDialogView = inflater.inflate(R.layout.fixer_dialog_logout, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setView(customDialogView);
+        Dialog customDialog = builder.create();
+        customDialog.setContentView(customDialogView);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(customDialog.getWindow().getAttributes());
+        int width = (int) (activity.getResources().getDisplayMetrics().widthPixels * 0.8);
+        lp.width = width;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        customDialog.getWindow().setAttributes(lp);
+        customDialog.getWindow().setBackgroundDrawable(null);
 
+        TextView title = customDialogView.findViewById(R.id.dialog_title);
+        title.setText("Logout");
+
+        TextView message = customDialogView.findViewById(R.id.dialog_message);
+        message.setText("Are you sure want to logout?");
+        // END
+
+        holder.textView.setOnClickListener(view -> {
+            int position1 = holder.getAdapterPosition();
+            if(AppManager.instance.user.isCustomer()){
+                switch(position1){
+                    case 0:
+                        activity.startActivity(new Intent(activity, NavigationActivity.class)
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
+                    case 1:
+                        activity.startActivity(new Intent(activity, SearchProvider.class)
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
+                    case 2:
+                        activity.startActivity(new Intent(activity, ViewAppointments.class)
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
+                    case 3:
+                        activity.startActivity(new Intent(activity, ServiceHistory.class)
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
+                    case 4:
+                        activity.startActivity(new Intent(activity, Profile.class)
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
+                    case 5:
+                        //BEGIN FIXER CUSTOM LOGOUT DIALOG BOX
+                        Button cancelButton = customDialogView.findViewById(R.id.dialog_cancel_button);
+                        cancelButton.setOnClickListener((View.OnClickListener) v -> customDialog.dismiss());
+
+                        Button yesButton = customDialogView.findViewById(R.id.dialog_yes_button);
+                        yesButton.setOnClickListener((View.OnClickListener) v -> {
+                            activity.finishAffinity();
+                            AppManager.instance.setUser(null);
+                            SharedPreferences preferences = activity.getSharedPreferences("MyPrefs", activity.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.clear();
+                            editor.apply();
+                            activity.startActivity(new Intent(activity, LoginActivity.class));
+                            customDialog.dismiss();
+                        });
+                        customDialog.show();
+                        // END
+                        break;
+                        /*
+                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                        builder.setTitle("Logout");
+                        builder.setMessage("Are you sure to logout?");
+                        builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+                            activity.finishAffinity();
+                            AppManager.instance.setUser(null);
+                            SharedPreferences preferences = activity.getSharedPreferences("MyPrefs", activity.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.clear();
+                            editor.apply();
+                            activity.startActivity(new Intent(activity, LoginActivity.class));
+                            //System.exit(0);
+                        });
+                        builder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
+                        //show dialog
+                        builder.show();
+                        break;*/
+                }
+            } else if(AppManager.instance.user.isProvider()){
+                switch(position1){
+                    case 0:
+                        activity.startActivity(new Intent(activity, ViewAppointments.class)
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
+                    case 1:
+                        Intent intent = new Intent(activity, RegistrationActivity.class);
+                        intent.putExtra("WITH_PROVIDER", true);
+                        activity.startActivity(intent
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
+                    case 2:
+                        activity.startActivity(new Intent(activity, SearchCustomer.class)
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
+                    case 3:
+                        activity.startActivity(new Intent(activity, ServiceHistory.class)
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
+                    case 4:
+                        //TO DO LOGOUT, End user session in the AppManager
+                        /*
+                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                        builder.setTitle("Logout");
+                        builder.setMessage("Are you sure to logout?");
+                        builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+                            activity.finishAffinity();
+                            AppManager.instance.setUser(null);
+                            SharedPreferences preferences = activity.getSharedPreferences("MyPrefs", activity.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.clear();
+                            editor.apply();
+                            activity.startActivity(new Intent(activity, LoginActivity.class));
+                            // System.exit(0);
+                        });
+                        builder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
+                        //show dialog
+                        builder.show();
+                        break;*/
+
+                        // BEGIN FIXER CUSTOM LOGOUT DIALOG BOX
+                        Button cancelButton = customDialogView.findViewById(R.id.dialog_cancel_button);
+                        cancelButton.setOnClickListener((View.OnClickListener) v -> customDialog.dismiss());
+
+                        Button yesButton = customDialogView.findViewById(R.id.dialog_yes_button);
+                        yesButton.setOnClickListener((View.OnClickListener) v -> {
+                            activity.finishAffinity();
+                            AppManager.instance.setUser(null);
+                            SharedPreferences preferences = activity.getSharedPreferences("MyPrefs", activity.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.clear();
+                            editor.apply();
+                            activity.startActivity(new Intent(activity, LoginActivity.class));
+                            customDialog.dismiss();
+                        });
+                        customDialog.show();
+                        // END
+                        break;
+                }
             }
+
         });
     }
 

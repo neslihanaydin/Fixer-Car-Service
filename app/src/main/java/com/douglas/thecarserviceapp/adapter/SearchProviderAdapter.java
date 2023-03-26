@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 import com.douglas.thecarserviceapp.model.User;
+import com.douglas.thecarserviceapp.view.BookAppointment;
 import com.douglas.thecarserviceapp.view.CreateAppointment;
 
 import java.util.ArrayList;
@@ -43,12 +44,12 @@ public class SearchProviderAdapter extends RecyclerView.Adapter<SearchProviderAd
         holder.textAddress.setText(selectedProvider.getAddress());
         holder.textPhoneNumber.setText(selectedProvider.getPhoneNumber());
         holder.cardProvider.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), CreateAppointment.class);
+            Intent intent = new Intent(v.getContext(), BookAppointment.class);
             intent.putExtra("PROVIDER_ID", selectedProvider.getUserId());
-            intent.putExtra("PROVIDER_FNAME", selectedProvider.getFirstName());
+            /*intent.putExtra("PROVIDER_FNAME", selectedProvider.getFirstName());
             intent.putExtra("PROVIDER_LNAME", selectedProvider.getLastName());
             intent.putExtra("PROVIDER_PHONE", selectedProvider.getPhoneNumber());
-            intent.putExtra("PROVIDER_ADDRESS", selectedProvider.getAddress());
+            intent.putExtra("PROVIDER_ADDRESS", selectedProvider.getAddress());*/
             v.getContext().startActivity(intent);
         });
     }

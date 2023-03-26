@@ -26,6 +26,7 @@
         android:hint=""
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textSize="16sp"
         android:textColor="@color/fixer_dark_blue"
         android:textColorHint="@color/fixer_gray" />
 

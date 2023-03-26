@@ -105,7 +105,7 @@ tools:context=".view.BookAppointment">
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:background="@drawable/edit_field"
                 android:gravity="center|top">
@@ -119,6 +119,7 @@ tools:context=".view.BookAppointment">
                         android:id="@+id/radioPickup"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
+                        android:layout_marginRight="5dp"
                         android:buttonTint="@color/fixer_dark_blue"
                         android:text="Pick up"
                         android:textColor="@color/fixer_dark_blue"
@@ -128,6 +129,7 @@ tools:context=".view.BookAppointment">
                         android:id="@+id/radioDropOff"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
+                        android:layout_marginLeft="5dp"
                         android:buttonTint="@color/fixer_dark_blue"
                         android:text="Drop off"
                         android:textColor="@color/fixer_dark_blue"
@@ -197,25 +199,23 @@ tools:context=".view.BookAppointment">
             <LinearLayout
                 android:id="@+id/layoutDatePicker"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_gravity="center|top"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/rounded_background"
-                android:orientation="horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/calImg"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_weight="0"
                     android:src="@drawable/icon_calendar" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
@@ -243,7 +243,7 @@ tools:context=".view.BookAppointment">
                 android:layout_width="300dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/edit_field"
                 android:ems="10"
                 android:gravity="start|top"
@@ -252,18 +252,21 @@ tools:context=".view.BookAppointment">
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
                 android:singleLine="false"
-                android:textColorHint="@color/fixer_gray"
-                android:textColor="@color/fixer_black" />
+                android:textColor="@color/fixer_black"
+                android:textColorHint="@color/fixer_gray" />
 
             <Button
                 android:id="@+id/btnBookAppointment"
+                style="@style/ButtonTextNoCaps"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="14dp"
                 android:background="@drawable/button_enabled"
                 android:text="Book an Appointment"
-                android:textColor="@color/fixer_dark_blue" />
+                android:textColor="@color/fixer_dark_blue"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
         </ScrollView>
     </androidx.core.widget.NestedScrollView>
