@@ -46,7 +46,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
     ProviderServicesAdapter providerServicesAdapter;
     User user;
     DatabaseHelper dbHelper;
-    TextView txtDate;
+    TextView txtDate, currentUser;
     LinearLayout layoutDate;
     boolean timeSetStatus = false;
 
@@ -87,6 +87,9 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
             RadioButton rPickUp = findViewById(R.id.radioPickup);
             RadioButton rDropOff = findViewById(R.id.radioDropOff);
             EditText editTextComments = findViewById(R.id.editTextComments);
+
+            currentUser = findViewById(R.id.txtCurrentUserName);
+            currentUser.setText(user.getFirstName() + " " + user.getLastName());
 
             layoutDate = findViewById(R.id.layoutDatePicker);
             layoutDate.setOnClickListener(new View.OnClickListener() {

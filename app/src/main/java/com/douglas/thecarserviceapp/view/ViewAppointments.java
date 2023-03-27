@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.douglas.thecarserviceapp.R;
@@ -36,6 +38,7 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
     User user;
     DatabaseHelper dbHelper;
     List<Appointment> appointments;
+    TextView currentUser, toastText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +72,20 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
         if(user!= null) {
             if (user.isProvider()) {
                 dbHelper = new DatabaseHelper(getApplicationContext());
+                currentUser = findViewById(R.id.txtCurrentUserName);
+                currentUser.setText(user.getFirstName() + " " + user.getLastName());
                 try {
                     appointments = dbHelper.getUpcomingAppointmentForProvider(user.getUserId());
+                    if (appointments.size() > 0) {
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.fixer_toast, findViewById(R.id.custom_toast_layout));
+                        toastText = layout.findViewById(R.id.text_toast);
+                        toastText.setText("You have " + appointments.size() + " upcoming appointments");
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(layout);
+                        toast.show();
+                    }
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

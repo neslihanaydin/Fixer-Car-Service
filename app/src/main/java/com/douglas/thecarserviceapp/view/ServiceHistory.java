@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.adapter.MainAdapter;
@@ -32,6 +33,7 @@ public class ServiceHistory extends AppCompatActivity implements ServiceHistoryC
     User user;
     DatabaseHelper dbHelper;
     List<Appointment> appointments;
+    TextView currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,8 @@ public class ServiceHistory extends AppCompatActivity implements ServiceHistoryC
         if(user!= null) {
             if (user.isProvider()) {
                 dbHelper = new DatabaseHelper(getApplicationContext());
+                currentUser = findViewById(R.id.txtCurrentUserName);
+                currentUser.setText(user.getFirstName() + " " + user.getLastName());
                 try {
                     appointments = dbHelper.getServiceHistoryForProvider(user.getUserId());
                 } catch (ParseException e) {

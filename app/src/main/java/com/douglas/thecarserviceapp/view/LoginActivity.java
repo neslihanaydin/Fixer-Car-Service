@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                 editor.apply();
                 AppManager.instance.setUser(user); //Singleton class to hold logged user for whole app life cycle
                 startActivity(new Intent(LoginActivity.this, NavigationActivity.class));
-                Toast.makeText(getApplicationContext(), "Welcome " + user.getUserType(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Welcome " + user.getUserType(), Toast.LENGTH_LONG).show();
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), "Invalid email or password!", Toast.LENGTH_LONG).show();

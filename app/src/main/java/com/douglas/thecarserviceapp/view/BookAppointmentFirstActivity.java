@@ -9,9 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.douglas.thecarserviceapp.R;
@@ -19,6 +22,7 @@ import com.douglas.thecarserviceapp.adapter.BookAppointmentFirstAdapter;
 import com.douglas.thecarserviceapp.adapter.MainAdapter;
 import com.douglas.thecarserviceapp.app.AppManager;
 import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
+import com.douglas.thecarserviceapp.model.Appointment;
 import com.douglas.thecarserviceapp.model.User;
 
 import java.util.List;
@@ -31,6 +35,8 @@ public class BookAppointmentFirstActivity extends AppCompatActivity implements B
     User user;
     DatabaseHelper dbh;
     List<User> provider;
+    List<Appointment> upcomingAppointments;
+    TextView currentUser, toastText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +59,23 @@ public class BookAppointmentFirstActivity extends AppCompatActivity implements B
             }
         });
 
-        if(user!=null){
+        if(user!=null) {
+            currentUser = findViewById(R.id.txtCurrentUserName);
+            currentUser.setText(user.getFirstName() + " " + user.getLastName());
             dbh = new DatabaseHelper(getApplicationContext());
             try{
-               provider = dbh.getFavouriteProviders(user.getUserId());
+                provider = dbh.getFavouriteProviders(user.getUserId());
+                upcomingAppointments = dbh.getUpcomingAppointmentForCustomer(user.getUserId());
+                if (upcomingAppointments.size() > 0) {
+                    LayoutInflater inflater = getLayoutInflater();
+                    View layout = inflater.inflate(R.layout.fixer_toast, findViewById(R.id.custom_toast_layout));
+                    toastText = layout.findViewById(R.id.text_toast);
+                    toastText.setText("You have " + upcomingAppointments.size() + " upcoming appointments");
+                    Toast toast = new Toast(getApplicationContext());
+                    toast.setDuration(Toast.LENGTH_LONG);
+                    toast.setView(layout);
+                    toast.show();
+                }
             }
             catch (Exception ex){
                 ex.printStackTrace();
@@ -77,7 +96,7 @@ public class BookAppointmentFirstActivity extends AppCompatActivity implements B
         }
     }
 
-    //Implememt when customer click FavItems.
+    //Implement when customer click FavItems.
     @Override
     public void onItemClick(View view, int position) {
         //Toast.makeText(this, "You choose a provider", Toast.LENGTH_SHORT).show();
