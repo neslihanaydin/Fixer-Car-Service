@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.adapter.MainAdapter;
@@ -33,6 +34,7 @@ public class Profile extends AppCompatActivity implements ProfileAdapter.ItemCli
     EditText edtCurrPass, edtNewPass, edtConfPass;
     public static Button buttonSave;
     RecyclerView recyclerViewEditFields;
+    TextView currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,9 @@ public class Profile extends AppCompatActivity implements ProfileAdapter.ItemCli
         btMenu = findViewById(R.id.menu_icon);
         recyclerView = findViewById(R.id.recycler_view);
         user = AppManager.instance.user;
+
+        currentUser = findViewById(R.id.txtCurrentUserName);
+        currentUser.setText(user.getFirstName() + " " + user.getLastName());
 
         //Change the page header
         FixerToolbar.setToolbar(this, "Profile", true, true);
