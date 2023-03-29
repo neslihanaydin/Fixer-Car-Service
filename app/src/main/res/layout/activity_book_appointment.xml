@@ -39,8 +39,8 @@ tools:context=".view.BookAppointment">
             android:orientation="vertical">
 
 
-
             <LinearLayout
+                android:id="@+id/linearLayoutProvider"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
@@ -48,7 +48,8 @@ tools:context=".view.BookAppointment">
                 android:background="@drawable/rounded_background"
                 android:orientation="horizontal"
                 android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="10dp"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/AppImgLeft"
@@ -101,6 +102,68 @@ tools:context=".view.BookAppointment">
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/linearLayoutCustomer"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_background"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/UserImgLeft"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0"
+                    android:src="@drawable/icon_user_card" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp">
+
+                    <TextView
+                        android:id="@+id/AppUserTxtName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="Customer Name"
+                        android:textAlignment="center"
+                        android:textColor="#09032F"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/AppUserTxtPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="Phone Number"
+                        android:textAlignment="center"
+                        android:textColor="@color/fixer_gray"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/AppUserTxtAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="Customer Address"
+                        android:textAlignment="center"
+                        android:textColor="@color/fixer_gray"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"

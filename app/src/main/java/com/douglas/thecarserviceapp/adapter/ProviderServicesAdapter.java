@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
-import com.douglas.thecarserviceapp.model.Appointment;
 import com.douglas.thecarserviceapp.model.Service;
 
 import java.util.List;
@@ -24,6 +22,15 @@ public class ProviderServicesAdapter extends RecyclerView.Adapter{
     LayoutInflater inflater;
     List<Service> sData;
     DatabaseHelper dbHelper;
+    List<Service> checkedServiceList;
+
+    public ProviderServicesAdapter(Context context, List<Service> data, ItemClickListener itemClickListener, List<Service> checkedServiceList){
+        sData = data;
+        this.itemClickListener = itemClickListener;
+        inflater = LayoutInflater.from(context);
+        dbHelper =  new DatabaseHelper(context);
+        this.checkedServiceList = checkedServiceList;
+    }
 
     public ProviderServicesAdapter(Context context, List<Service> data, ItemClickListener itemClickListener){
         sData = data;
@@ -31,7 +38,6 @@ public class ProviderServicesAdapter extends RecyclerView.Adapter{
         inflater = LayoutInflater.from(context);
         dbHelper =  new DatabaseHelper(context);
     }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,6 +50,11 @@ public class ProviderServicesAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((ViewHolder)holder).txtServiceRc.setText(sData.get(position).getType());
         ((ViewHolder)holder).txtCostRc.setText("$" + sData.get(position).getCost());
+        for(int i = 0; i < checkedServiceList.size(); i++){
+            if(sData.get(position).getServiceId() == checkedServiceList.get(i).getServiceId()){
+                ((ViewHolder)holder).checkBox.setChecked(true);
+            }
+        }
     }
 
     @Override
