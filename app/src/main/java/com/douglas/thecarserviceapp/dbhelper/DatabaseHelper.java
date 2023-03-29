@@ -413,9 +413,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         System.out.println(result1 + "-" + result2);
     }
 
-    private void deleteAppointment(Appointment appointment, SQLiteDatabase db){
-        db.delete(TABLE_APPOINTMENT, AP_COLUMN_ID + " = ?", new String[]{String.valueOf(appointment.getAppointmentId())});
-    }
 
     public long updateUserInfo(User user){
         SQLiteDatabase db = this.getWritableDatabase();
