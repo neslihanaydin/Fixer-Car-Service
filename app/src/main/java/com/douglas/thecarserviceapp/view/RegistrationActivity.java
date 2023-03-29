@@ -68,20 +68,37 @@ public class RegistrationActivity extends AppCompatActivity {
                     String phone = editPhone.getText().toString();
                     String email = editRegEmail.getText().toString();
                     String password = editRegPass.getText().toString();
-                    User newUser = new User(fName,lName,address,phone,email,password, User.UserType.CUSTOMER);
+
+
                     dbHelper = new DatabaseHelper(getApplicationContext());
-                    dbHelper.addUser(newUser);
-                    if(checkIntent()){ // If provider has created the new customer
-                        finish();
-                    } else {
-                        startActivity(new Intent(RegistrationActivity.this, NavigationActivity.class));
-                        AppManager.instance.setUser(newUser);
-                        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString("email", newUser.getEmail());
-                        editor.putString("password", newUser.getPassword());
-                        editor.apply();
-                        finish();
+                    try{
+                        user = dbHelper.getUserByEmail(email);
+                        //Check identical user register
+                        if(user != null){
+                            Toast.makeText(RegistrationActivity.this,"You already have an account",Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            //Adding user
+                            User newUser = new User(fName,lName,address,phone,email,password, User.UserType.CUSTOMER);
+                            dbHelper = new DatabaseHelper(getApplicationContext());
+                            dbHelper.addUser(newUser);
+                            if(checkIntent()){ // If provider has created the new customer
+                                finish();
+                            } else {
+                                startActivity(new Intent(RegistrationActivity.this, NavigationActivity.class));
+                                AppManager.instance.setUser(newUser);
+                                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("email", newUser.getEmail());
+                                editor.putString("password", newUser.getPassword());
+                                editor.apply();
+                                finish();
+                            }
+                        }
+
+                    }
+                    catch(Exception ex){
+                        ex.printStackTrace();
                     }
                 }
             }
@@ -150,5 +167,7 @@ public class RegistrationActivity extends AppCompatActivity {
         }
         return withProvider;
     }
+
+
 
 }
