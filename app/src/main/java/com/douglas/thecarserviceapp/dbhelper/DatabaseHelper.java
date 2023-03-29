@@ -408,8 +408,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteUser(User user){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_USERS, U_COLUMN_ID + " = ?", new String[]{String.valueOf(user.getUserId())});
-        db.close();
+        long result1 = db.delete(TABLE_APPOINTMENT, AP_COLUMN_UID + " = ?", new String[]{String.valueOf(user.getUserId())});
+        long result2 = db.delete(TABLE_USERS, U_COLUMN_ID + " = ?", new String[]{String.valueOf(user.getUserId())});
+        System.out.println(result1 + "-" + result2);
+    }
+
+    private void deleteAppointment(Appointment appointment, SQLiteDatabase db){
+        db.delete(TABLE_APPOINTMENT, AP_COLUMN_ID + " = ?", new String[]{String.valueOf(appointment.getAppointmentId())});
     }
 
     public long updateUserInfo(User user){

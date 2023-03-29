@@ -56,6 +56,8 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
             } else{
                 FixerToolbar.setToolbar(this, "View Appointments", true, true);
             }
+        }else{
+            finish();
         }
 
 
@@ -70,10 +72,10 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
         });
 
         if(user!= null) {
+            currentUser = findViewById(R.id.txtCurrentUserName);
+            currentUser.setText(user.getFirstName() + " " + user.getLastName());
             if (user.isProvider()) {
                 dbHelper = new DatabaseHelper(getApplicationContext());
-                currentUser = findViewById(R.id.txtCurrentUserName);
-                currentUser.setText(user.getFirstName() + " " + user.getLastName());
                 try {
                     appointments = dbHelper.getUpcomingAppointmentForProvider(user.getUserId());
                     if (appointments.size() > 0) {

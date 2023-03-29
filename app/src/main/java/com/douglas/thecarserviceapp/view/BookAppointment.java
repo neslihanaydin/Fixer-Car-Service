@@ -1,6 +1,7 @@
 package com.douglas.thecarserviceapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,6 +13,7 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -21,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.adapter.MainAdapter;
@@ -53,6 +56,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
     private List<Service> checkedServiceList = new ArrayList<>();
 
     public List<Service> serviceList;
+    RadioButton rPickUp, rDropOff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,28 +124,45 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
             btnBookAppointment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //check everything
-                    for(int i = 0; i < checkedServiceList.size(); i++){
-                        Appointment appointment = new Appointment();
-                        appointment.setUserId(user.getUserId());
-                        appointment.setProviderId(providerId);
-                        appointment.setServiceId(checkedServiceList.get(i).getServiceId());
-                        String dateHour =  txtDate.getText().toString();
-                        String[] subDateHour = dateHour.split("-",2);
-                        try {
-                            appointment.setDate(trimDate(subDateHour[0]));
-                            appointment.setTime(trimTime(subDateHour[1]));
-                        } catch (ParseException e) {
-                            throw new RuntimeException(e);
-                        }
-                        if(rPickUp.isChecked()){
-                            appointment.setType("Pick up");
-                        } else if(rDropOff.isChecked()){
-                            appointment.setType("Drop off");
-                        }
-                        appointment.setComments(editTextComments.getText().toString());
-                        dbHelper.addAppointment(appointment);
+                    boolean isValid = true;
+                    if (!rPickUp.isChecked() && !rDropOff.isChecked()){
+                        rPickUp.setError("!");
+                        rDropOff.setError("!");
+                        isValid = false;
                     }
+                    if (checkedServiceList.size() == 0){
+                        Toast.makeText(getApplicationContext(), "Please choose at least one service", Toast.LENGTH_SHORT).show();
+                        isValid = false;
+                    }
+                    if(txtDate.getText().equals("-- / -- / ---- 00:00")){
+                        txtDate.setError("Please choose the date and time");
+                        isValid = false;
+                    }
+                    if(isValid){
+                        for(int i = 0; i < checkedServiceList.size(); i++){
+                            Appointment appointment = new Appointment();
+                            appointment.setUserId(user.getUserId());
+                            appointment.setProviderId(providerId);
+                            appointment.setServiceId(checkedServiceList.get(i).getServiceId());
+                            String dateHour =  txtDate.getText().toString();
+                            String[] subDateHour = dateHour.split("-",2);
+                            try {
+                                appointment.setDate(trimDate(subDateHour[0]));
+                                appointment.setTime(trimTime(subDateHour[1]));
+                            } catch (ParseException e) {
+                                throw new RuntimeException(e);
+                            }
+                            if(rPickUp.isChecked()){
+                                appointment.setType("Pick up");
+                            } else if(rDropOff.isChecked()){
+                                appointment.setType("Drop off");
+                            }
+                            appointment.setComments(editTextComments.getText().toString());
+                            dbHelper.addAppointment(appointment);
+                            startActivity(new Intent(BookAppointment.this, ViewAppointments.class));
+                        }
+                    }
+
 
                 }
             });
@@ -149,7 +170,6 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
             finish();
         }
     }
-
     private java.sql.Date trimDate(String subDate) throws ParseException {
         String day;
         String month;

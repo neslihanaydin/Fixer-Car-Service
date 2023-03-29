@@ -37,4 +37,5 @@
     <string name="searchCustomer">Search a Customer</string>
     <string name="deleteCustomer">Delete Customer</string>
     <string name="searchByCity">Search by city</string>
+    <string name="dateHourFormat">-- / -- / ---- 00:00</string>
 </resources>

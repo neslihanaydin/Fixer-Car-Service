@@ -37,7 +37,7 @@ public class CustomerDetail extends AppCompatActivity implements ProfileAdapter.
     public static Button buttonDelCus;
     RecyclerView recyclerViewEditFieldsCus;
     DatabaseHelper dbHelper;
-    User user;
+    User customer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +71,10 @@ public class CustomerDetail extends AppCompatActivity implements ProfileAdapter.
         if(intent!=null){
             dbHelper = new DatabaseHelper(getApplicationContext());
             int userId = intent.getIntExtra("USER_ID", 0);
-            user = dbHelper.getUserById(userId);
+            customer = dbHelper.getUserById(userId);
             recyclerViewEditFieldsCus = findViewById(R.id.recyclerViewEditFieldsCus);
             recyclerViewEditFieldsCus.setLayoutManager(new LinearLayoutManager(this));
-            profileAdapter = new ProfileAdapter(this,user,this);
+            profileAdapter = new ProfileAdapter(this,customer,this);
             recyclerViewEditFieldsCus.setAdapter(profileAdapter);
         }
 
@@ -101,8 +101,8 @@ public class CustomerDetail extends AppCompatActivity implements ProfileAdapter.
                     String address = fields[2];
                     String phone = fields[3];
                     //Update User Information on db
-                    System.out.println(user.getEmail());
-                    User updatedUser = new User(firstName,lastName, address, phone, user.getEmail());
+                    System.out.println(customer.getEmail());
+                    User updatedUser = new User(firstName,lastName, address, phone, customer.getEmail());
                     long result = dbHelper.updateUserInfo(updatedUser);
                     if(edtNewPass.getText().toString().equals("") && result > 0){
                         Toast.makeText(CustomerDetail.this, "Customer profile updated", Toast.LENGTH_SHORT).show();
@@ -113,9 +113,9 @@ public class CustomerDetail extends AppCompatActivity implements ProfileAdapter.
                     !editConfPass.getText().toString().equals("")){
                     if((edtNewPass.getText().toString()).equals((editConfPass.getText().toString()))){
                         //update user password on session
-                        user.setPassword(edtNewPass.getText().toString());
+                        customer.setPassword(edtNewPass.getText().toString());
                         //update user password on db
-                        long result = dbHelper.updateUserPassword(user);
+                        long result = dbHelper.updateUserPassword(customer);
                         if(result > 0){
                             Toast.makeText(CustomerDetail.this, "User profile updated", Toast.LENGTH_SHORT).show();
                         }else {
@@ -158,14 +158,15 @@ public class CustomerDetail extends AppCompatActivity implements ProfileAdapter.
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(CustomerDetail.this);
-                builder.setMessage("Are you sure you want to delete customer : " + user.getUserFirstandLastName());
+                builder.setMessage("Are you sure you want to delete customer : " + customer.getUserFirstandLastName());
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dbHelper = new DatabaseHelper(getApplicationContext());
-                        dbHelper.deleteUser(user);
-                        recreate(); //Start activity again
+                        dbHelper.deleteUser(customer);
+                      //  recreate(); //Start activity again
                         dialog.dismiss();
+                        startActivity(new Intent(CustomerDetail.this, SearchCustomer.class));
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

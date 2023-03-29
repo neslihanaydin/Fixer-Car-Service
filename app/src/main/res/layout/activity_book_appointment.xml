@@ -229,7 +229,7 @@ tools:context=".view.BookAppointment">
                         android:layout_height="wrap_content"
 
                         android:paddingLeft="10dp"
-                        android:text="-- / -- / ---- 00:00"
+                        android:text="@string/dateHourFormat"
                         android:textAlignment="center"
                         android:textColor="@color/fixer_dark_blue"
                         android:textSize="18sp" />
