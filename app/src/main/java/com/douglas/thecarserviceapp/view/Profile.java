@@ -163,7 +163,7 @@ public class Profile extends AppCompatActivity implements ProfileAdapter.ItemCli
                 !edtNewPass.getText().toString().equals("") &&
                 !edtConfPass.getText().toString().equals(""))  {
             //check password
-            if(user.getPassword() == edtCurrPass.getText().toString()){
+            if(!((user.getPassword()).equals(edtCurrPass.getText().toString()))){
                 edtCurrPass.setError("Password is incorrect!");
             } else {
                 if((edtNewPass.getText().toString()).equals((edtConfPass.getText().toString()))){
