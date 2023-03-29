@@ -3,130 +3,152 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:layout_width="300dp"
-        android:layout_height="220dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center|top"
         android:layout_marginTop="15dp"
         android:background="@drawable/rounded_background"
-        android:baselineAligned="false"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingLeft="40dp"
+        android:paddingTop="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:id="@+id/linearLayoutTitle"
-            android:layout_width="92dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="40dp"
-            android:layout_weight="0"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-
-                android:text="@string/strDate"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="31dp"
-
-                android:text="@string/strProvider"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-
-                android:text="@string/strServices"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-
-                android:text="@string/strType"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:layout_weight="0"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtDateAp"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
 
-                android:text="@string/textViewValue"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
 
-            <TextView
-                android:id="@+id/txtProviderAp"
+                    android:text="@string/strDate"
+                    android:textColor="@color/fixer_dark_blue"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtDateAp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+
+                    android:text="@string/textViewValue"
+                    android:textColor="@color/fixer_dark_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                android:text="@string/textViewValue"
-                android:textColor="@color/fixer_dark_blue"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="31dp"
 
-            <TextView
-                android:id="@+id/txtProviderDtlAp"
+                    android:text="@string/strProvider"
+                    android:textColor="@color/fixer_dark_blue"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtProviderAp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="@string/textViewValue"
+                        android:textColor="@color/fixer_dark_blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtProviderDtlAp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+
+                        android:text="@string/textViewValue"
+                        android:textColor="@color/fixer_gray"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
 
-                android:text="@string/textViewValue"
-                android:textColor="@color/fixer_gray"
-                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
 
-            <TextView
-                android:id="@+id/txtServicesAp"
+                    android:text="@string/strServices"
+                    android:textColor="@color/fixer_dark_blue"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtServicesAp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+
+                    android:text="@string/textViewValue"
+                    android:textColor="@color/fixer_gray"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
 
-                android:text="@string/textViewValue"
-                android:textColor="@color/fixer_gray"
-                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
 
-            <TextView
-                android:id="@+id/txtType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
+                    android:text="@string/strType"
+                    android:textColor="@color/fixer_dark_blue"
+                    android:textSize="15sp" />
 
-                android:text="@string/textViewValue"
-                android:textColor="@color/fixer_gray"
-                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/txtType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
+
+                    android:text="@string/textViewValue"
+                    android:textColor="@color/fixer_gray"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
-
     <Button
         android:id="@+id/btnCancelAp"
         android:layout_width="300dp"
