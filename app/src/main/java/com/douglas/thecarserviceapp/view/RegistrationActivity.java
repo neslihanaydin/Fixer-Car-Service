@@ -124,6 +124,12 @@ public class RegistrationActivity extends AppCompatActivity {
             passwordConf = editRegPassConf.getText().toString();
             if(!password.equals(passwordConf)){
                 Toast.makeText(getApplicationContext(),"Password and password confirmation are not same",Toast.LENGTH_SHORT).show();
+                isValid = false;
+                editRegPass.setText(null);
+                editRegPass.clearFocus();
+                editRegPassConf.setText(null);
+                editRegPassConf.clearFocus();
+
             }
         }
         return isValid;
