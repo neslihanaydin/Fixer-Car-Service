@@ -58,10 +58,10 @@ public class ServiceHistory extends AppCompatActivity implements ServiceHistoryC
         });
 
         if(user!= null) {
+            currentUser = findViewById(R.id.txtCurrentUserName);
+            currentUser.setText(user.getFirstName() + " " + user.getLastName());
             if (user.isProvider()) {
                 dbHelper = new DatabaseHelper(getApplicationContext());
-                currentUser = findViewById(R.id.txtCurrentUserName);
-                currentUser.setText(user.getFirstName() + " " + user.getLastName());
                 try {
                     appointments = dbHelper.getServiceHistoryForProvider(user.getUserId());
                 } catch (ParseException e) {

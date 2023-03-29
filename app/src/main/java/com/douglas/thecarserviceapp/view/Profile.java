@@ -46,8 +46,10 @@ public class Profile extends AppCompatActivity implements ProfileAdapter.ItemCli
         recyclerView = findViewById(R.id.recycler_view);
         user = AppManager.instance.user;
 
-        currentUser = findViewById(R.id.txtCurrentUserName);
-        currentUser.setText(user.getFirstName() + " " + user.getLastName());
+        if(user != null){
+            currentUser = findViewById(R.id.txtCurrentUserName);
+            currentUser.setText(user.getFirstName() + " " + user.getLastName());
+        }
 
         //Change the page header
         FixerToolbar.setToolbar(this, "Profile", true, true);
