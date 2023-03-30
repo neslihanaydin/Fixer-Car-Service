@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="420dp"
+    android:layout_gravity="center"
+    android:background="@drawable/rounded_background_blue"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txtPopUpInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/popUpInfoUpdateService"
+        android:textAlignment="center"
+        android:textColor="@color/fixer_white"
+        android:textSize="16sp" />
+
+    <Spinner
+        android:id="@+id/spinnerServices"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/rounded_background_gray_button"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/editTextCostP"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:autofillHints=""
+        android:background="@drawable/edit_field"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Enter cost"
+        android:inputType="numberDecimal"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/fixer_dark_blue"
+        android:textColorHint="@color/fixer_gray"
+        android:textSize="17sp" />
+
+
+    <Button
+        android:id="@+id/btnAddService"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button_enabled"
+        android:text="Add service"
+        android:textAllCaps="false"
+        android:textColor="@color/fixer_dark_blue"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+</LinearLayout>

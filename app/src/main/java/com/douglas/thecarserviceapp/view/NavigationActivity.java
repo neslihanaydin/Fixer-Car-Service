@@ -62,6 +62,7 @@ public class NavigationActivity extends AppCompatActivity {
                     items.add(new ItemDrawer(R.drawable.icon_add, "Create Customer"));
                     items.add(new ItemDrawer(R.drawable.icon_search, "Search Customers"));
                     items.add(new ItemDrawer(R.drawable.icon_history, "Service History"));
+                    items.add(new ItemDrawer(R.drawable.icon_add, "Services"));
                     items.add(new ItemDrawer(R.drawable.icon_logout, "Logout"));
                 } else{
                    throw new Exception(new NullPointerException());
@@ -86,6 +87,7 @@ public class NavigationActivity extends AppCompatActivity {
                 startActivity(new Intent(NavigationActivity.this, BookAppointmentFirstActivity.class));
             } else if(user.isProvider()){
                 startActivity(new Intent(NavigationActivity.this, ViewAppointments.class));
+
             }
         }
 
