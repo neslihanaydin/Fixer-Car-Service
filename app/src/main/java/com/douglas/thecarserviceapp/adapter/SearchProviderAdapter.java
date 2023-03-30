@@ -15,7 +15,6 @@ import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 import com.douglas.thecarserviceapp.model.User;
 import com.douglas.thecarserviceapp.view.BookAppointment;
-import com.douglas.thecarserviceapp.view.CreateAppointment;
 
 import java.util.ArrayList;
 import java.util.List;

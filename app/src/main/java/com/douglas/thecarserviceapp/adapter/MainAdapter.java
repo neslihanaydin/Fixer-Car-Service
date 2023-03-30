@@ -24,6 +24,7 @@ import com.douglas.thecarserviceapp.util.ItemDrawer;
 import com.douglas.thecarserviceapp.view.NavigationActivity;
 import com.douglas.thecarserviceapp.view.LoginActivity;
 import com.douglas.thecarserviceapp.view.Profile;
+import com.douglas.thecarserviceapp.view.ProviderServices;
 import com.douglas.thecarserviceapp.view.RegistrationActivity;
 import com.douglas.thecarserviceapp.view.SearchCustomer;
 import com.douglas.thecarserviceapp.view.SearchProvider;
@@ -160,6 +161,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                         break;
                     case 4:
+                        activity.startActivity(new Intent(activity, ProviderServices.class)
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
+                    case 5:
                         //TO DO LOGOUT, End user session in the AppManager
                         /*
                         AlertDialog.Builder builder = new AlertDialog.Builder(activity);

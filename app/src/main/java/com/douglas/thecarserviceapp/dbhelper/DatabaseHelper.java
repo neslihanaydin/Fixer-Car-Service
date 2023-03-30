@@ -47,6 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String S_COLUMN_COST = "cost";
     private static final String S_COLUMN_PROVIDER_ID = "provider_id";
     private static final String S_COLUMN_STYPE_ID = "service_type_id";
+    private static final String S_COLUMN_STATUS = "service_status";
 
     private static final String TABLE_APPOINTMENT = "APPOINTMENT";
     private static final String AP_COLUMN_ID = "appointment_id";
@@ -93,6 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 S_COLUMN_COST + " REAL NOT NULL, " +
                 S_COLUMN_PROVIDER_ID + " INTEGER NOT NULL, " +
                 S_COLUMN_STYPE_ID + " INTEGER NOT NULL, " +
+                S_COLUMN_STATUS + " TEXT NOT NULL DEFAULT 'ACTIVE', " +
                 "FOREIGN KEY (" + S_COLUMN_PROVIDER_ID + ") REFERENCES " + TABLE_USERS + " (" + U_COLUMN_ID + "), " +
                 "FOREIGN KEY (" + S_COLUMN_STYPE_ID + ") REFERENCES " + TABLE_SERVICETYPE + " (" + ST_COLUMN_ID + "));";
 
@@ -219,6 +221,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.clear();
         cv.put(ST_COLUMN_ID,1003);
         cv.put(ST_COLUMN_STYPE,"Engine Air Filter Replacement");
+        db.insert(TABLE_SERVICETYPE, null, cv);
+
+        cv.clear();
+        cv.put(ST_COLUMN_ID,1004);
+        cv.put(ST_COLUMN_STYPE,"Routine check");
         db.insert(TABLE_SERVICETYPE, null, cv);
 
     }
@@ -711,14 +718,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.update(TABLE_APPOINTMENT, cv, selection, selectionArgs);
         if(result == -1){
             Toast.makeText(context, "Failed to cancel Appointment", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Successfully cancelled!", Toast.LENGTH_SHORT).show();
         }
 
     }
 
     /** SERVICE DB METHODS **/
 
+    public int getServiceTypeIdByType(String type){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = { ST_COLUMN_ID };
+        String selection = ST_COLUMN_STYPE + " = ?";
+        String[] selectionArgs = {type};
+        Cursor cursor = db.query(TABLE_SERVICETYPE, columns, selection, selectionArgs, null, null, null);
+        int serviceTypeId = 0;
+        if (cursor.moveToFirst()) {
+            serviceTypeId = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return serviceTypeId;
+    }
+    public void addService(Service service, int serviceTypeId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(S_COLUMN_COST, service.getCost());
+        cv.put(S_COLUMN_PROVIDER_ID, service.getProviderId());
+        cv.put(S_COLUMN_STYPE_ID, serviceTypeId);
+        long result = db.insert(TABLE_SERVICE, null, cv);
+        if(result == -1){
+            Toast.makeText(context, "Unexpected error in adding service.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Service has been added successfully.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public long addServiceToProvider(String serviceType, String cost, int providerId) {
+        int s_id = getServiceTypeId(serviceType);
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(S_COLUMN_COST, cost);
+        cv.put(S_COLUMN_PROVIDER_ID, providerId);
+        cv.put(S_COLUMN_STYPE_ID, s_id);
+        long result = db.insert(TABLE_SERVICE, null, cv);
+        return result;
+
+    }
+    public int getServiceTypeId(String serviceType){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        String query = "SELECT service_type_id FROM " + TABLE_SERVICETYPE + " WHERE type = '" +serviceType + "'";
+        Cursor cursor = db.rawQuery(query, null);
+        int id = (cursor.moveToFirst() ? cursor.getInt(0) : 0);
+        cursor.close();
+
+        return id;
+    }
     public String getServiceType(int serviceId) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = { S_COLUMN_STYPE_ID };
@@ -745,10 +801,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Service> services = new ArrayList<>();
         try {
             SQLiteDatabase db = this.getReadableDatabase();
-            String query = "SELECT u.user_id, u.first_name, u.last_name, u.phone_number, u.address " +
-                    "FROM USERS u " +
-                    "WHERE u.user_type = 'PROVIDER'";
-            String query2 = "SELECT s.service_id, st.type, s.cost FROM SERVICE s INNER JOIN SERVICETYPE st ON s.service_type_id = ST.service_type_id WHERE s.provider_id = " +providerId;
+            String query2 = "SELECT s.service_id, st.type, s.cost FROM SERVICE s " +
+                    "INNER JOIN SERVICETYPE st ON s.service_type_id = ST.service_type_id " +
+                    "WHERE s.provider_id = " +providerId + " AND s.service_status != 'PASSIVE'";
             String[] selectionArgs = {};
             Cursor cursor = db.rawQuery(query2, selectionArgs);
             while (cursor.moveToNext()) {
@@ -761,6 +816,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 service.setProviderId(providerId);
                 service.setCost(Double.parseDouble(cost));
                 services.add(service);
+            }
+            cursor.close();
+            db.close();
+        } catch (SQLiteException e) {
+            Log.e("DatabaseError", "Error on database: " + e.getMessage());
+        }
+        return services;
+    }
+
+    public List<String> getUnprovidedServicesForProvider(int providerId){
+        List<String> services = new ArrayList<>();
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT service_type_id, type FROM SERVICETYPE " +
+                    " WHERE service_type_id NOT IN ( " +
+                    " SELECT service_type_id FROM SERVICE WHERE provider_id = " + providerId + " AND service_status = 'ACTIVE' )";
+
+            String[] selectionArgs = {};
+            Cursor cursor = db.rawQuery(query, selectionArgs);
+            while (cursor.moveToNext()) {
+                String serviceType = cursor.getString(1);
+                services.add(serviceType);
             }
             cursor.close();
             db.close();
@@ -782,6 +859,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return cost;
+    }
+
+    public void removeServiceForProvider(int serviceId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(S_COLUMN_STATUS, "PASSIVE");
+        String selection = S_COLUMN_ID + " = ?";
+        String[] selectionArgs = { String.valueOf(serviceId) };
+        long result = db.update(TABLE_SERVICE, cv, selection, selectionArgs);
+
+    }
+
+    public long updateServiceCost(int serviceId, String serviceCost){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(S_COLUMN_COST, serviceCost);
+        String selection = S_COLUMN_ID + " = ?";
+        String[] selectionArgs = { String.valueOf(serviceId) };
+        long result = db.update(TABLE_SERVICE, cv, selection, selectionArgs);
+
+        return result;
     }
 
     public boolean checkUserCredentials (String email, String password){
@@ -923,5 +1021,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return aListAppointments;
     }
+
 
 }

@@ -61,10 +61,6 @@ public class SearchCustomer extends AppCompatActivity implements SearchUserAdapt
             }
         });
 
-        // Change the page header
-        // TO DO:when the buttonMenu is true, clicking is not working
-
-
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MainAdapter(this, NavigationActivity.items));

@@ -38,4 +38,9 @@
     <string name="deleteCustomer">Delete Customer</string>
     <string name="searchByCity">Search by city</string>
     <string name="dateHourFormat">-- / -- / ---- 00:00</string>
+    <string name="serviceCostInfo">You can see the services and their fees you have provided below. Click on the relevant service to make some changes or you can edit a new service</string>
+    <string name="popUpInfoUpdateService">You can update the service fee you have provided below or remove the service from your services</string>
+    <string name="updateSrCost">Update Cost</string>
+    <string name="btnRemoveService">Remove Service</string>
+    <string name="txtAddNewService">Add new service</string>
 </resources>
