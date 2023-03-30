@@ -10,13 +10,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.douglas.thecarserviceapp.R;
+import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 
 public class AppointmentDetailServiceProvider extends AppCompatActivity {
 
     TextView textViewDate, textViewCusName, textViewCusAdd, textViewServices, textViewType,
             textViewComment;
+    ImageView imgBtnEdit;
 
-    Button buttonSave, buttonCancelAp;
+    Button buttonCancelAp;
+    int customerId;
+    int appointmentId;
+    DatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,17 +30,19 @@ public class AppointmentDetailServiceProvider extends AppCompatActivity {
         //Change the page header
         FixerToolbar.setToolbar(this, "Appointment Details", true, false);
 
-        buttonSave = findViewById(R.id.btnSave);
-        buttonCancelAp = findViewById(R.id.btnCancelAppointment);
+        buttonCancelAp = findViewById(R.id.btnCancelAppo);
         textViewDate = findViewById(R.id.textViewDate);
         textViewCusName = findViewById(R.id.textViewCusName);
         textViewCusAdd = findViewById(R.id.textViewCusAdd);
         textViewServices = findViewById(R.id.textViewServices);
         textViewType = findViewById(R.id.textViewType);
         textViewComment = findViewById(R.id.textViewComment);
+        imgBtnEdit = findViewById(R.id.ImgBtnEdit);
 
         Intent intent = getIntent();
         if(intent!=null){
+            appointmentId = intent.getIntExtra("APPOINTMENT_ID",0);
+            customerId = intent.getIntExtra("CUSTOMER_ID",0);
             String aDate = intent.getStringExtra("DATE");
             String aCustomer = intent.getStringExtra("CUSTOMER");
             String aCusAdd = intent.getStringExtra("CUSTOMER_ADDRESS");
@@ -54,20 +61,23 @@ public class AppointmentDetailServiceProvider extends AppCompatActivity {
             textViewComment.setText(aComments);
         }
 
-        buttonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Update appointment informations in db
-                //Then go back to the View Appointments screen
-            }
-        });
-
         buttonCancelAp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Show Pop up which asks "are you sure?"
-                //if yes then update appointment's status as "cancelled"
-                //never delete a record
+                dbHelper = new DatabaseHelper(getApplicationContext());
+                dbHelper.cancelAppointment(appointmentId);
+                startActivity(new Intent(AppointmentDetailServiceProvider.this, ViewAppointments.class));
+                finish();
+            }
+        });
+
+        imgBtnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(AppointmentDetailServiceProvider.this, BookAppointment.class);
+                intent1.putExtra("CUSTOMER_ID",customerId );
+                intent1.putExtra("APPOINTMENT_ID",appointmentId);
+                startActivity(intent1);
             }
         });
 

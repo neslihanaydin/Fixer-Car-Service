@@ -8,22 +8,6 @@
     android:orientation="vertical"
     tools:context=".view.AppointmentDetailServiceProvider">
 
-    <Button
-        android:id="@+id/btnCancelAppointment"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/button_enabled"
-        android:text="@string/btnCancelAppointment"
-        android:textAllCaps="false"
-        android:textColor="@color/fixer_dark_blue"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSave" />
-
     <include
         android:id="@+id/toolbar"
         layout="@layout/fixer_toolbar" />
@@ -36,7 +20,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginBottom="14dp"
         android:background="@drawable/rounded_background"
-        app:layout_constraintBottom_toTopOf="@+id/btnSave"
+        app:layout_constraintBottom_toTopOf="@+id/btnCancelAppo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +30,7 @@
         android:id="@+id/textViewDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
+        android:layout_marginStart="170dp"
         android:layout_marginTop="52dp"
         android:text="@string/textViewValue"
         android:textColor="@color/fixer_dark_blue"
@@ -185,7 +169,7 @@
         app:layout_constraintTop_toBottomOf="@+id/titleType" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/ImgBtnEdit"
         android:layout_width="32dp"
         android:layout_height="29dp"
         android:layout_marginTop="16dp"
@@ -197,14 +181,14 @@
         app:tint="@color/fixer_dark_blue" />
 
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnCancelAppo"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="14dp"
-        android:background="@drawable/rounded_background_gray_button"
-        android:text="@string/btnSave"
+        android:background="@drawable/button_enabled"
+        android:text="@string/btnCancelAppointment"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/fixer_dark_blue"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

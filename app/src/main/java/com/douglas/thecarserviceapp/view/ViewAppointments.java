@@ -119,12 +119,14 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this,"You clicked an appointment: " + (position + 1),Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"You clicked an appointment: " + (position + 1),Toast.LENGTH_LONG).show();
 
         if(user != null){
             Intent intent = new Intent(ViewAppointments.this, AppointmentDetailServiceProvider.class);
+            intent.putExtra("APPOINTMENT_ID",appointments.get(position).getAppointmentId());
+            intent.putExtra("CUSTOMER_ID",appointments.get(position).getUserId());
             intent.putExtra("DATE", appointments.get(position).getDateTime());
-            intent.putExtra("CUSTOMER", dbHelper.getUserName(appointments.get(position).getUserId())); // TO DO: GET IT FROM DB
+            intent.putExtra("CUSTOMER", dbHelper.getUserName(appointments.get(position).getUserId()));
             intent.putExtra("CUSTOMER_ADDRESS",dbHelper.getUserAddress(appointments.get(position).getUserId()));
             intent.putExtra("SERVICES",dbHelper.getServiceType(appointments.get(position).getServiceId()));
             intent.putExtra("TYPE", appointments.get(position).getType());

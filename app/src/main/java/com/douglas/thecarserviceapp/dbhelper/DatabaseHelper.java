@@ -388,6 +388,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user;
     }
 
+    public Appointment getAppointmentByAppointmentId(int appointmentId) throws ParseException {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {AP_COLUMN_SERVICE_ID, AP_COLUMN_ADATE, AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE};
+        String selection = AP_COLUMN_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(appointmentId)};
+        Cursor cursor = db.query(TABLE_APPOINTMENT, columns, selection, selectionArgs, null, null, null);
+        Appointment appointment = null;
+        if (cursor.moveToFirst()) {
+            String serviceId = cursor.getString(0);
+            String aDate = cursor.getString(1);
+            String aTime = cursor.getString(2);
+            String aComments = cursor.getString(3);
+            String aType = cursor.getString(4);
+
+            appointment = new Appointment();
+            appointment.setAppointmentId(appointmentId);
+            appointment.setServiceId(Integer.parseInt(serviceId));
+            appointment.setDate(Util.convertDate(aDate));
+            appointment.setTime(Util.convertTime(aTime));
+            appointment.setComments(aComments);
+            appointment.setType(aType);
+        }
+        cursor.close();
+     //   db.close();
+        return appointment;
+    }
     public void addUser(User user){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -667,6 +693,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(AP_COLUMN_STATUS, "CANCELLED");
         String selection = AP_COLUMN_ID + " = ?";
         String[] selectionArgs = { String.valueOf(appointment.getAppointmentId())};
+        long result = db.update(TABLE_APPOINTMENT, cv, selection, selectionArgs);
+        if(result == -1){
+            Toast.makeText(context, "Failed to cancel Appointment", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully cancelled!", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void cancelAppointment(int appointmentId){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(AP_COLUMN_STATUS, "CANCELLED");
+        String selection = AP_COLUMN_ID + " = ?";
+        String[] selectionArgs = { String.valueOf(appointmentId)};
         long result = db.update(TABLE_APPOINTMENT, cv, selection, selectionArgs);
         if(result == -1){
             Toast.makeText(context, "Failed to cancel Appointment", Toast.LENGTH_SHORT).show();
