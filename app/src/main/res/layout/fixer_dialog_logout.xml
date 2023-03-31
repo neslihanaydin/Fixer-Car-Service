@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_field"
-            android:text="Cancel"
+            android:text="No"
             android:textColor="@color/fixer_dark_blue"
             android:textSize="16sp"
             android:textStyle="bold" />
