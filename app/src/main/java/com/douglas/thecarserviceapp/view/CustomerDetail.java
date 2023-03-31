@@ -138,6 +138,7 @@ public class CustomerDetail extends AppCompatActivity implements ProfileAdapter.
                 CustomerDetail.buttonSaveCus.setTextColor(buttonTextColor);
                 edtNewPass.setText(null);
                 editConfPass.setText(null);
+                editConfPass.setFocusable(false);
             }
 
         });
