@@ -98,7 +98,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
             if(user.isProvider()){
                 int customerId = checkIntentForCustomerId();
                 if(customerId != 0){
-                    statusOptions.setVisibility(View.INVISIBLE);
+                    statusOptions.setVisibility(View.VISIBLE);
                     loadCustomerInformation(customerId);
                     serviceList = dbHelper.getServicesByProviderId(user.getUserId());
                     int appointmentId = checkIntentForAppointmentId();

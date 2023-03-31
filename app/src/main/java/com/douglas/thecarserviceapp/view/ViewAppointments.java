@@ -59,7 +59,7 @@ public class ViewAppointments extends AppCompatActivity implements ViewAppointme
             }
         } else {
             try {
-                appointments = dbHelper.getAllAppointmentsForCustomer(user.getUserId());
+                appointments = dbHelper.getUpcomingAppointmentForCustomer(user.getUserId());
                 viewAppointmentsCustomerAdapter = new ViewAppointmentsCustomerAdapter(this, appointments, this);
                 recyclerViewApp.setAdapter(viewAppointmentsCustomerAdapter);
             } catch (Exception e) {
