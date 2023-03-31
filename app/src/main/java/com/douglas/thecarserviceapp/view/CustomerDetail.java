@@ -1,6 +1,5 @@
 package com.douglas.thecarserviceapp.view;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -8,16 +7,22 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.douglas.thecarserviceapp.R;
@@ -157,6 +162,43 @@ public class CustomerDetail extends AppCompatActivity implements ProfileAdapter.
         buttonDelCus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Context activity = CustomerDetail.this;
+
+                // BEGIN FIXER CUSTOM LOGOUT DIALOG BOX
+                LayoutInflater inflater = LayoutInflater.from(activity);
+                View customDialogView = inflater.inflate(R.layout.fixer_dialog_logout, null);
+                android.app.AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setView(customDialogView);
+                Dialog customDialog = builder.create();
+                customDialog.setContentView(customDialogView);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(customDialog.getWindow().getAttributes());
+                int width = (int) (activity.getResources().getDisplayMetrics().widthPixels * 0.8);
+                lp.width = width;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                customDialog.getWindow().setAttributes(lp);
+                customDialog.getWindow().setBackgroundDrawable(null);
+
+                TextView title = customDialogView.findViewById(R.id.dialog_title);
+                title.setText("Remove Customer");
+
+                TextView message = customDialogView.findViewById(R.id.dialog_message);
+                message.setText("Are you sure you want to remove the customer " + customer.getUserFirstandLastName() + "?");
+
+                Button cancelButton = customDialogView.findViewById(R.id.dialog_cancel_button);
+                cancelButton.setOnClickListener((View.OnClickListener) l -> customDialog.dismiss());
+
+                Button yesButton = customDialogView.findViewById(R.id.dialog_yes_button);
+                yesButton.setOnClickListener((View.OnClickListener) l -> {
+                    dbHelper = new DatabaseHelper(getApplicationContext());
+                    dbHelper.deleteUser(customer);
+                    //recreate(); //Start activity again
+                    startActivity(new Intent(CustomerDetail.this, SearchCustomer.class));
+                    customDialog.dismiss();
+                });
+                customDialog.show();
+
+                /*
                 AlertDialog.Builder builder = new AlertDialog.Builder(CustomerDetail.this);
                 builder.setMessage("Are you sure you want to delete customer : " + customer.getUserFirstandLastName());
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -176,7 +218,7 @@ public class CustomerDetail extends AppCompatActivity implements ProfileAdapter.
                     }
                 });
                 AlertDialog alert = builder.create();
-                alert.show();
+                alert.show();*/
             }
         });
     }

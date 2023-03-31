@@ -14,8 +14,7 @@ import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 
 public class AppointmentDetailServiceProvider extends AppCompatActivity {
 
-    TextView textViewDate, textViewCusName, textViewCusAdd, textViewServices, textViewType,
-            textViewComment;
+    TextView textViewDate, textViewCusName, textViewCusAdd, textViewServices, textViewType, textViewComment, textViewStatus;
     ImageView imgBtnEdit;
 
     Button buttonCancelAp;

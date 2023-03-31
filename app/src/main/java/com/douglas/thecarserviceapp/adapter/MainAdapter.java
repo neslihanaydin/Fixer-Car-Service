@@ -75,7 +75,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         title.setText("Logout");
 
         TextView message = customDialogView.findViewById(R.id.dialog_message);
-        message.setText("Are you sure want to logout?");
+        message.setText("Are you sure you want to logout?");
         // END
 
         holder.textView.setOnClickListener(view -> {
