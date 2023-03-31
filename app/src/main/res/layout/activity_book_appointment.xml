@@ -318,6 +318,42 @@ tools:context=".view.BookAppointment">
                 android:textColor="@color/fixer_black"
                 android:textColorHint="@color/fixer_gray" />
 
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_field"
+                android:gravity="center|top">
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioCancelled"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="5dp"
+                        android:buttonTint="@color/fixer_dark_blue"
+                        android:text="Cancelled"
+                        android:textColor="@color/fixer_dark_blue"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/radioCompleted"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:buttonTint="@color/fixer_dark_blue"
+                        android:text="Completed"
+                        android:textColor="@color/fixer_dark_blue"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
             <Button
                 android:id="@+id/btnBookAppointment"
                 style="@style/ButtonTextNoCaps"

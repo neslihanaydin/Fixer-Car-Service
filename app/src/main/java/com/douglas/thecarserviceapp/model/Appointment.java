@@ -16,13 +16,14 @@ public class Appointment implements Serializable {
     Time time;
     private String type;
     private String comments;
+    private String status;
     SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
     public Appointment(){
 
     }
 
-    public Appointment(int appointmentId, int userId, int providerId, int serviceId, Date date, Time time, String comments, String type) {
+    public Appointment(int appointmentId, int userId, int providerId, int serviceId, Date date, Time time, String comments, String type, String status) {
         this.appointmentId = appointmentId;
         this.userId = userId;
         this.providerId = providerId;
@@ -31,7 +32,7 @@ public class Appointment implements Serializable {
         this.time = time;
         this.comments = comments;
         this.type = type;
-
+        this.status = status;
     }
 
     public String getComments(){
@@ -99,5 +100,13 @@ public class Appointment implements Serializable {
 
     public void setTime(Time time) {
         this.time = time;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

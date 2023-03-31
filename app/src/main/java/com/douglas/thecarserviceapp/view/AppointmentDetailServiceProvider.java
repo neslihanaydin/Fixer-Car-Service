@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 
+import java.text.DecimalFormat;
+
 public class AppointmentDetailServiceProvider extends AppCompatActivity {
 
     TextView textViewDate, textViewCusName, textViewCusAdd, textViewServices, textViewType, textViewComment, textViewStatus;
@@ -37,6 +39,7 @@ public class AppointmentDetailServiceProvider extends AppCompatActivity {
         textViewType = findViewById(R.id.textViewType);
         textViewComment = findViewById(R.id.textViewComment);
         imgBtnEdit = findViewById(R.id.ImgBtnEdit);
+        textViewStatus = findViewById(R.id.txtAppStatus);
 
         Intent intent = getIntent();
         if(intent!=null){
@@ -48,6 +51,7 @@ public class AppointmentDetailServiceProvider extends AppCompatActivity {
             String aServices = intent.getStringExtra("SERVICES");
             String aType = intent.getStringExtra("TYPE");
             String aComments = intent.getStringExtra("COMMENTS");
+            String status = intent.getStringExtra("STATUS");
             String msg = "Customer information is:\n" +
                         aDate + aCustomer + aCusAdd + aServices + "\n" +
                         aType + aComments;
@@ -58,6 +62,7 @@ public class AppointmentDetailServiceProvider extends AppCompatActivity {
             textViewServices.setText(aServices);
             textViewType.setText(aType);
             textViewComment.setText(aComments);
+            textViewStatus.setText(status);
         }
 
         buttonCancelAp.setOnClickListener(new View.OnClickListener() {

@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.douglas.thecarserviceapp.R;
 import com.douglas.thecarserviceapp.adapter.MainAdapter;
 import com.douglas.thecarserviceapp.adapter.ProviderServicesAdapter;
+import com.douglas.thecarserviceapp.adapter.ServiceDetailsAdapter;
 import com.douglas.thecarserviceapp.app.AppManager;
 import com.douglas.thecarserviceapp.dbhelper.DatabaseHelper;
 import com.douglas.thecarserviceapp.model.Appointment;
@@ -52,12 +53,9 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
     boolean timeSetStatus = false;
     LinearLayout linearLayoutProvider;
     LinearLayout linearLayoutCustomer;
-
-
     private List<Service> checkedServiceList = new ArrayList<>();
-
     public List<Service> serviceList;
-    RadioButton rPickUp, rDropOff;
+    RadioButton rPickUp, rDropOff, rCancelled, rCompleted;
     EditText editTextComments;
     Button btnBookAppointment;
 
@@ -92,7 +90,10 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
             txtDate = findViewById(R.id.txtDateField);
             rPickUp = findViewById(R.id.radioPickup);
             rDropOff = findViewById(R.id.radioDropOff);
+            rCancelled = findViewById(R.id.radioCancelled);
+            rCompleted = findViewById(R.id.radioCompleted);
             editTextComments = findViewById(R.id.editTextComments);
+
             if(user.isProvider()){
                 int customerId = checkIntentForCustomerId();
                 if(customerId != 0){
@@ -124,7 +125,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
                     // set Listeners for the provider. First param : provider, Second param : customer
                     setOnClickListeners(user.getUserId(), customerId);
                 }
-            }else{
+            } else {
                 int providerId = checkIntentForProviderId();
                 if(providerId != 0){
                     loadProviderInformation(providerId);
@@ -137,11 +138,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
                     recyclerViewApp.setAdapter(providerServicesAdapter);
                 }
             }
-
-
-
-
-        }else {
+        } else {
             finish();
         }
     }
@@ -181,7 +178,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
                     rDropOff.setError("!");
                     isValid = false;
                 }
-                if (checkedServiceList.size() == 0){
+                if (checkedServiceList.size() == 0) {
                     Toast.makeText(getApplicationContext(), "Please choose at least one service", Toast.LENGTH_SHORT).show();
                     isValid = false;
                 }
@@ -189,7 +186,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
                     txtDate.setError("Please choose the date and time");
                     isValid = false;
                 }
-                if(isValid){
+                if(isValid) {
                     int appointmentId = checkIntentForAppointmentId();
                     dbHelper.cancelAppointment(appointmentId);
                     for(int i = 0; i < checkedServiceList.size(); i++){
@@ -209,6 +206,14 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
                             appointment.setType("Pick up");
                         } else if(rDropOff.isChecked()){
                             appointment.setType("Drop off");
+                        }
+
+                        if (rCancelled.isChecked()) {
+                            String cancelled = rCancelled.getText().toString().toUpperCase();
+                            appointment.setStatus(cancelled);
+                        } else if (rCompleted.isChecked()) {
+                            String completed = rCompleted.getText().toString().toUpperCase();
+                            appointment.setStatus(completed);
                         }
                         appointment.setComments(editTextComments.getText().toString());
                         dbHelper.addAppointment(appointment);
