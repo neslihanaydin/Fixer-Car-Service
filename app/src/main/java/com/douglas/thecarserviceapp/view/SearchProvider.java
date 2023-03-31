@@ -77,15 +77,15 @@ public class SearchProvider extends AppCompatActivity {
 
     protected void search(String text) {
         filteredProviders.clear();
-        if(text.equals("")){
+        if(text.equals("")) {
             searchProviderAdapter.setFilteredList(filteredProviders);
         } else {
-            for(User user : providers){
+            for(User user : providers) {
                 if(user.getAddress().toLowerCase().contains(text.toLowerCase())){
                     filteredProviders.add(user);
                 }
             }
-            if(!filteredProviders.isEmpty()){
+            if(!filteredProviders.isEmpty()) {
                 searchProviderAdapter.setFilteredList(filteredProviders);
             }
         }

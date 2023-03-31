@@ -629,7 +629,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Appointment> getAllAppointmentsForProvider(int userId) throws ParseException {
         List<Appointment> appointments = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = { "appointment_id", "user_id", "provider_id", "service_id", "a_date", "a_time", "comments", "type" };
+        String[] columns = { "appointment_id", "user_id", "provider_id", "service_id", "a_date", "a_time", "comments", "type", "status" };
         String selection = "provider_id = ?  AND status != 'CANCELLED'";
         String[] selectionArgs = { String.valueOf(userId) };
         Cursor cursor = db.query("APPOINTMENT", columns, selection, selectionArgs, null, null, "a_date asc");
@@ -642,7 +642,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Time time = Util.convertTime(cursor.getString(5));
             String comments = cursor.getString(6);
             String type = cursor.getString(7);
-            Appointment appointment = new Appointment(appointmentId, appointmentUserId, appointmentProviderId, serviceId, date, time, comments, type);
+            String status = cursor.getString(8);
+            Appointment appointment = new Appointment(appointmentId, appointmentUserId, appointmentProviderId, serviceId, date, time, comments, type, status);
             appointments.add(appointment);
         }
         cursor.close();
@@ -666,7 +667,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Time time = Util.convertTime(cursor.getString(5));
             String comments = cursor.getString(6);
             String type = cursor.getString(7);
-            Appointment appointment = new Appointment(appointmentId, appointmentUserId, appointmentProviderId, serviceId, date, time, comments, type);
+            String status = cursor.getString(8);
+            Appointment appointment = new Appointment(appointmentId, appointmentUserId, appointmentProviderId, serviceId, date, time, comments, type, status);
             appointments.add(appointment);
         }
         cursor.close();
@@ -675,7 +677,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return appointments;
     }
 
-    public void addAppointment(Appointment appointment){
+    public void addAppointment(Appointment appointment) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(AP_COLUMN_UID, appointment.getUserId());
@@ -685,12 +687,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(AP_COLUMN_ATIME, appointment.getTime().toString());
         cv.put(AP_COLUMN_COMMENTS, appointment.getComments());
         cv.put(AP_COLUMN_TYPE, appointment.getType());
-        cv.put(AP_COLUMN_STATUS, "PENDING");
+        cv.put(AP_COLUMN_STATUS, (appointment.getStatus().equals("CANCELLED") || appointment.getStatus().equals("COMPLETED")) ? appointment.getStatus() : "PENDING");
         long result = db.insert(TABLE_APPOINTMENT, null, cv);
         if(result == -1){
-            Toast.makeText(context, "Unexpected error in adding appointment.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Unexpected error in adding appointment.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Appointment has been added successfully.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Appointment has been added successfully.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -702,9 +704,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] selectionArgs = { String.valueOf(appointment.getAppointmentId())};
         long result = db.update(TABLE_APPOINTMENT, cv, selection, selectionArgs);
         if(result == -1){
-            Toast.makeText(context, "Failed to cancel Appointment", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Failed to cancel Appointment", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Successfully cancelled!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Successfully cancelled!", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -907,8 +909,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Appointment> aListAppointments = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String[] column = { AP_COLUMN_ID, U_COLUMN_ID, AP_COLUMN_PROVIDER_ID, AP_COLUMN_SERVICE_ID,
-                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE};
-        String selection = U_COLUMN_ID + " = ? AND status != 'CANCELLED'";
+                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE, AP_COLUMN_STATUS};
+        String selection = U_COLUMN_ID + " = ? AND status != 'CANCELLED' AND status != 'COMPLETED'";
         String[] selectionArgs = { String.valueOf(userId)};
         Cursor cursor = sqLiteDatabase.query(TABLE_APPOINTMENT, column,
                 selection, selectionArgs, null,
@@ -923,8 +925,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Time time = Util.convertTime(cursor.getString(5));
             String comment = cursor.getString(6);
             String type = cursor.getString(7);
+            String status = cursor.getString(8);
             Appointment appointment = new Appointment(appointmentId, appointmentUserId,appointmentProviderId,
-                    serviceId, date, time, comment, type);
+                    serviceId, date, time, comment, type, status);
 //            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 //            Date strDate = dateFormat.parse(date);
             if (System.currentTimeMillis() <= date.getTime()){
@@ -939,8 +942,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Appointment> aListAppointments = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String[] column = { AP_COLUMN_ID, AP_COLUMN_UID, AP_COLUMN_PROVIDER_ID, AP_COLUMN_SERVICE_ID,
-                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE};
-        String selection = AP_COLUMN_PROVIDER_ID + " = ? AND status != 'CANCELLED'";
+                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE, AP_COLUMN_STATUS };
+        String selection = AP_COLUMN_PROVIDER_ID + " = ? AND status != 'CANCELLED' AND status != 'COMPLETED'";
         String[] selectionArgs = { String.valueOf(providerId)};
         Cursor cursor = sqLiteDatabase.query(TABLE_APPOINTMENT, column,
                 selection, selectionArgs, null,
@@ -955,8 +958,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Time time = Util.convertTime(cursor.getString(5));
             String comment = cursor.getString(6);
             String type = cursor.getString(7);
+            String status = cursor.getString(8);
             Appointment appointment = new Appointment(appointmentId, appointmentUserId,appointmentProviderId,
-                    serviceId, date, time, comment, type);
+                    serviceId, date, time, comment, type, status);
             if (System.currentTimeMillis() <= date.getTime()){
                 aListAppointments.add(appointment);
             }
@@ -968,7 +972,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Appointment> aListAppointments = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String[] column = { AP_COLUMN_ID, AP_COLUMN_UID, AP_COLUMN_PROVIDER_ID, AP_COLUMN_SERVICE_ID,
-                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE};
+                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE, AP_COLUMN_STATUS};
         String selection = AP_COLUMN_UID + " = ? AND status != 'CANCELLED'";
         String[] selectionArgs = { String.valueOf(userId)};
         Cursor cursor = sqLiteDatabase.query(TABLE_APPOINTMENT, column,
@@ -984,8 +988,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Time time = Util.convertTime(cursor.getString(5));
             String comment = cursor.getString(6);
             String type = cursor.getString(7);
+            String status = cursor.getString(8);
             Appointment appointment = new Appointment(appointmentId, appointmentUserId,appointmentProviderId,
-                    serviceId, date, time, comment, type);
+                    serviceId, date, time, comment, type, status);
             if (System.currentTimeMillis() > date.getTime()){
                 aListAppointments.add(appointment);
             }
@@ -997,7 +1002,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Appointment> aListAppointments = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String[] column = { AP_COLUMN_ID, AP_COLUMN_UID, AP_COLUMN_PROVIDER_ID, AP_COLUMN_SERVICE_ID,
-                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE};
+                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE, AP_COLUMN_STATUS };
         String selection = AP_COLUMN_PROVIDER_ID + " = ? AND status != 'CANCELLED'";
         String[] selectionArgs = { String.valueOf(providerId)};
         Cursor cursor = sqLiteDatabase.query(TABLE_APPOINTMENT, column,
@@ -1013,8 +1018,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Time time = Util.convertTime(cursor.getString(5));
             String comment = cursor.getString(6);
             String type = cursor.getString(7);
+            String status = cursor.getString(8);
             Appointment appointment = new Appointment(appointmentId, appointmentUserId,appointmentProviderId,
-                    serviceId, date, time, comment, type);
+                    serviceId, date, time, comment, type, status);
             if (System.currentTimeMillis() > date.getTime()){
                 aListAppointments.add(appointment);
             }

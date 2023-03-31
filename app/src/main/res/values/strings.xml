@@ -43,4 +43,5 @@
     <string name="updateSrCost">Update Cost</string>
     <string name="btnRemoveService">Remove Service</string>
     <string name="txtAddNewService">Add new service</string>
+    <string name="strAppStatus">Status</string>
 </resources>

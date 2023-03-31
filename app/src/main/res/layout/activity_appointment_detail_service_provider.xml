@@ -18,7 +18,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_background"
         android:orientation="horizontal"
         android:paddingLeft="40dp"
@@ -197,12 +197,12 @@
                     android:layout_width="92dp"
                     android:layout_height="wrap_content"
 
-                    android:text="@string/strTotal"
+                    android:text="@string/strAppStatus"
                     android:textColor="@color/fixer_dark_blue"
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/txtTotal"
+                    android:id="@+id/txtAppStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
