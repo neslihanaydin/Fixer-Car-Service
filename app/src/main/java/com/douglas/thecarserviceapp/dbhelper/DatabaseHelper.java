@@ -629,7 +629,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Appointment> getAllAppointmentsForProvider(int userId) throws ParseException {
         List<Appointment> appointments = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = { "appointment_id", "user_id", "provider_id", "service_id", "a_date", "a_time", "comments", "type" };
+        String[] columns = { "appointment_id", "user_id", "provider_id", "service_id", "a_date", "a_time", "comments", "type", "status" };
         String selection = "provider_id = ?  AND status != 'CANCELLED'";
         String[] selectionArgs = { String.valueOf(userId) };
         Cursor cursor = db.query("APPOINTMENT", columns, selection, selectionArgs, null, null, "a_date asc");
@@ -972,7 +972,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Appointment> aListAppointments = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String[] column = { AP_COLUMN_ID, AP_COLUMN_UID, AP_COLUMN_PROVIDER_ID, AP_COLUMN_SERVICE_ID,
-                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE};
+                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE, AP_COLUMN_STATUS};
         String selection = AP_COLUMN_UID + " = ? AND status != 'CANCELLED'";
         String[] selectionArgs = { String.valueOf(userId)};
         Cursor cursor = sqLiteDatabase.query(TABLE_APPOINTMENT, column,
@@ -1002,7 +1002,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Appointment> aListAppointments = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String[] column = { AP_COLUMN_ID, AP_COLUMN_UID, AP_COLUMN_PROVIDER_ID, AP_COLUMN_SERVICE_ID,
-                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE};
+                AP_COLUMN_ADATE,AP_COLUMN_ATIME, AP_COLUMN_COMMENTS, AP_COLUMN_TYPE, AP_COLUMN_STATUS };
         String selection = AP_COLUMN_PROVIDER_ID + " = ? AND status != 'CANCELLED'";
         String[] selectionArgs = { String.valueOf(providerId)};
         Cursor cursor = sqLiteDatabase.query(TABLE_APPOINTMENT, column,

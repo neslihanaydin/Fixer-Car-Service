@@ -58,6 +58,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
     RadioButton rPickUp, rDropOff, rCancelled, rCompleted;
     EditText editTextComments;
     Button btnBookAppointment;
+    LinearLayout statusOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
         FixerToolbar.setToolbar(this, "Book an Appointment", true, true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MainAdapter(this, NavigationActivity.items));
-
+        statusOptions = findViewById(R.id.statusOptions);
         linearLayoutCustomer = findViewById(R.id.linearLayoutCustomer);
         linearLayoutProvider = findViewById(R.id.linearLayoutProvider);
         btMenu.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +98,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
             if(user.isProvider()){
                 int customerId = checkIntentForCustomerId();
                 if(customerId != 0){
+                    statusOptions.setVisibility(View.INVISIBLE);
                     loadCustomerInformation(customerId);
                     serviceList = dbHelper.getServicesByProviderId(user.getUserId());
                     int appointmentId = checkIntentForAppointmentId();
@@ -128,6 +130,7 @@ public class BookAppointment extends AppCompatActivity implements ProviderServic
             } else {
                 int providerId = checkIntentForProviderId();
                 if(providerId != 0){
+                    statusOptions.setVisibility(View.INVISIBLE);
                     loadProviderInformation(providerId);
                     serviceList = dbHelper.getServicesByProviderId(providerId);
                     // set Listeners for the customer. First param : provider, Second param : customer
