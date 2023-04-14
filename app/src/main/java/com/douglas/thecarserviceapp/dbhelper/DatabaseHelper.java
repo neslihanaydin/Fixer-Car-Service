@@ -687,7 +687,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(AP_COLUMN_ATIME, appointment.getTime().toString());
         cv.put(AP_COLUMN_COMMENTS, appointment.getComments());
         cv.put(AP_COLUMN_TYPE, appointment.getType());
-        cv.put(AP_COLUMN_STATUS, (appointment.getStatus().equals("CANCELLED") || appointment.getStatus().equals("COMPLETED")) ? appointment.getStatus() : "PENDING");
+        cv.put(AP_COLUMN_STATUS, (appointment.getStatus()!= null && (appointment.getStatus().equals("CANCELLED") || appointment.getStatus().equals("COMPLETED"))) ? appointment.getStatus() : "PENDING");
         long result = db.insert(TABLE_APPOINTMENT, null, cv);
         if(result == -1){
             //Toast.makeText(context, "Unexpected error in adding appointment.", Toast.LENGTH_SHORT).show();
